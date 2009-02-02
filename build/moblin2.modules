@@ -1,0 +1,80 @@
+<?xml version="1.0"?><!--*- mode: nxml; indent-tabs-mode: nil -*-->
+<!DOCTYPE moduleset SYSTEM "moduleset.dtd">
+<?xml-stylesheet type="text/xsl" href="moduleset.xsl"?>
+<!-- vim:set ts=2 expandtab: -->
+<moduleset>
+  <repository type="svn" name="svn.gnome.org" default="yes"
+      href="http://svn.gnome.org/svn/"/>
+  <repository type="git" name="git.clutter-project.org"
+      href="ssh://gitserver@git.clutter-project.org/"/>
+  <repository type="git" name="git.moblin.org"
+      href="ssh://git@git.moblin.org/"/>
+  <repository type="git" name="git.o-hand.com"
+      href="ssh://gitserver@git.o-hand.com/"/>
+
+  <autotools id="clutter">
+    <branch repo="git.clutter-project.org"
+            module="clutter"
+            revision="clutter-0-8"/>
+  </autotools>
+
+  <autotools id="metacity-clutter" autogenargs="--with-clutter">
+    <branch repo="git.o-hand.com"
+            module="metacity-clutter"
+            revision="clutter"/>
+    <dependencies>
+      <dep package="clutter"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="libccss">
+    <branch repo="git.moblin.org"
+            module="libccss"
+            branch="branch-for-nbtk"/>
+  </autotools>
+
+  <autotools id="nbtk">
+    <branch repo="git.moblin.org"
+            module="nbtk"
+            branch="master"/>
+    <dependencies>
+      <dep package="clutter"/>
+      <dep package="libccss"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="librest">
+    <branch repo="git.moblin.org"
+            module="librest"
+            branch="master"/>
+  </autotools>
+
+  <autotools id="twitter-glib">
+    <branch repo="git.o-hand.com"
+            module="twitter-glib"
+            branch="master"/>
+  </autotools>
+
+  <autotools id="mojito">
+    <branch repo="git.moblin.org"
+            module="mojito"
+            branch="master"/>
+    <dependencies>
+      <dep package="librest"/>
+      <dep package="twitter-glib"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="mutter-moblin">
+    <branch repo="git.moblin.org"
+            module="mutter-moblin"
+            branch="master"/>
+    <dependencies>
+      <dep package="clutter"/>
+      <dep package="metacity-clutter"/>
+      <dep package="nbtk"/>
+      <dep package="mojito"/>
+    </dependencies>
+  </autotools>
+
+</moduleset>
