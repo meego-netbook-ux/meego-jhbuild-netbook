@@ -1,0 +1,52 @@
+Moblin v2 - JHBuild
+===============================================================================
+
+moblin2-tools is a repository containing scripts a jhbuild modules for the
+build and use of the Moblin v2 user shell and related libraries.
+
+Initialization
+-------------------------------------------------------------------------------
+
+You should check out JHBuild from the GNOME Subversion repository:
+
+  svn co http://svn.gnome.org/svn/jhbuild/trunk jhbuild
+
+Then build it and install it.
+
+Building the Moblin v2 shell
+-------------------------------------------------------------------------------
+
+To build the whole Moblin v2 UI:
+
+  jhbuild -f /path/to/moblin2-tools/jhbuildrc-moblin2 build meta-moblin2
+
+This will also take care of the dependencies.
+
+The modules will be downloaded under $HOME/moblin2/source.
+The modules will be installed under $HOME/moblin2/install
+
+Launching the Moblin v2 shell
+-------------------------------------------------------------------------------
+
+To launch the Moblin v2 shell under Xephyr you should start Xephyr using:
+
+  Xephyr :1 -screen 1024x600 -host-cursor -ac
+
+Then enter the jhbuild shell using:
+
+  jhbuild -f /path/to/moblin2-tools/jhbuildrc-moblin2 shell
+
+And run the start-in-xephyr.sh script:
+
+  /path/to/moblin2-tools/build/start-in-xephyr.sh
+
+Common issues
+-------------------------------------------------------------------------------
+
+Q: jhbuild can't find the moblin2 modules file
+A: If jhbuild cannot find the moblin2.modules file you should edit the
+jhbuildrc-moblin2 configuration file, on the
+
+  moduleset
+
+line. Using an absolute path usually works.
