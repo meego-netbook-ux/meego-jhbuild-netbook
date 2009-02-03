@@ -30,13 +30,13 @@
   <autotools id="libccss">
     <branch repo="git.moblin.org"
             module="libccss"
-            branch="branch-for-nbtk"/>
+            revision="branch-for-nbtk"/>
   </autotools>
 
   <autotools id="nbtk">
     <branch repo="git.moblin.org"
             module="nbtk"
-            branch="master"/>
+            revision="master"/>
     <dependencies>
       <dep package="clutter"/>
       <dep package="libccss"/>
@@ -46,19 +46,19 @@
   <autotools id="librest">
     <branch repo="git.moblin.org"
             module="librest"
-            branch="master"/>
+            revision="master"/>
   </autotools>
 
   <autotools id="twitter-glib">
     <branch repo="git.o-hand.com"
             module="twitter-glib"
-            branch="master"/>
+            revision="master"/>
   </autotools>
 
   <autotools id="mojito">
     <branch repo="git.moblin.org"
             module="mojito"
-            branch="master"/>
+            revision="master"/>
     <dependencies>
       <dep package="librest"/>
       <dep package="twitter-glib"/>
@@ -68,7 +68,7 @@
   <autotools id="mutter-moblin">
     <branch repo="git.moblin.org"
             module="mutter-moblin"
-            branch="master"/>
+            revision="master"/>
     <dependencies>
       <dep package="clutter"/>
       <dep package="metacity-clutter"/>
