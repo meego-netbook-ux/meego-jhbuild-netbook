@@ -27,6 +27,10 @@
     </dependencies>
   </autotools>
 
+  <autotools id="jana">
+    <branch repo="svn.gnome.org" module="jana"/>
+  </autotools>
+
   <autotools id="libccss">
     <branch repo="git.moblin.org"
             module="libccss"
@@ -70,6 +74,7 @@
             module="mutter-moblin"
             revision="master"/>
     <dependencies>
+      <dep package="jana"/>
       <dep package="clutter"/>
       <dep package="metacity-clutter"/>
       <dep package="nbtk"/>
