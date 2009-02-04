@@ -38,7 +38,7 @@ Then enter the jhbuild shell using:
 
 And run the start-in-xephyr.sh script:
 
-  /path/to/moblin2-tools/build/start-in-xephyr.sh
+  /path/to/moblin2-tools/build/launch-in-xephyr.sh
 
 Common issues
 -------------------------------------------------------------------------------
