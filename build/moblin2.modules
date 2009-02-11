@@ -15,7 +15,7 @@
   <autotools id="clutter">
     <branch repo="git.clutter-project.org"
             module="clutter"
-            revision="clutter-0-8"/>
+            revision="master"/>
   </autotools>
 
   <autotools id="metacity-clutter" autogenargs="--with-clutter">
