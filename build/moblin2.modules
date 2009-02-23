@@ -11,6 +11,10 @@
       href="ssh://git@git.moblin.org/"/>
   <repository type="git" name="git.o-hand.com"
       href="ssh://gitserver@git.o-hand.com/"/>
+  <repository type="git" name="github.com"
+      href="git://github.com/"/>
+  <repository type="tarball" name="libproxy.googlecode.com"
+      href="http://libproxy.googlecode.com/files/"/>
 
   <autotools id="clutter">
     <branch repo="git.clutter-project.org"
@@ -47,16 +51,40 @@
     </dependencies>
   </autotools>
 
+  <autotools id="libproxy" autogenargs="--without-networkmanager">
+    <branch repo="libproxy.googlecode.com"
+            module="libproxy-0.2.3.tar.gz" version="0.2.3"
+            size="378773" md5="86b635e1eb2d665cfbef4c6134fe6604"/>
+  </autotools>
+
+  <autotools id="libsoup">
+    <branch repo="svn.gnome.org" module="libsoup"/>
+    <dependencies>
+      <dep package="libproxy"/>
+    </dependencies>
+  </autotools>
+
   <autotools id="librest">
     <branch repo="git.moblin.org"
             module="librest"
             revision="master"/>
+    <dependencies>
+      <dep package="libsoup"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="json-glib">
+    <branch repo="github.com"
+            module="ebassi/json-glib"/>
   </autotools>
 
   <autotools id="twitter-glib">
-    <branch repo="git.o-hand.com"
-            module="twitter-glib"
-            revision="master"/>
+    <branch repo="github.com"
+            module="ebassi/twitter-glib"/>
+    <dependencies>
+      <dep package="json-glib"/>
+      <dep package="libsoup"/>
+    </dependencies>
   </autotools>
 
   <autotools id="mojito">
