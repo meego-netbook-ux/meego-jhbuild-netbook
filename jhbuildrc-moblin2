@@ -61,6 +61,9 @@ if _pkgconfig.returncode == 0:
 # Rebuild faster
 os.environ['INSTALL'] = os.path.expanduser('~/bin/install-check')
 
+# Use the standard system bus
+os.environ['DBUS_SYSTEM_BUS_ADDRESS'] = 'unix:path=/var/run/dbus/system_bus_socket'
+
 # Import optional user RC for further customization. You can override
 # the prefix or default build setup for example, or CFLAGS or
 # module_autogenargs, etc.
