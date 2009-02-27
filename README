@@ -13,12 +13,21 @@ You should check out JHBuild from the GNOME Subversion repository:
 
 Then build it and install it.
 
+From within the moblin2-jhbuild repository run:
+
+  make install
+
+This command will install:
+
+  - jhbuild-moblin2             - a wrapper around jhbuild
+  - $HOME/.jhbuildrc-moblin2    - a jhbuild configuration file
+
 Building the Moblin v2 shell
 -------------------------------------------------------------------------------
 
 To build the whole Moblin v2 UI:
 
-  jhbuild -f /path/to/moblin2-tools/jhbuildrc-moblin2 build meta-moblin2
+  jhbuild-moblin2 build
 
 This will also take care of the dependencies.
 
@@ -34,11 +43,11 @@ To launch the Moblin v2 shell under Xephyr you should start Xephyr using:
 
 Then enter the jhbuild shell using:
 
-  jhbuild -f /path/to/moblin2-tools/jhbuildrc-moblin2 shell
+  jhbuild-moblin2 shell
 
 And run the start-in-xephyr.sh script:
 
-  /path/to/moblin2-tools/build/launch-in-xephyr.sh
+  /path/to/moblin2-jhbuild/build/launch-in-xephyr.sh
 
 Common issues
 -------------------------------------------------------------------------------
