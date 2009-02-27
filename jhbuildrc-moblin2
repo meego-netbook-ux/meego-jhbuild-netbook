@@ -22,7 +22,7 @@
 # Only rebuild modules that have changed
 build_policy = 'updated'
 
-moduleset = './build/moblin2.modules'
+moduleset = 'http://folks.o-hand.com/ebassi/moblin2/moblin2.modules'
 
 modules = [ 'moblin2' ]
 
