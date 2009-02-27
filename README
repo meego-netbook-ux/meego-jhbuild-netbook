@@ -52,10 +52,23 @@ And run the start-in-xephyr.sh script:
 Common issues
 -------------------------------------------------------------------------------
 
-Q: jhbuild can't find the moblin2 modules file
+Q: Why jhbuild can't find the moblin2 modules file?
 A: If jhbuild cannot find the moblin2.modules file you should edit the
 jhbuildrc-moblin2 configuration file, on the
 
   moduleset
 
 line. Using an absolute path usually works.
+
+Q: Why doesn't Mojito (com.intel.Mojito D-Bus service) start?
+A: In order to activate a D-Bus service installed within the JHBuild
+root you have to modify the /etc/dbus-1/session.conf file by adding
+the following line:
+
+  <servicedir>@PREFIX@/moblin2/install/share/dbus-1/services</servicedir>
+
+Where @PREFIX@ is the prefix used by JHBuild -- the user's home directory
+by default.
+
+You will have to restart D-Bus, which usually means logging out or a
+complete reboot.
