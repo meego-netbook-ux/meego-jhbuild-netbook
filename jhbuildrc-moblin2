@@ -24,7 +24,7 @@ build_policy = 'updated'
 
 moduleset = 'http://folks.o-hand.com/ebassi/moblin2/moblin2.modules'
 
-modules = [ 'moblin2' ]
+modules = [ 'meta-moblin2' ]
 
 # what directory should the source be checked out to?
 checkoutroot = os.path.expanduser('~/moblin2/source')
