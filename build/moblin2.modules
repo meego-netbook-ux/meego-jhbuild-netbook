@@ -102,7 +102,7 @@
     </dependencies>
   </autotools>
 
-  <autotools id="mojito">
+  <autotools id="mojito" autogenargs="--with-online=networkmanager">
     <branch repo="git.moblin.org"
             module="mojito"
             revision="master"/>
