@@ -46,6 +46,10 @@
     <branch repo="svn.gnome.org" module="jana"/>
   </autotools>
 
+  <autotools id="gnome-menus">
+    <branch repo="svn.gnome.org" module="gnome-menus"/>
+  </autotools>
+
   <autotools id="libccss">
     <branch repo="git.moblin.org"
             module="libccss"
@@ -114,6 +118,7 @@
             revision="master"/>
     <dependencies>
       <dep package="jana"/>
+      <dep package="gnome-menus"/>
       <dep package="clutter"/>
       <dep package="metacity-clutter"/>
       <dep package="nbtk"/>
