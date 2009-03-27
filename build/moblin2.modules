@@ -112,6 +112,15 @@
     </dependencies>
   </autotools>
 
+  <autotools id="bisho">
+    <branch repo="git.moblin.org"
+            module="bisho"
+            revision="master"/>
+    <dependencies>
+      <dep package="mojito"/>
+    </dependencies>
+  </autotools>
+
   <autotools id="mutter-moblin">
     <branch repo="git.moblin.org"
             module="mutter-moblin"
@@ -131,6 +140,7 @@
       <dep package="clutter"/>
       <dep package="mojito"/>
       <dep package="mutter-moblin"/>
+      <dep package="bisho"/>
     </dependencies>
   </metamodule>
 
