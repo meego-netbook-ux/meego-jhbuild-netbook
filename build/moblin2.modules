@@ -50,7 +50,7 @@
     <branch repo="svn.gnome.org" module="gnome-menus"/>
   </autotools>
 
-  <autotools id="libccss">
+  <autotools id="libccss" autogenargs="--without-rsvg --disable-ccss-cairo --disable-ccss-gtk --disable-examples">
     <branch repo="git.moblin.org"
             module="libccss"
             revision="branch-for-nbtk"/>
