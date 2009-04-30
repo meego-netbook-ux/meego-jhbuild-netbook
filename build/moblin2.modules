@@ -13,6 +13,8 @@
       href="git://git.moblin.org/"/>
   <repository type="git" name="github.com"
       href="git://github.com/"/>
+  <repository type="git" name="git.gupnp.org"
+      href="git://git.gupnp.org/"/>
   <repository type="tarball" name="libproxy.googlecode.com"
       href="http://libproxy.googlecode.com/files/"/>
 
@@ -69,6 +71,53 @@
     <dependencies>
       <dep package="clutter"/>
       <dep package="libccss"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="bognor-regis">
+    <branch repo="git.moblin.org"
+            module="bognor-regis"
+            revision="master"/>
+    <dependencies>
+      <!-- dep package="gupnp"/ -->
+    </dependencies>
+  </autotools>
+
+  <autotools id="bickley">
+    <branch repo="git.moblin.org"
+            module="bickley"
+            revision="master"/>
+    <dependencies>
+      <dep package="gupnp"/>
+      <dep package="gupnp-av"/>
+      <dep package="gupnp-tools"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="gupnp">
+    <branch repo="git.gupnp.org"
+            module="gupnp"
+            revision="master"/>
+    <dependencies>
+      <!-- dep package="gupnp"/ -->
+    </dependencies>
+  </autotools>
+
+  <autotools id="gupnp-av">
+    <branch repo="git.gupnp.org"
+            module="gupnp-av"
+            revision="master"/>
+    <dependencies>
+      <dep package="gupnp"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="gupnp-tools">
+    <branch repo="git.gupnp.org"
+            module="gupnp-tools"
+            revision="master"/>
+    <dependencies>
+      <dep package="gupnp"/>
     </dependencies>
   </autotools>
 
@@ -130,11 +179,13 @@
     <branch repo="git.moblin.org" module="anerley" revision="master"/>
   </autotools>
 
-  <autotools id="mutter-moblin">
+  <autotools id="mutter-moblin" autogenargs="--enable-ahoghill --enable-people">
     <branch repo="git.moblin.org"
             module="mutter-moblin"
             revision="master"/>
     <dependencies>
+      <dep package="bickley"/>
+      <dep package="bognor-regis"/>
       <dep package="jana"/>
       <dep package="gnome-menus"/>
       <dep package="clutter"/>
