@@ -4,7 +4,7 @@
 <!-- vim:set ts=2 expandtab: -->
 <moduleset>
   <repository type="git" name="freedesktop.org"
-      href="http://anongit.freedesktop.org/git/ccss.git/"/>
+      href="git://anongit.freedesktop.org/"/>
   <repository type="svn" name="svn.gnome.org" default="yes"
       href="http://svn.gnome.org/svn/"/>
   <repository type="git" name="git.gnome.org"
@@ -54,7 +54,7 @@
 
   <autotools id="libccss" autogenargs="--without-rsvg --without-soup --disable-ccss-cairo --disable-ccss-gtk --disable-examples">
     <branch repo="freedesktop.org"
-            module="libccss"/>
+            module="ccss"/>
   </autotools>
 
   <autotools id="nbtk">
