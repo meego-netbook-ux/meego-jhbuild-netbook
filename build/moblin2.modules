@@ -178,6 +178,14 @@
     <branch repo="git.moblin.org" module="anerley" revision="master"/>
   </autotools>
 
+  <autotools id="dalston">
+    <branch repo="git.moblin.org"
+            module="dalston"
+            revision="master"/>
+    <dependencies>
+    </dependencies>
+  </autotools>
+
   <autotools id="mutter-moblin" autogenargs="--enable-ahoghill --enable-people">
     <branch repo="git.moblin.org"
             module="mutter-moblin"
@@ -201,6 +209,7 @@
       <dep package="mojito"/>
       <dep package="mutter-moblin"/>
       <dep package="bisho"/>
+      <dep package="dalston"/>
     </dependencies>
   </metamodule>
 
