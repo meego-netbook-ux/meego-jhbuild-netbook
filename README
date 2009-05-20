@@ -1,15 +1,15 @@
 Moblin v2 - JHBuild
 ===============================================================================
 
-moblin2-tools is a repository containing scripts a jhbuild modules for the
-build and use of the Moblin v2 user shell and related libraries.
+moblin2-jhbuid is a repository containing scripts and a JHBuild moduleset for
+building and developing the Moblin 2.0 User Shell and related libraries.
 
 Initialization
 -------------------------------------------------------------------------------
 
-You should check out JHBuild from the GNOME Subversion repository:
+You should check out JHBuild from the GNOME Git repository:
 
-  svn co http://svn.gnome.org/svn/jhbuild/trunk jhbuild
+  git clone git://git.gnome.org/jhbuild
 
 Then build it and install it.
 
@@ -49,6 +49,10 @@ And run the start-in-xephyr.sh script:
 
   /path/to/moblin2-jhbuild/build/launch-in-xephyr.sh
 
+Or use the 'run' command:
+
+  jhbuild-moblin2 run /path/to/moblin2-jhbuild/build/launch-in-xephyr.sh
+
 Common issues
 -------------------------------------------------------------------------------
 
@@ -72,3 +76,14 @@ by default.
 
 You will have to restart D-Bus, which usually means logging out or a
 complete reboot.
+
+Q: Why doesn't jhbuild pick up local changes to the moblin2.modules file?
+A: If you modify the moduleset file locally you will need to edit the
+$HOME/.jhbuildrc-moblin2 file and change the 'moduleset' value.
+
+Q: Why doesn't jhbuild pick up remote changes to the moblin2.modules file?
+A: You will probably have to remove the cached moblin2.modules inside:
+
+  $HOME/.cache/jhbuild
+
+and edit the index.xml file in the same directory.
