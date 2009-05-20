@@ -44,8 +44,7 @@
   </autotools>
 
   <autotools id="mutter" autogenargs="--with-clutter">
-    <branch repo="git.moblin.org"
-            module="mutter"/>
+    <branch repo="git.moblin.org" module="mutter" revision="master"/>
     <dependencies>
       <dep package="clutter"/>
     </dependencies>
