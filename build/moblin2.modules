@@ -36,9 +36,8 @@
   </autotools>
 
   <autotools id="metacity-clutter" autogenargs="--with-clutter">
-    <branch repo="git.o-hand.com"
-            module="metacity-clutter"
-            revision="clutter"/>
+    <branch repo="git.moblin.org"
+            module="mutter"/>
     <dependencies>
       <dep package="clutter"/>
     </dependencies>
