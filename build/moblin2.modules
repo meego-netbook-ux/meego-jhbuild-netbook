@@ -33,7 +33,7 @@
     </dependencies>
   </autotools>
 
-  <autotools id="clutter" autogenargs="--enable-introspection=no">
+  <autotools id="clutter">
     <branch repo="git.clutter-project.org"
             module="clutter"
             revision="master"/>
