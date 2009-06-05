@@ -120,7 +120,7 @@
     </dependencies>
   </autotools>
 
-  <autotools id="libproxy" autogenargs="--without-networkmanager">
+  <autotools id="libproxy" autogenargs="--without-networkmanager --without-mozjs --without-kde --with-gnome">
     <branch repo="libproxy.googlecode.com"
             module="libproxy-0.2.3.tar.gz" version="0.2.3"
             size="378773" md5="86b635e1eb2d665cfbef4c6134fe6604"/>
