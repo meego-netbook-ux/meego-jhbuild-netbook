@@ -220,6 +220,16 @@
     </dependencies>
   </autotools>
 
+  <autotools id="hornsey">
+    <branch repo="git.moblin.org"
+            module="hornsey"
+            revision="master"/>
+    <dependencies>
+      <dep package="bickley"/>
+      <dep package="clutter-gst"/>
+    </dependencies>
+  </autotools>
+
   <metamodule id="meta-moblin2">
     <dependencies>
       <dep package="clutter"/>
