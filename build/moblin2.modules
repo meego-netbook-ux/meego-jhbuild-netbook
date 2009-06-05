@@ -211,6 +211,15 @@
     </dependencies>
   </autotools>
 
+  <autotools id="clutter-gst">
+    <branch repo="git.clutter-project.org"
+            module="clutter-gst"
+            revision="master"/>
+    <dependencies>
+      <dep package="clutter"/>
+    </dependencies>
+  </autotools>
+
   <metamodule id="meta-moblin2">
     <dependencies>
       <dep package="clutter"/>
