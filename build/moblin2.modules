@@ -31,6 +31,9 @@
     <dependencies>
       <dep package="gobject-introspection"/>
     </dependencies>
+    <after>
+      <dep package="libsoup"/>
+    </after>
   </autotools>
 
   <autotools id="clutter">
