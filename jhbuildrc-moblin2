@@ -22,7 +22,7 @@
 # Only rebuild modules that have changed
 build_policy = 'updated'
 
-moduleset = 'http://folks.o-hand.com/ebassi/moblin2/moblin2.modules'
+moduleset = 'http://git.moblin.org/cgit.cgi/moblin2-jhbuild/plain/build/moblin2.modules' 
 
 modules = [ 'meta-moblin2' ]
 
