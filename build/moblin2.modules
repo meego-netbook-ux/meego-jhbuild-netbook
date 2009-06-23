@@ -66,12 +66,22 @@
             module="ccss"/>
   </autotools>
 
+  <autotools id="clutter-imcontext">
+    <branch repo="git.moblin.org"
+            module="clutter-imcontext"
+            revision="master"/>
+    <dependencies>
+      <dep package="clutter"/>
+    </dependencies>
+  </autotools>
+
   <autotools id="nbtk">
     <branch repo="git.moblin.org"
             module="nbtk"
             revision="master"/>
     <dependencies>
       <dep package="clutter"/>
+      <dep package="clutter-imcontext"/>
       <dep package="libccss"/>
     </dependencies>
   </autotools>
