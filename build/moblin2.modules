@@ -243,14 +243,41 @@
     </dependencies>
   </autotools>
 
-  <metamodule id="meta-moblin2">
+  <autotools id="clutter-gtk">
+    <branch repo="git.clutter-project.org"
+            module="clutter-gtk"
+            revision="master"/>
+  </autotools>
+
+  <autotools id="clutter-mozembed" autogenargs="--enable-plugins">
+    <branch repo="git.clutter-project.org"
+            module="clutter-mozembed"
+            revision="master"/>
     <dependencies>
       <dep package="clutter"/>
-      <dep package="mojito"/>
-      <dep package="mutter-moblin"/>
-      <dep package="bisho"/>
-      <dep package="dalston"/>
+      <dep package="mozilla-headless-services"/>
     </dependencies>
-  </metamodule>
+  </autotools>
+
+  <autotools id="mozilla-headless-services" autogenargs="--enable-gnome-proxy">
+    <branch repo="git.moblin.org"
+            module="mozilla-headless-services"
+            revision="master"/>
+    <dependencies>
+      <dep package="clutter"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="moblin-web-browser">
+    <branch repo="git.moblin.org"
+            module="moblin-web-browser"
+            revision="master"/>
+    <dependencies>
+      <dep package="mozilla-headless-services"/>
+      <dep package="clutter-mozembed"/>
+      <dep package="clutter-gtk"/>
+      <dep package="nbtk"/>
+    </dependencies>
+  </autotools>
 
 </moduleset>
