@@ -224,6 +224,16 @@
     </dependencies>
   </autotools>
 
+  <metamodule id="meta-moblin2">
+    <dependencies>
+      <dep package="clutter"/>
+      <dep package="mojito"/>
+      <dep package="mutter-moblin"/>
+      <dep package="bisho"/>
+      <dep package="dalston"/>
+    </dependencies>
+  </metamodule>
+
   <autotools id="clutter-gst">
     <branch repo="git.clutter-project.org"
             module="clutter-gst"
