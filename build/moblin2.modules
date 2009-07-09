@@ -107,11 +107,21 @@
     </dependencies>
   </autotools>
 
+  <autotools id="gssdp">
+    <branch repo="git.gupnp.org"
+            module="gssdp"
+            revision="master"/>
+    <dependencies>
+      <!-- dep package="gupnp"/ -->
+    </dependencies>
+  </autotools>
+
   <autotools id="gupnp">
     <branch repo="git.gupnp.org"
             module="gupnp"
             revision="master"/>
     <dependencies>
+      <dep package="gssdp"/>
       <!-- dep package="gupnp"/ -->
     </dependencies>
   </autotools>
