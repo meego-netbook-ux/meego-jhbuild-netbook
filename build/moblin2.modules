@@ -63,7 +63,8 @@
 
   <autotools id="libccss" autogenargs="--without-rsvg --without-soup --disable-ccss-cairo --disable-ccss-gtk --disable-examples">
     <branch repo="freedesktop.org"
-            module="ccss"/>
+            module="ccss"
+            tag="libccss-0.3.1" />
   </autotools>
 
   <autotools id="clutter-imcontext">
