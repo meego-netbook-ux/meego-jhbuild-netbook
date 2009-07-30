@@ -110,7 +110,7 @@
   <autotools id="gssdp">
     <branch repo="git.gupnp.org"
             module="gssdp"
-            revision="master"/>
+            tag="gssdp-0.6.4"/>
     <dependencies>
       <!-- dep package="gupnp"/ -->
     </dependencies>
@@ -119,7 +119,7 @@
   <autotools id="gupnp">
     <branch repo="git.gupnp.org"
             module="gupnp"
-            revision="master"/>
+            tag="gupnp-0.12.8"/>
     <dependencies>
       <dep package="gssdp"/>
       <!-- dep package="gupnp"/ -->
@@ -129,7 +129,7 @@
   <autotools id="gupnp-av">
     <branch repo="git.gupnp.org"
             module="gupnp-av"
-            revision="master"/>
+            tag="gupnp-av-0.4.1"/>
     <dependencies>
       <dep package="gupnp"/>
     </dependencies>
