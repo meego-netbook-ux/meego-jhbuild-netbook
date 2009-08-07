@@ -39,7 +39,7 @@
   <autotools id="clutter">
     <branch repo="git.clutter-project.org"
             module="clutter"
-            revision="master"/>
+            revision="clutter-1.0"/>
     <dependencies>
       <dep package="gobject-introspection"/>
       <dep package="gir-repository"/>
