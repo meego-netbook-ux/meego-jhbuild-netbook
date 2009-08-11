@@ -218,6 +218,48 @@
     </dependencies>
   </autotools>
 
+  <autotools id="moblin-panel-applications">
+    <branch repo="git.moblin.org"
+            module="moblin-panel-applications"
+            revision="master"/>
+    <dependencies>
+      <dep package="gnome-menus"/>
+      <dep package="nbtk"/>
+      <dep package="mutter-moblin"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="moblin-panel-status">
+    <branch repo="git.moblin.org"
+            module="moblin-panel-status"
+            revision="master"/>
+    <dependencies>
+      <dep package="mojito"/>
+      <dep package="nbtk"/>
+      <dep package="mutter-moblin"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="moblin-panel-people">
+    <branch repo="git.moblin.org"
+            module="moblin-panel-people"
+            revision="master"/>
+    <dependencies>
+      <dep package="nbtk"/>
+      <dep package="anerley"/>
+      <dep package="mutter-moblin"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="moblin-panel-pasteboard">
+    <branch repo="git.moblin.org"
+            module="moblin-panel-pasteboard"
+            revision="master"/>
+    <dependencies>
+      <dep package="mutter-moblin"/>
+    </dependencies>
+  </autotools>
+
   <autotools id="mutter-moblin" autogenargs="--enable-ahoghill --enable-people">
     <branch repo="git.moblin.org"
             module="mutter-moblin"
@@ -226,14 +268,20 @@
       <dep package="bickley"/>
       <dep package="bognor-regis"/>
       <dep package="jana"/>
-      <dep package="gnome-menus"/>
       <dep package="clutter"/>
       <dep package="mutter"/>
       <dep package="nbtk"/>
-      <dep package="mojito"/>
-      <dep package="anerley"/>
     </dependencies>
   </autotools>
+
+  <metamodule id="meta-moblin2-panels">
+    <dependencies>
+      <dep package="moblin-panel-applications"/>
+      <dep package="moblin-panel-status"/>
+      <dep package="moblin-panel-people"/>
+      <dep package="moblin-panel-pasteboard"/>
+    </dependencies>
+  </metamodule>
 
   <metamodule id="meta-moblin2">
     <dependencies>
@@ -242,6 +290,7 @@
       <dep package="mutter-moblin"/>
       <dep package="bisho"/>
       <dep package="dalston"/>
+      <dep package="meta-moblin2-panels"/>
     </dependencies>
   </metamodule>
 
