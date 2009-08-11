@@ -218,6 +218,17 @@
     </dependencies>
   </autotools>
 
+  <autotools id="moblin-panel-myzone">
+    <branch repo="git.moblin.org"
+            module="moblin-panel-myzon"
+            revision="master"/>
+    <dependencies>
+      <dep package="nbtk"/>
+      <dep package="mojito"/>
+      <dep package="mutter-moblin"/>
+    </dependencies>
+  </autotools>
+
   <autotools id="moblin-panel-applications">
     <branch repo="git.moblin.org"
             module="moblin-panel-applications"
@@ -276,10 +287,11 @@
 
   <metamodule id="meta-moblin2-panels">
     <dependencies>
-      <dep package="moblin-panel-applications"/>
+      <dep package="moblin-panel-myzone"/>
       <dep package="moblin-panel-status"/>
       <dep package="moblin-panel-people"/>
       <dep package="moblin-panel-pasteboard"/>
+      <dep package="moblin-panel-applications"/>
     </dependencies>
   </metamodule>
 
