@@ -220,7 +220,7 @@
 
   <autotools id="moblin-panel-myzone">
     <branch repo="git.moblin.org"
-            module="moblin-panel-myzon"
+            module="moblin-panel-myzone"
             revision="master"/>
     <dependencies>
       <dep package="nbtk"/>
