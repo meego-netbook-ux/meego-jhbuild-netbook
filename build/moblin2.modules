@@ -188,20 +188,12 @@
     </dependencies>
   </autotools>
 
-  <autotools id="mux">
-    <branch repo="git.moblin.org"
-            module="mux"
-            revision="master"/>
-    <dependencies />
-  </autotools>
-
   <autotools id="bisho">
     <branch repo="git.moblin.org"
             module="bisho"
             revision="master"/>
     <dependencies>
       <dep package="mojito"/>
-      <dep package="mux"/>
     </dependencies>
   </autotools>
 
