@@ -274,7 +274,7 @@
     </dependencies>
   </autotools>
 
-  <autotools id="mutter-moblin" autogenargs="--enable-ahoghill --enable-people">
+  <autotools id="mutter-moblin">
     <branch repo="git.moblin.org"
             module="mutter-moblin"
             revision="master"/>
