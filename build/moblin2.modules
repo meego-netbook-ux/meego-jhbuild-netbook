@@ -253,6 +253,18 @@
     </dependencies>
   </autotools>
 
+  <autotools id="moblin-panel-media">
+    <branch repo="git.moblin.org"
+            module="moblin-panel-media"
+            revision="master"/>
+    <dependencies>
+      <dep package="nbtk"/>
+      <dep package="mutter-moblin"/>
+      <dep package="bickley"/>
+      <dep pacakge="bognor-regis"/>
+    </dependencies>
+  </autotools>
+
   <autotools id="moblin-panel-pasteboard">
     <branch repo="git.moblin.org"
             module="moblin-panel-pasteboard"
@@ -278,6 +290,7 @@
       <dep package="moblin-panel-myzone"/>
       <dep package="moblin-panel-status"/>
       <dep package="moblin-panel-people"/>
+      <dep package="moblin-panel-media"/>
       <dep package="moblin-panel-pasteboard"/>
       <dep package="moblin-panel-applications"/>
     </dependencies>
