@@ -267,9 +267,6 @@
             module="mutter-moblin"
             revision="master"/>
     <dependencies>
-      <dep package="bickley"/>
-      <dep package="bognor-regis"/>
-      <dep package="jana"/>
       <dep package="clutter"/>
       <dep package="mutter"/>
       <dep package="nbtk"/>
