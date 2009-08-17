@@ -261,7 +261,7 @@
       <dep package="nbtk"/>
       <dep package="mutter-moblin"/>
       <dep package="bickley"/>
-      <dep pacakge="bognor-regis"/>
+      <dep package="bognor-regis"/>
     </dependencies>
   </autotools>
 
