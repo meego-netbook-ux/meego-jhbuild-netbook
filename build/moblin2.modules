@@ -311,7 +311,7 @@
   <autotools id="clutter-gst">
     <branch repo="git.clutter-project.org"
             module="clutter-gst"
-            revision="master"/>
+            revision="clutter-gst-0.10"/>
     <dependencies>
       <dep package="clutter"/>
     </dependencies>
