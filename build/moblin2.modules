@@ -330,7 +330,7 @@
   <autotools id="clutter-gtk">
     <branch repo="git.clutter-project.org"
             module="clutter-gtk"
-            revision="master"/>
+            revision="clutter-gtk-0.10"/>
   </autotools>
 
   <autotools id="clutter-mozembed" autogenargs="--enable-plugins">
