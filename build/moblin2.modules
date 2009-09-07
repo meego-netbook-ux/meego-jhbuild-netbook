@@ -138,7 +138,7 @@
   <autotools id="gupnp-tools">
     <branch repo="git.gupnp.org"
             module="gupnp-tools"
-            revision="master"/>
+            tag="gupnp-tools-0.7.1"/>
     <dependencies>
       <dep package="gupnp"/>
     </dependencies>
