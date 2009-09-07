@@ -324,6 +324,7 @@
     <dependencies>
       <dep package="bickley"/>
       <dep package="clutter-gst"/>
+      <dep package="clutter-gtk"/>
     </dependencies>
   </autotools>
 
