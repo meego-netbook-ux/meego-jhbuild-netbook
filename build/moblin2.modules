@@ -214,6 +214,7 @@
             module="moblin-panel-myzone"
             revision="master"/>
     <dependencies>
+      <dep package="jana"/>
       <dep package="nbtk"/>
       <dep package="mojito"/>
       <dep package="mutter-moblin"/>
