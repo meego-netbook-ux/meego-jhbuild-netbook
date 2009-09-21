@@ -36,6 +36,16 @@
     </after>
   </autotools>
 
+  <autotools id="gjs">
+    <branch repo="git.gnome.org" module="gjs"/>
+    <dependencies>
+        <dep package="gobject-introspection"/>
+    </dependencies>
+    <after>
+      <dep package="gir-repository"/>
+    </after>
+  </autotools>
+
   <autotools id="clutter">
     <branch repo="git.clutter-project.org"
             module="clutter"
