@@ -248,6 +248,7 @@
             module="moblin-panel-status"
             revision="master"/>
     <dependencies>
+      <dep package="clutter-gtk"/>
       <dep package="mojito"/>
       <dep package="nbtk"/>
       <dep package="mutter-moblin"/>
