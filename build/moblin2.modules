@@ -97,6 +97,16 @@
     </dependencies>
   </autotools>
 
+  <autotools id="mx">
+    <branch repo="git.moblin.org"
+            module="mx"
+            revision="master"/>
+    <dependencies>
+      <dep package="clutter"/>
+      <dep package="clutter-imcontext"/>
+    </dependencies>
+  </autotools>
+
   <autotools id="bognor-regis">
     <branch repo="git.moblin.org"
             module="bognor-regis"
