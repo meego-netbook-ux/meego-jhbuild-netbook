@@ -67,10 +67,6 @@
     <branch repo="git.gnome.org" module="jana" revision="master"/>
   </autotools>
 
-  <autotools id="gnome-menus">
-    <branch repo="git.gnome.org" module="gnome-menus" revision="master"/>
-  </autotools>
-
   <autotools id="libccss" autogenargs="--without-rsvg --without-soup --disable-ccss-cairo --disable-ccss-gtk --disable-examples">
     <branch repo="freedesktop.org"
             module="ccss"
@@ -247,8 +243,7 @@
             module="moblin-panel-applications"
             revision="master"/>
     <dependencies>
-      <dep package="gnome-menus"/>
-      <dep package="nbtk"/>
+      <dep package="mx"/>
       <dep package="mutter-moblin"/>
     </dependencies>
   </autotools>
@@ -304,7 +299,7 @@
     <dependencies>
       <dep package="clutter"/>
       <dep package="mutter"/>
-      <dep package="nbtk"/>
+      <dep package="mx"/>
     </dependencies>
   </autotools>
 
