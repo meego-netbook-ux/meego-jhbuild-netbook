@@ -93,12 +93,22 @@
     </dependencies>
   </autotools>
 
+  <autotools id="clutter-gesture">
+    <branch repo="git.moblin.org"
+            module="clutter-gesture"
+            revision="master"/>
+    <dependencies>
+      <dep package="clutter"/>
+    </dependencies>
+  </autotools>
+
   <autotools id="mx">
     <branch repo="git.moblin.org"
             module="mx"
             revision="master"/>
     <dependencies>
       <dep package="clutter"/>
+      <dep package="clutter-gesture"/>
       <dep package="clutter-imcontext"/>
     </dependencies>
   </autotools>
