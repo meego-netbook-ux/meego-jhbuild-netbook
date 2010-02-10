@@ -19,6 +19,10 @@
       href="http://libproxy.googlecode.com/files/"/>
   <repository type="tarball" name="sources.redhat.com/lvm2"
       href="ftp://sources.redhat.com/pub/lvm2/"/>
+  <repository type="git" name="maemo.gitorious.org"
+      href="git://gitorious.org/maemo-af/"/>
+  <repository type="git" name="git.xfce.org"
+      href="git://git.xfce.org" />
 
   <autotools id="gobject-introspection">
     <branch repo="git.gnome.org"
@@ -120,6 +124,8 @@
             module="bognor-regis"
             revision="master"/>
     <dependencies>
+      <dep package="gupnp"/>
+      <dep package="gupnp-av"/>
       <!-- dep package="gupnp"/ -->
     </dependencies>
   </autotools>
@@ -138,7 +144,8 @@
   <autotools id="gssdp">
     <branch repo="git.gupnp.org"
             module="gssdp"
-            tag="gssdp-0.6.4"/>
+            revision="master"
+            tag="gssdp-0.7.1"/>
     <dependencies>
       <!-- dep package="gupnp"/ -->
     </dependencies>
@@ -147,7 +154,8 @@
   <autotools id="gupnp">
     <branch repo="git.gupnp.org"
             module="gupnp"
-            tag="gupnp-0.12.8"/>
+            revision="master"
+            tag="gupnp-0.13.2"/>
     <dependencies>
       <dep package="gssdp"/>
       <!-- dep package="gupnp"/ -->
@@ -157,7 +165,8 @@
   <autotools id="gupnp-av">
     <branch repo="git.gupnp.org"
             module="gupnp-av"
-            tag="gupnp-av-0.4.1"/>
+            revision="master"
+            tag="gupnp-av-0.5.4"/>
     <dependencies>
       <dep package="gupnp"/>
     </dependencies>
@@ -166,7 +175,8 @@
   <autotools id="gupnp-tools">
     <branch repo="git.gupnp.org"
             module="gupnp-tools"
-            tag="gupnp-tools-0.7.1"/>
+            revision="master"
+            tag="gupnp-tools-0.8"/>
     <dependencies>
       <dep package="gupnp"/>
     </dependencies>
@@ -385,12 +395,36 @@
     </dependencies>
   </autotools>
 
+  <autotools id="tracker" autogenargs="--disable-deskbar-applet">
+    <branch repo="git.gnome.org"
+            module="tracker"
+            revision="master" />
+    <dependencies />
+  </autotools>
+
+  <autotools id="tumbler">
+    <branch repo="git.xfce.org"
+            module="apps/tumbler"
+            revision="master" />
+    <dependencies />
+  </autotools>
+
+  <autotools id="maemo-video-thumbnailer">
+    <branch repo="maemo.gitorious.org"
+            module="maemo-video-thumbnailer"
+            revision="master" />
+    <dependencies />
+  </autotools>
+
   <autotools id="hornsey">
     <branch repo="git.moblin.org"
             module="hornsey"
             revision="master"/>
     <dependencies>
-      <dep package="bickley"/>
+      <dep package="tracker"/>
+      <dep package="tumbler"/>
+      <dep package="bognor-regis"/>
+      <dep package="mx"/>
       <dep package="clutter-gst"/>
       <dep package="clutter-gtk"/>
     </dependencies>
