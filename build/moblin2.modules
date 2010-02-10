@@ -226,12 +226,21 @@
     </dependencies>
   </autotools>
 
+  <autotools id="libsocialweb" autogenargs="--with-online=networkmanager">
+    <branch repo="git.moblin.org"
+            module="libsocialweb"
+            revision="master"/>
+    <dependencies>
+      <dep package="librest"/>
+    </dependencies>
+  </autotools>
+
   <autotools id="bisho">
     <branch repo="git.moblin.org"
             module="bisho"
             revision="master"/>
     <dependencies>
-      <dep package="mojito"/>
+      <dep package="libsocialweb"/>
     </dependencies>
   </autotools>
 
@@ -294,7 +303,7 @@
       <dep package="bickley"/>
       <dep package="jana"/>
       <dep package="nbtk"/>
-      <dep package="mojito"/>
+      <dep package="libsocialweb"/>
       <dep package="mutter-moblin"/>
     </dependencies>
   </autotools>
@@ -315,7 +324,7 @@
             revision="master"/>
     <dependencies>
       <dep package="clutter-gtk"/>
-      <dep package="mojito"/>
+      <dep package="libsocialweb"/>
       <dep package="nbtk"/>
       <dep package="mutter-moblin"/>
     </dependencies>
@@ -378,7 +387,7 @@
   <metamodule id="meta-moblin2">
     <dependencies>
       <dep package="clutter"/>
-      <dep package="mojito"/>
+      <dep package="libsocialweb"/>
       <dep package="mutter-moblin"/>
       <dep package="bisho"/>
       <dep package="dalston"/>
