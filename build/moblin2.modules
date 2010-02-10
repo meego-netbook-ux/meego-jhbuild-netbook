@@ -381,6 +381,7 @@
       <dep package="moblin-panel-media"/>
       <dep package="moblin-panel-pasteboard"/>
       <dep package="moblin-panel-applications"/>
+      <dep package="moblin-panel-devices"/>
     </dependencies>
   </metamodule>
 
@@ -390,7 +391,6 @@
       <dep package="libsocialweb"/>
       <dep package="mutter-moblin"/>
       <dep package="bisho"/>
-      <dep package="dalston"/>
       <dep package="meta-moblin2-panels"/>
     </dependencies>
   </metamodule>
