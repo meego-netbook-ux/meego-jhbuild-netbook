@@ -368,6 +368,7 @@
             revision="master"/>
     <dependencies>
       <dep package="clutter"/>
+      <dep package="clutter-gtk"/>
       <dep package="mutter"/>
       <dep package="mx"/>
     </dependencies>
