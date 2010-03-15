@@ -13,70 +13,42 @@
       href="ssh://git@git.moblin.org/"/>
   <repository type="git" name="github.com"
       href="git://github.com/"/>
-  <repository type="git" name="git.gupnp.org"
-      href="git://git.gupnp.org/"/>
-  <repository type="tarball" name="libproxy.googlecode.com"
-      href="http://libproxy.googlecode.com/files/"/>
-  <repository type="tarball" name="sources.redhat.com/lvm2"
-      href="ftp://sources.redhat.com/pub/lvm2/"/>
   <repository type="git" name="maemo.gitorious.org"
       href="git://gitorious.org/maemo-af/"/>
   <repository type="git" name="git.xfce.org"
       href="git://git.xfce.org" />
+  <repository type="tarball" name="sources.redhat.com/lvm2"
+      href="ftp://sources.redhat.com/pub/lvm2/"/>
 
   <include href="http://git.gnome.org/browse/jhbuild/plain/modulesets/gnome-2.30.modules"/>
 
-  <autotools id="gobject-introspection">
-    <branch repo="git.gnome.org"
-            module="gobject-introspection"
-            revision="master"/>
-  </autotools>
+  <!-- TODO: * build gnome-control-center branch to get the extension library inteface 
+             * insert "after" tags so the gir-repos are built. -->
 
-  <autotools id="gir-repository">
-    <branch repo="git.gnome.org"
-            module="gir-repository"
-            revision="master"/>
-    <dependencies>
-      <dep package="gobject-introspection"/>
-    </dependencies>
-    <after>
-      <dep package="libsoup"/>
-    </after>
-  </autotools>
+  <!-- Build gtk from tarball for faster download, got it's own share of flaws.
+       Latest gtk is incompatible wrt widget flags GTK_IS_VISIBLE etc.
+  <tarball id="atk" version="1.29.92">
+    <source href="http://ftp.acc.umu.se/pub/GNOME/sources/atk/1.29/atk-1.29.92.tar.bz2"
+            hash="sha256:0563ddda6d62657338606b4afdc4b6e50c6cb94cded51ca6a746fac837aff9be"
+            size="745796"/>
+  </tarball>
 
-  <autotools id="gnome-js-common">
-    <branch repo="git.gnome.org" module="gnome-js-common"/>
-  </autotools>
+  <tarball id="gtk+" version="2.19.7">
+    <source href="http://ftp.gnome.org/pub/GNOME/sources/gtk+/2.19/gtk+-2.19.7.tar.bz2"
+            hash="sha256:466e013b57c52639aebe588229d8706dbbe817b3238af66a524ff5764e62acb7"
+            size="19173932"/>
+  </tarball>
+  -->
 
-  <autotools id="seed">
-    <branch repo="git.gnome.org" module="seed"/>
-    <dependencies>
-        <dep package="gobject-introspection"/>
-        <dep package="gnome-js-common"/>
-    </dependencies>
-    <after>
-      <dep package="gir-repository"/>
-    </after>
-  </autotools>
-
-  <autotools id="gjs">
-    <branch repo="git.gnome.org" module="gjs"/>
-    <dependencies>
-        <dep package="gobject-introspection"/>
-    </dependencies>
-    <after>
-      <dep package="gir-repository"/>
-    </after>
-  </autotools>
-
+  <!-- TODO: which version do we want to build meego-1.0 against? -->
   <autotools id="clutter">
     <branch repo="git.clutter-project.org"
             module="clutter"
             revision="master"/>
-    <dependencies>
+    <suggests>
       <dep package="gobject-introspection"/>
       <dep package="gir-repository"/>
-    </dependencies>
+    </suggests>
   </autotools>
 
   <autotools id="mutter" autogenargs="--with-clutter">
@@ -84,10 +56,10 @@
     <dependencies>
       <dep package="clutter"/>
     </dependencies>
-  </autotools>
-
-  <autotools id="jana">
-    <branch repo="git.gnome.org" module="jana" revision="master"/>
+    <suggests>
+      <dep package="gobject-introspection"/>
+      <dep package="gir-repository"/>
+    </suggests>
   </autotools>
 
   <autotools id="libccss" autogenargs="--without-rsvg --without-soup --disable-ccss-cairo --disable-ccss-gtk --disable-examples">
@@ -133,93 +105,40 @@
       <dep package="clutter"/>
       <dep package="clutter-gesture"/>
       <dep package="clutter-imcontext"/>
-      <dep package="dbus-glib"/>
     </dependencies>
+    <suggests>
+      <dep package="dbus-glib"/>
+    </suggests>
   </autotools>
 
   <autotools id="bognor-regis">
     <branch repo="git.moblin.org"
             module="bognor-regis"
             revision="master"/>
-    <dependencies>
+    <suggests>
       <dep package="gupnp"/>
       <dep package="gupnp-av"/>
-      <!-- dep package="gupnp"/ -->
-    </dependencies>
+    </suggests>
   </autotools>
 
   <autotools id="bickley">
     <branch repo="git.moblin.org"
             module="bickley"
             revision="master"/>
-    <dependencies>
+    <suggests>
       <dep package="gupnp"/>
       <dep package="gupnp-av"/>
       <dep package="gupnp-tools"/>
-    </dependencies>
-  </autotools>
-
-  <autotools id="gssdp">
-    <branch repo="git.gupnp.org"
-            module="gssdp"
-            revision="master"
-            tag="gssdp-0.7.1"/>
-    <dependencies>
-      <!-- dep package="gupnp"/ -->
-    </dependencies>
-  </autotools>
-
-  <autotools id="gupnp">
-    <branch repo="git.gupnp.org"
-            module="gupnp"
-            revision="master"
-            tag="gupnp-0.13.2"/>
-    <dependencies>
-      <dep package="gssdp"/>
-      <!-- dep package="gupnp"/ -->
-    </dependencies>
-  </autotools>
-
-  <autotools id="gupnp-av">
-    <branch repo="git.gupnp.org"
-            module="gupnp-av"
-            revision="master"
-            tag="gupnp-av-0.5.4"/>
-    <dependencies>
-      <dep package="gupnp"/>
-    </dependencies>
-  </autotools>
-
-  <autotools id="gupnp-tools">
-    <branch repo="git.gupnp.org"
-            module="gupnp-tools"
-            revision="master"
-            tag="gupnp-tools-0.8"/>
-    <dependencies>
-      <dep package="gupnp"/>
-    </dependencies>
-  </autotools>
-
-  <autotools id="libproxy" autogenargs="--without-networkmanager --without-mozjs --without-kde --with-gnome">
-    <branch repo="libproxy.googlecode.com"
-            module="libproxy-0.2.3.tar.gz" version="0.2.3"
-            size="378773" md5="86b635e1eb2d665cfbef4c6134fe6604"/>
-  </autotools>
-
-  <autotools id="libsoup">
-    <branch repo="git.gnome.org" module="libsoup" revision="gnome-2-26"/>
-    <dependencies>
-      <dep package="libproxy"/>
-    </dependencies>
+    </suggests>
   </autotools>
 
   <autotools id="librest">
     <branch repo="git.moblin.org"
             module="librest"
             revision="master"/>
-    <dependencies>
+    <suggests>
       <dep package="libsoup"/>
-    </dependencies>
+    </suggests>
   </autotools>
 
   <autotools id="json-glib">
@@ -231,17 +150,10 @@
             module="ebassi/twitter-glib"/>
     <dependencies>
       <dep package="json-glib"/>
+    </dependencies>
+    <suggests>
       <dep package="libsoup"/>
-    </dependencies>
-  </autotools>
-
-  <autotools id="mojito" autogenargs="--with-online=networkmanager">
-    <branch repo="git.moblin.org"
-            module="mojito"
-            revision="master"/>
-    <dependencies>
-      <dep package="librest"/>
-    </dependencies>
+    </suggests>
   </autotools>
 
   <autotools id="libsocialweb" autogenargs="--with-online=networkmanager">
@@ -266,21 +178,7 @@
     <branch repo="git.moblin.org" module="anerley" revision="master"/>
   </autotools>
 
-  <autotools id="dalston">
-    <branch repo="git.moblin.org"
-            module="dalston"
-            revision="master"/>
-    <dependencies>
-    </dependencies>
-  </autotools>
-
   <!-- moblin-panel-devices deps -->
-
-  <autotools id="dbus-glib">
-    <branch repo="freedesktop.org"
-            module="dbus/dbus-glib"
-            tag="dbus-glib-0.82" />
-  </autotools>
 
   <autotools id="lvm2" autogenargs="--enable-applib --enable-pkgconfig">
     <branch repo="sources.redhat.com/lvm2"
@@ -292,10 +190,10 @@
     <branch repo="freedesktop.org"
             module="DeviceKit/DeviceKit-disks"
             revision="master" />
-    <dependencies>
+    <suggests>
       <dep package="lvm2"/>
       <dep package="dbus-glib"/>
-    </dependencies>
+    </suggests>
   </autotools>
 
   <!-- end moblin-panel-devices deps -->
@@ -319,11 +217,13 @@
             revision="master"/>
     <dependencies>
       <dep package="bickley"/>
-      <dep package="jana"/>
       <dep package="nbtk"/>
       <dep package="libsocialweb"/>
       <dep package="mutter-moblin"/>
     </dependencies>
+    <suggests>
+      <dep package="jana"/>
+    </suggests>
   </autotools>
 
   <autotools id="moblin-panel-applications">
@@ -343,7 +243,7 @@
     <dependencies>
       <dep package="clutter-gtk"/>
       <dep package="libsocialweb"/>
-      <dep package="nbtk"/>
+      <dep package="mx"/>
       <dep package="mutter-moblin"/>
     </dependencies>
   </autotools>
@@ -353,7 +253,7 @@
             module="moblin-panel-people"
             revision="master"/>
     <dependencies>
-      <dep package="nbtk"/>
+      <dep package="mx"/>
       <dep package="anerley"/>
       <dep package="mutter-moblin"/>
     </dependencies>
@@ -364,7 +264,7 @@
             module="moblin-panel-media"
             revision="master"/>
     <dependencies>
-      <dep package="nbtk"/>
+      <dep package="mx"/>
       <dep package="mutter-moblin"/>
       <dep package="bickley"/>
       <dep package="bognor-regis"/>
@@ -377,6 +277,7 @@
             revision="master"/>
     <dependencies>
       <dep package="mutter-moblin"/>
+      <dep package="mx"/>
     </dependencies>
   </autotools>
 
@@ -449,19 +350,46 @@
             module="hornsey"
             revision="master"/>
     <dependencies>
-      <dep package="tracker"/>
-      <dep package="tumbler"/>
       <dep package="bognor-regis"/>
       <dep package="mx"/>
       <dep package="clutter-gst"/>
       <dep package="clutter-gtk"/>
     </dependencies>
+    <suggests>
+      <dep package="tracker"/>
+      <dep package="tumbler"/>
+    </suggests>
   </autotools>
 
   <autotools id="clutter-gtk">
     <branch repo="git.clutter-project.org"
             module="clutter-gtk"
             revision="clutter-gtk-0.10"/>
+    <dependencies>
+      <dep package="clutter"/>
+    </dependencies>
+    <suggests>
+      <dep package="gtk+"/>
+    </suggests>
+  </autotools>
+
+  <!-- deprecated -->
+
+  <autotools id="dalston">
+    <branch repo="git.moblin.org"
+            module="dalston"
+            revision="master"/>
+    <dependencies>
+    </dependencies>
+  </autotools>
+
+  <autotools id="mojito" autogenargs="--with-online=networkmanager">
+    <branch repo="git.moblin.org"
+            module="mojito"
+            revision="master"/>
+    <dependencies>
+      <dep package="librest"/>
+    </dependencies>
   </autotools>
 
   <autotools id="clutter-mozembed" autogenargs="--enable-plugins">
