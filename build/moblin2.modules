@@ -10,7 +10,7 @@
   <repository type="git" name="git.clutter-project.org"
       href="git://git.clutter-project.org/"/>
   <repository type="git" name="git.moblin.org"
-      href="git://git.moblin.org/"/>
+      href="ssh://git@git.moblin.org/"/>
   <repository type="git" name="github.com"
       href="git://github.com/"/>
   <repository type="git" name="git.gupnp.org"
@@ -23,6 +23,8 @@
       href="git://gitorious.org/maemo-af/"/>
   <repository type="git" name="git.xfce.org"
       href="git://git.xfce.org" />
+
+  <include href="http://git.gnome.org/browse/jhbuild/plain/modulesets/gnome-2.30.modules"/>
 
   <autotools id="gobject-introspection">
     <branch repo="git.gnome.org"
@@ -39,6 +41,21 @@
     </dependencies>
     <after>
       <dep package="libsoup"/>
+    </after>
+  </autotools>
+
+  <autotools id="gnome-js-common">
+    <branch repo="git.gnome.org" module="gnome-js-common"/>
+  </autotools>
+
+  <autotools id="seed">
+    <branch repo="git.gnome.org" module="seed"/>
+    <dependencies>
+        <dep package="gobject-introspection"/>
+        <dep package="gnome-js-common"/>
+    </dependencies>
+    <after>
+      <dep package="gir-repository"/>
     </after>
   </autotools>
 
@@ -116,6 +133,7 @@
       <dep package="clutter"/>
       <dep package="clutter-gesture"/>
       <dep package="clutter-imcontext"/>
+      <dep package="dbus-glib"/>
     </dependencies>
   </autotools>
 
