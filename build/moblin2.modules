@@ -199,7 +199,7 @@
 
   <!-- end moblin-panel-devices deps -->
 
-  <autotools id="moblin-panel-devices">
+  <autotools id="moblin-panel-devices" autogenargs="--without-udisks">
     <branch repo="git.moblin.org"
             module="moblin-panel-devices"
             revision="master"/>
