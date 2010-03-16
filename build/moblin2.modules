@@ -17,28 +17,20 @@
       href="git://gitorious.org/maemo-af/"/>
   <repository type="git" name="git.xfce.org"
       href="git://git.xfce.org" />
-  <repository type="tarball" name="sources.redhat.com/lvm2"
-      href="ftp://sources.redhat.com/pub/lvm2/"/>
 
   <include href="http://git.gnome.org/browse/jhbuild/plain/modulesets/gnome-2.30.modules"/>
 
   <!-- TODO: * build gnome-control-center branch to get the extension library inteface 
              * insert "after" tags so the gir-repos are built. -->
 
-  <!-- Build gtk from tarball for faster download, got it's own share of flaws.
-       Latest gtk is incompatible wrt widget flags GTK_IS_VISIBLE etc.
-  <tarball id="atk" version="1.29.92">
-    <source href="http://ftp.acc.umu.se/pub/GNOME/sources/atk/1.29/atk-1.29.92.tar.bz2"
-            hash="sha256:0563ddda6d62657338606b4afdc4b6e50c6cb94cded51ca6a746fac837aff9be"
-            size="745796"/>
-  </tarball>
-
-  <tarball id="gtk+" version="2.19.7">
-    <source href="http://ftp.gnome.org/pub/GNOME/sources/gtk+/2.19/gtk+-2.19.7.tar.bz2"
-            hash="sha256:466e013b57c52639aebe588229d8706dbbe817b3238af66a524ff5764e62acb7"
-            size="19173932"/>
-  </tarball>
-  -->
+  <autotools id="gtk+">
+    <branch repo="git.gnome.org"
+            module="gtk+"
+            tag="2.19.5" />
+    <suggests>
+      <dep package="atk"/>
+    </suggests>
+  </autotools>
 
   <!-- TODO: which version do we want to build meego-1.0 against? -->
   <autotools id="clutter">
@@ -180,11 +172,10 @@
 
   <!-- moblin-panel-devices deps -->
 
-  <autotools id="lvm2" autogenargs="--enable-applib --enable-pkgconfig">
-    <branch repo="sources.redhat.com/lvm2"
-            module="LVM2.2.02.60.tgz" version="2.02.60"
-            size="840898" md5="938e8a06708561b5f9e539860c4e27bc"/>
-  </autotools>
+  <tarball id="lvm2" version="2.02.60" autogenargs="--enable-applib --enable-pkgconfig">
+    <source href="ftp://sources.redhat.com/pub/lvm2/LVM2.2.02.60.tgz"
+            size="840898" md5="938e8a06708561b5f9e539860c4e27bc" />
+  </tarball>
 
   <autotools id="udisks">
     <branch repo="freedesktop.org"
