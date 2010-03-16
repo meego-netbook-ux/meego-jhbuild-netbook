@@ -32,6 +32,15 @@
     </suggests>
   </autotools>
 
+  <autotools id="gnome-control-center">
+    <branch repo="git.gnome.org"
+            module="gnome-control-center"
+            revision="extensible-shell" />
+    <suggests>
+      <dep package="gnome-desktop"/>
+    </suggests>
+  </autotools>
+
   <!-- TODO: which version do we want to build meego-1.0 against? -->
   <autotools id="clutter">
     <branch repo="git.clutter-project.org"
@@ -163,6 +172,7 @@
             revision="master"/>
     <dependencies>
       <dep package="libsocialweb"/>
+      <dep package="gnome-control-center"/>
     </dependencies>
   </autotools>
 
@@ -281,6 +291,7 @@
       <dep package="clutter-gtk"/>
       <dep package="mutter"/>
       <dep package="mx"/>
+      <dep package="gnome-control-center"/>
     </dependencies>
   </autotools>
 
