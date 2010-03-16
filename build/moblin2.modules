@@ -190,7 +190,7 @@
   <autotools id="udisks">
     <branch repo="freedesktop.org"
             module="DeviceKit/DeviceKit-disks"
-            revision="master" />
+            tag="1.0.0" />
     <suggests>
       <dep package="lvm2"/>
       <dep package="dbus-glib"/>
