@@ -17,25 +17,63 @@
       href="git://gitorious.org/maemo-af/"/>
   <repository type="git" name="git.xfce.org"
       href="git://git.xfce.org" />
-  <repository type="tarball" name="people.suug.ch/~tgr/libnl/"
-      href="http://www.gnome.org/~fpeters/libnl/"/>
-  <repository type="tarball" name="www.hpl.hp.com/personal/Jean_Tourrilhes/Linux/"
-      href="http://www.hpl.hp.com/personal/Jean_Tourrilhes/Linux/"/>
+  <repository type="tarball" name="libtiff.org"
+      href="http://download.osgeo.org/"/>
+  <repository type="tarball" name="webkitgtk.org"
+      href="http://webkitgtk.org/"/>
 
   <include href="http://git.gnome.org/browse/jhbuild/plain/modulesets/gnome-2.30.modules"/>
+
+  <!--
+  The aim here is to build all the core MeeGo libraries a developer might want,
+  using system libraries as much as possible
+
+  Where dependencies are missing, the <suggests>
+  elements contain information about what you might be missing
+
+  Where the versions MeeGo needs are later than the versions GNOME provides, we
+  provide modules to get versions which should work (e.g. to get JavaScript to work)
+
+  Where we know a module provides introspection metadata, we do two things:
+  - Ensure the module depends on gobject-introspection (so it can be introspected as it's built)
+  - Ensure the module is listed in the <after> section for gir-repository, so it can be added to
+    the GIR repo at the end of the build
+  -->
 
   <!-- TODO: * build gnome-control-center branch to get the extension library inteface
              * insert "after" tags so the gir-repos are built. -->
 
-  <autotools id="gtk+">
+  <autotools id="gir-repository">
     <branch repo="git.gnome.org"
-            module="gtk+"
-            tag="2.19.5" />
-    <suggests>
-      <dep package="atk"/>
-    </suggests>
+            module="gir-repository"
+            revision="master"/>
+    <dependencies>
+      <dep package="gobject-introspection"/>
+    </dependencies>
+    <!--
+    these modules are known to provide metadata, so we build gir-repository after them
+    to hoover it up
+    -->
+    <after>
+      <dep package="libsoup"/>
+      <dep package="pango"/>
+      <dep package="cairo"/>
+      <dep package="mx"/>
+      <dep package="glib"/>
+      <dep package="clutter"/>
+      <dep package="librest"/>
+      <dep package="gtk+"/>
+      <dep package="gtksourceview"/>
+    </after>
   </autotools>
 
+  <autotools id="gobject-introspection">
+    <branch repo="git.gnome.org"
+            module="gobject-introspection"
+            revision="master"/>
+  </autotools>
+
+  <!-- core MeeGo libraries and applications -->
   <autotools id="gnome-control-center">
     <branch repo="git.gnome.org"
             module="gnome-control-center"
@@ -45,13 +83,18 @@
     </suggests>
   </autotools>
 
-  <autotools id="clutter">
+  <autotools id="clutter" autogenargs="--enable-gtk-doc --disable-static --enable-manual=yes">
     <branch repo="git.clutter-project.org"
             module="clutter"
             revision="clutter-1.2"/>
-    <suggests>
+    <dependencies>
       <dep package="gobject-introspection"/>
-      <dep package="gir-repository"/>
+    </dependencies>
+    <suggests>
+      <dep package="cairo"/>
+      <dep package="pango"/>
+      <dep package="gtk+"/>
+      <dep package="glib"/>
     </suggests>
   </autotools>
 
@@ -60,10 +103,6 @@
     <dependencies>
       <dep package="clutter"/>
     </dependencies>
-    <suggests>
-      <dep package="gobject-introspection"/>
-      <dep package="gir-repository"/>
-    </suggests>
   </autotools>
 
   <autotools id="libccss" autogenargs="--without-rsvg --without-soup --disable-ccss-cairo --disable-ccss-gtk --disable-examples">
@@ -101,7 +140,7 @@
     </dependencies>
   </autotools>
 
-  <autotools id="mx">
+  <autotools id="mx" autogenargs="--enable-gtk-doc">
     <branch repo="git.moblin.org"
             module="mx"
             revision="master"/>
@@ -109,6 +148,7 @@
       <dep package="clutter"/>
       <dep package="clutter-gesture"/>
       <dep package="clutter-imcontext"/>
+      <dep package="gobject-introspection"/>
     </dependencies>
     <suggests>
       <dep package="dbus-glib"/>
@@ -136,13 +176,14 @@
     </suggests>
   </autotools>
 
-  <autotools id="librest">
+  <autotools id="librest" autogenargs="--enable-gtk-doc --enable-introspection">
     <branch repo="git.moblin.org"
             module="librest"
             revision="master"/>
-    <suggests>
+    <dependencies>
       <dep package="libsoup"/>
-    </suggests>
+      <dep package="gobject-introspection"/>
+    </dependencies>
   </autotools>
 
   <autotools id="json-glib">
@@ -154,10 +195,8 @@
             module="ebassi/twitter-glib"/>
     <dependencies>
       <dep package="json-glib"/>
-    </dependencies>
-    <suggests>
       <dep package="libsoup"/>
-    </suggests>
+    </dependencies>
   </autotools>
 
   <autotools id="libsocialweb">
@@ -166,7 +205,14 @@
             revision="master"/>
     <dependencies>
       <dep package="librest"/>
+      <dep package="libsoup" />
     </dependencies>
+    <suggests>
+      <dep package="dbus-glib" />
+      <dep package="gnome-keyring" />
+      <dep package="gconf" />
+      <dep package="glib" />
+    </suggests>
   </autotools>
 
   <autotools id="bisho">
@@ -175,8 +221,10 @@
             revision="master"/>
     <dependencies>
       <dep package="libsocialweb"/>
-      <dep package="gnome-control-center"/>
     </dependencies>
+    <suggests>
+      <dep package="gnome-control-center"/>
+    </suggests>
   </autotools>
 
   <autotools id="anerley">
@@ -298,29 +346,7 @@
     </dependencies>
   </autotools>
 
-  <metamodule id="meta-moblin2-panels">
-    <dependencies>
-      <dep package="moblin-panel-myzone"/>
-      <dep package="moblin-panel-status"/>
-      <dep package="moblin-panel-people"/>
-      <dep package="moblin-panel-media"/>
-      <dep package="moblin-panel-pasteboard"/>
-      <dep package="moblin-panel-applications"/>
-      <dep package="moblin-panel-devices"/>
-    </dependencies>
-  </metamodule>
-
-  <metamodule id="meta-moblin2">
-    <dependencies>
-      <dep package="clutter"/>
-      <dep package="libsocialweb"/>
-      <dep package="mutter-moblin"/>
-      <dep package="bisho"/>
-      <dep package="meta-moblin2-panels"/>
-    </dependencies>
-  </metamodule>
-
-  <autotools id="clutter-gst">
+    <autotools id="clutter-gst">
     <branch repo="git.clutter-project.org"
             module="clutter-gst"
             revision="clutter-gst-1.0"/>
@@ -359,11 +385,9 @@
       <dep package="mx"/>
       <dep package="clutter-gst"/>
       <dep package="clutter-gtk"/>
-    </dependencies>
-    <suggests>
       <dep package="tracker"/>
       <dep package="tumbler"/>
-    </suggests>
+    </dependencies>
   </autotools>
 
   <autotools id="clutter-gtk">
@@ -388,54 +412,77 @@
     </dependencies>
   </autotools>
 
-  <!-- deprecated -->
-
-  <autotools id="dalston">
-    <branch repo="git.moblin.org"
-            module="dalston"
-            revision="master"/>
+  <!-- modules you're likely to want to build -->
+  <metamodule id="meta-meego-panels">
     <dependencies>
+      <dep package="moblin-panel-myzone"/>
+      <dep package="moblin-panel-status"/>
+      <dep package="moblin-panel-people"/>
+      <dep package="moblin-panel-media"/>
+      <dep package="moblin-panel-pasteboard"/>
+      <dep package="moblin-panel-applications"/>
+      <dep package="moblin-panel-devices"/>
     </dependencies>
-  </autotools>
+  </metamodule>
 
-  <autotools id="mojito" autogenargs="--with-online=networkmanager">
-    <branch repo="git.moblin.org"
-            module="mojito"
-            revision="master"/>
+  <metamodule id="meta-meego">
     <dependencies>
-      <dep package="librest"/>
-    </dependencies>
-  </autotools>
-
-  <autotools id="clutter-mozembed" autogenargs="--enable-plugins">
-    <branch repo="git.clutter-project.org"
-            module="clutter-mozembed"
-            revision="master"/>
-    <dependencies>
+      <dep package="gobject-introspection"/>
       <dep package="clutter"/>
-      <dep package="mozilla-headless-services"/>
+      <dep package="libsocialweb"/>
+      <dep package="mutter-moblin"/>
+      <dep package="bisho"/>
+      <dep package="meta-meego-panels"/>
+      <dep package="seed"/>
+      <dep package="gir-repository"/>
+    </dependencies>
+  </metamodule>
+
+  <metamodule id="meta-meego-sdk">
+    <dependencies>
+      <dep package="meta-meego"/>
+      <dep package="gtksourceview"/>
+    </dependencies>
+  </metamodule>
+
+  <!--
+  stuff you might need if your system is too old:
+  provided here for you to manually build them if necessary
+  -->
+  <autotools id="gtk+">
+    <branch repo="git.gnome.org"
+            module="gtk+"
+            tag="2.19.6" />
+    <dependencies>
+      <dep package="atk"/>
+      <dep package="glib"/>
+      <dep package="cairo"/>
+      <dep package="pango"/>
+      <dep package="atk" />
+      <dep package="libtiff"/>
     </dependencies>
   </autotools>
 
-  <autotools id="mozilla-headless-services" autogenargs="--enable-gnome-proxy">
-    <branch repo="git.moblin.org"
-            module="mozilla-headless-services"
-            revision="master"/>
+  <autotools id="WebKit" makefile="GNUmakefile">
+    <branch module="webkit-1.1.23.tar.gz" repo="webkitgtk.org" version="1.1.23"/>
     <dependencies>
-      <dep package="clutter"/>
+      <dep package="cairo"/>
+      <dep package="fontconfig"/>
+      <dep package="libxml2"/>
+      <dep package="gtk+"/>
+      <dep package="pango"/>
+      <dep package="libsoup"/>
     </dependencies>
+    <suggests>
+      <dep package="libxslt"/>
+      <dep package="sqlite3"/>
+      <dep package="gst-plugins-base"/>
+      <dep package="enchant"/>
+    </suggests>
   </autotools>
 
-  <autotools id="moblin-web-browser">
-    <branch repo="git.moblin.org"
-            module="moblin-web-browser"
-            revision="master"/>
-    <dependencies>
-      <dep package="mozilla-headless-services"/>
-      <dep package="clutter-mozembed"/>
-      <dep package="clutter-gtk"/>
-      <dep package="nbtk"/>
-    </dependencies>
+  <autotools id="libtiff" autogen-sh="./configure">
+    <branch repo="libtiff.org" version="4.0.0beta5" module="libtiff/tiff-4.0.0beta5.tar.gz" />
   </autotools>
 
 </moduleset>

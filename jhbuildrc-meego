@@ -1,6 +1,6 @@
 # -*- mode: python -*-
 #
-# jhbuildrc for building moblin2. Customizations shuld be done in
+# jhbuildrc for building MeeGo. Customizations shuld be done in
 # ~/.jhbuildrc-custom
 #
 # Copyright (C) Intel Corp.
@@ -22,9 +22,9 @@
 # Only rebuild modules that have changed
 build_policy = 'updated'
 
-moduleset = os.path.dirname(os.path.realpath(__file__)) + '/build/moblin2.modules'
+moduleset = os.path.dirname(os.path.realpath(__file__)) + '/build/meego.modules'
 
-modules = [ 'meta-moblin2' ]
+modules = [ 'meta-meego' ]
 
 # what directory should the source be checked out to?
 checkoutroot = os.path.dirname(os.path.realpath(__file__)) + '/source'
