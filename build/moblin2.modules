@@ -19,6 +19,8 @@
       href="git://git.xfce.org" />
   <repository type="tarball" name="people.suug.ch/~tgr/libnl/"
       href="http://www.gnome.org/~fpeters/libnl/"/>
+  <repository type="tarball" name="www.hpl.hp.com/personal/Jean_Tourrilhes/Linux/"
+      href="http://www.hpl.hp.com/personal/Jean_Tourrilhes/Linux/"/>
 
   <include href="http://git.gnome.org/browse/jhbuild/plain/modulesets/gnome-2.30.modules"/>
 
@@ -158,13 +160,12 @@
     </suggests>
   </autotools>
 
-  <autotools id="libsocialweb" autogenargs="--with-online=networkmanager">
+  <autotools id="libsocialweb">
     <branch repo="git.moblin.org"
             module="libsocialweb"
             revision="master"/>
     <dependencies>
       <dep package="librest"/>
-      <dep package="NetworkManager"/>
     </dependencies>
   </autotools>
 
@@ -333,13 +334,6 @@
             module="tracker"
             revision="master" />
     <dependencies />
-  </autotools>
-
-  <autotools id="libnl" skip-autogen="never" autogen-sh="configure">
-    <branch repo="people.suug.ch/~tgr/libnl/"
-            module="libnl-1.1.tar.gz" version="1.1">
-      <patch file="libnl-build.patch" strip="0"/>
-    </branch>
   </autotools>
 
   <autotools id="tumbler">
