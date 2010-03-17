@@ -17,10 +17,12 @@
       href="git://gitorious.org/maemo-af/"/>
   <repository type="git" name="git.xfce.org"
       href="git://git.xfce.org" />
+  <repository type="tarball" name="people.suug.ch/~tgr/libnl/"
+      href="http://www.gnome.org/~fpeters/libnl/"/>
 
   <include href="http://git.gnome.org/browse/jhbuild/plain/modulesets/gnome-2.30.modules"/>
 
-  <!-- TODO: * build gnome-control-center branch to get the extension library inteface 
+  <!-- TODO: * build gnome-control-center branch to get the extension library inteface
              * insert "after" tags so the gir-repos are built. -->
 
   <autotools id="gtk+">
@@ -330,6 +332,13 @@
             module="tracker"
             revision="master" />
     <dependencies />
+  </autotools>
+
+  <autotools id="libnl" skip-autogen="never" autogen-sh="configure">
+    <branch repo="people.suug.ch/~tgr/libnl/"
+            module="libnl-1.1.tar.gz" version="1.1">
+      <patch file="libnl-build.patch" strip="0"/>
+    </branch>
   </autotools>
 
   <autotools id="tumbler">
