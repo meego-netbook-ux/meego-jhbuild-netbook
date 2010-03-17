@@ -41,7 +41,6 @@
     </suggests>
   </autotools>
 
-  <!-- TODO: which version do we want to build meego-1.0 against? -->
   <autotools id="clutter">
     <branch repo="git.clutter-project.org"
             module="clutter"
@@ -320,7 +319,7 @@
   <autotools id="clutter-gst">
     <branch repo="git.clutter-project.org"
             module="clutter-gst"
-            revision="clutter-gst-0.10"/>
+            revision="clutter-gst-1.0"/>
     <dependencies>
       <dep package="clutter"/>
     </dependencies>
@@ -373,6 +372,16 @@
     <suggests>
       <dep package="gtk+"/>
     </suggests>
+  </autotools>
+
+  <autotools id="cluttersmith">
+    <branch repo="git.clutter-project.org"
+            module="cluttersmith"
+            revision="master"/>
+    <dependencies>
+      <dep package="clutter-gst"/>
+      <dep package="mx"/>
+    </dependencies>
   </autotools>
 
   <!-- deprecated -->
