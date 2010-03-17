@@ -22,15 +22,15 @@
 # Only rebuild modules that have changed
 build_policy = 'updated'
 
-moduleset = 'http://git.moblin.org/cgit.cgi/moblin2-jhbuild/plain/build/moblin2.modules' 
+moduleset = os.path.dirname(os.path.realpath(__file__)) + '/build/moblin2.modules'
 
 modules = [ 'meta-moblin2' ]
 
 # what directory should the source be checked out to?
-checkoutroot = os.path.expanduser('~/moblin2/source')
+checkoutroot = os.path.dirname(os.path.realpath(__file__)) + '/source'
 
 # the prefix to configure/install modules to (must have write access)
-prefix = os.path.expanduser('~/moblin2/install')
+prefix = os.path.dirname(os.path.realpath(__file__)) + '/install'
 
 # Use system libraries for the builds
 addpath('PKG_CONFIG_PATH', os.path.join(os.sep, 'usr', 'lib', 'pkgconfig'))
@@ -41,7 +41,6 @@ addpath('XDG_DATA_DIRS', os.path.join(os.sep, 'usr', 'share'))
 # Look in /etc/xdg for system-global autostart files
 addpath('XDG_CONFIG_DIRS', os.path.join(os.sep, 'etc', 'xdg'))
 
-#
 # For Ubuntu Intrepid, libmozjs lives in /usr/lib/xulrunner-<version>
 # However, that path isn't in ld.so.conf, meaning that it's basically
 # impossible to use the xulrunner .pc files and libraries. Work around
@@ -58,9 +57,6 @@ if _pkgconfig.returncode == 0:
     if os.path.exists(_libdir + '/libmozjs.so'):
         addpath('LD_LIBRARY_PATH', _libdir)
 
-# Rebuild faster
-os.environ['INSTALL'] = os.path.expanduser('~/bin/install-check')
-
 # Use the standard system bus
 os.environ['DBUS_SYSTEM_BUS_ADDRESS'] = 'unix:path=/var/run/dbus/system_bus_socket'
 
@@ -71,4 +67,3 @@ os.environ['DBUS_SYSTEM_BUS_ADDRESS'] = 'unix:path=/var/run/dbus/system_bus_sock
 _userrc = os.path.join(os.environ['HOME'], '.jhbuildrc-custom')
 if os.path.exists(_userrc):
     execfile(_userrc)
-
