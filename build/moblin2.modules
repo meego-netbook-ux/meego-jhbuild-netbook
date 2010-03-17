@@ -164,6 +164,7 @@
             revision="master"/>
     <dependencies>
       <dep package="librest"/>
+      <dep package="NetworkManager"/>
     </dependencies>
   </autotools>
 
