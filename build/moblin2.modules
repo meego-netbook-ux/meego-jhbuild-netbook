@@ -100,7 +100,7 @@
   <autotools id="mx">
     <branch repo="git.moblin.org"
             module="mx"
-            revision="master"/>
+            revision="0.7"/>
     <dependencies>
       <dep package="clutter"/>
       <dep package="clutter-gesture"/>
