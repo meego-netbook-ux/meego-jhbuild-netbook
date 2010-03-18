@@ -2,7 +2,7 @@
 moduleset = 'http://git.moblin.org/cgit.cgi/moblin2-jhbuild/plain/build/meego.modules'
 
 # where to checkout source code to
-checkoutroot = '~/meego/source'
+checkoutroot = os.path.expanduser('~/meego/source')
 
 # where to install modules
-prefix = '~/meego/install'
+prefix = os.path.expanduser('~/meego/install')
