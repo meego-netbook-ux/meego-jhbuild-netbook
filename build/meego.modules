@@ -463,8 +463,9 @@
       <dep package="mutter-moblin"/>
       <dep package="bisho"/>
       <dep package="meta-meego-panels"/>
-      <dep package="seed"/>
       <dep package="gir-repository"/>
+      <dep package="seed"/>
+      <dep package="gjs"/>
     </dependencies>
   </metamodule>
 
