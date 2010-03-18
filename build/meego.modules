@@ -114,6 +114,7 @@
       <dep package="gobject-introspection"/>
     </dependencies>
     <suggests>
+      <dep package="gir-repository"/>
       <dep package="gtk+"/>
       <dep package="glib"/>
     </suggests>
@@ -124,6 +125,10 @@
     <dependencies>
       <dep package="clutter"/>
     </dependencies>
+    <suggests>
+      <dep package="gobject-introspection"/>
+      <dep package="gir-repository"/>
+    </suggests>
   </autotools>
 
   <autotools id="libccss" autogenargs="--without-rsvg --without-soup --disable-ccss-cairo --disable-ccss-gtk --disable-examples">
@@ -152,23 +157,15 @@
     </dependencies>
   </autotools>
 
-  <autotools id="clutter-imcontext">
+  <autotools id="clutter-gesture">
     <branch repo="git.moblin.org"
-            module="clutter-imcontext"
+            module="clutter-gesture"
             revision="master"/>
     <dependencies>
       <dep package="clutter"/>
     </dependencies>
   </autotools>
 
-  <autotools id="clutter-gesture">
-    <branch repo="git.moblin.org"
-            module="clutter-imcontext"
-            revision="master"/>
-    <dependencies>
-      <dep package="clutter"/>
-    </dependencies>
-  </autotools>
 
   <!-- Clutter integrations disabled, as they don't build properly at present under jhbuild -->
   <autotools id="mx" autogenargs="--enable-gtk-doc --without-clutter-gesture --without-clutter-imcontext">
@@ -216,9 +213,11 @@
             module="librest"
             revision="master"/>
     <dependencies>
-      <dep package="libsoup"/>
       <dep package="gobject-introspection"/>
     </dependencies>
+    <suggests>
+      <dep package="libsoup"/>
+    </suggests>
   </autotools>
 
   <autotools id="json-glib">
@@ -230,8 +229,10 @@
             module="ebassi/twitter-glib"/>
     <dependencies>
       <dep package="json-glib"/>
-      <dep package="libsoup"/>
     </dependencies>
+    <suggests>
+      <dep package="libsoup"/>
+    </suggests>
   </autotools>
 
   <autotools id="libsocialweb">
@@ -240,9 +241,9 @@
             revision="master"/>
     <dependencies>
       <dep package="librest"/>
-      <dep package="libsoup" />
     </dependencies>
     <suggests>
+      <dep package="libsoup" />
       <dep package="dbus-glib" />
       <dep package="gnome-keyring" />
       <dep package="gconf" />
@@ -256,10 +257,8 @@
             revision="master"/>
     <dependencies>
       <dep package="libsocialweb"/>
-    </dependencies>
-    <suggests>
       <dep package="gnome-control-center"/>
-    </suggests>
+    </dependencies>
   </autotools>
 
   <autotools id="anerley">
@@ -273,6 +272,16 @@
             size="840898" md5="938e8a06708561b5f9e539860c4e27bc" />
   </tarball>
 
+  <autotools id="udisks">
+    <branch repo="freedesktop.org"
+            module="DeviceKit/DeviceKit-disks"
+            tag="1.0.0" />
+    <suggests>
+      <dep package="lvm2"/>
+      <dep package="dbus-glib"/>
+    </suggests>
+  </autotools>
+
   <!-- end moblin-panel-devices deps -->
 
   <autotools id="moblin-panel-devices" autogenargs="--without-udisks">
@@ -283,6 +292,9 @@
       <dep package="mx"/>
       <dep package="mutter-moblin"/>
     </dependencies>
+    <suggests>
+      <dep package="udisks"/>
+    </suggests>
   </autotools>
 
   <autotools id="moblin-panel-myzone">
@@ -364,10 +376,8 @@
       <dep package="clutter-gtk"/>
       <dep package="mutter"/>
       <dep package="mx"/>
-    </dependencies>
-    <suggests>
       <dep package="gnome-control-center"/>
-    </suggests>
+    </dependencies>
   </autotools>
 
     <autotools id="clutter-gst">
@@ -499,10 +509,10 @@
       <dep package="libxml2"/>
       <dep package="gtk+"/>
       <dep package="pango"/>
-      <dep package="libsoup"/>
       <dep package="sqlite3"/>
     </dependencies>
     <suggests>
+      <dep package="libsoup"/>
       <dep package="libxslt"/>
       <dep package="gst-plugins-base"/>
       <dep package="enchant"/>
