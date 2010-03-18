@@ -60,7 +60,6 @@
       <dep package="libsoup"/>
       <dep package="pango"/>
       <dep package="cairo"/>
-      <dep package="mx"/>
       <dep package="glib"/>
       <dep package="clutter"/>
       <dep package="librest"/>
@@ -87,6 +86,16 @@
     </dependencies>
   </autotools>
 
+  <autotools id="gjs">
+    <branch repo="git.gnome.org" module="gjs" revision="master"/>
+    <dependencies>
+      <dep package="gobject-introspection"/>
+    </dependencies>
+    <after>
+      <dep package="gir-repository"/>
+    </after>
+  </autotools>
+
   <!-- core MeeGo libraries and applications -->
   <autotools id="gnome-control-center">
     <branch repo="git.gnome.org"
@@ -105,8 +114,6 @@
       <dep package="gobject-introspection"/>
     </dependencies>
     <suggests>
-      <dep package="cairo"/>
-      <dep package="pango"/>
       <dep package="gtk+"/>
       <dep package="glib"/>
     </suggests>
@@ -173,8 +180,11 @@
       <!--dep package="clutter-gesture"/-->
       <!--dep package="clutter-imcontext"/-->
       <dep package="gobject-introspection"/>
+      <dep package="gir-repository"/>
     </dependencies>
     <suggests>
+      <dep package="pango"/>
+      <dep package="cairo"/>
       <dep package="libnotify"/>
       <dep package="dbus-glib"/>
     </suggests>
