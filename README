@@ -64,6 +64,20 @@ jhbuildrc-meego configuration file, on the
 
 line. Using an absolute path usually works.
 
+Q: Some modules won't build because my autotools are too old; and more
+recent packages aren't available for my system. What can I do to upgrade them?
+A: Some modules may demand particular minimum versions of autotools before
+they allow themselves to be built. To ensure your jhbuild environment
+has the right tools, do:
+
+  jhbuild-meego sanitycheck
+
+If it reports you have the wrong versions of certain tools, use:
+
+  jhbuild-meego bootstrap
+
+This will install all the required build tools for jhbuild.
+
 Q: Why doesn't libsocialweb (com.intel.libsocialweb D-Bus service) start?
 A: In order to activate a D-Bus service installed within the JHBuild
 root you have to modify the /etc/dbus-1/session.conf file by adding
