@@ -22,9 +22,9 @@
 # Only rebuild modules that have changed
 build_policy = 'updated'
 
-moduleset = os.path.dirname(os.path.realpath(__file__)) + '/build/meego.modules'
-
 modules = [ 'meta-meego' ]
+
+moduleset = 'http://git.moblin.org/cgit.cgi/moblin2-jhbuild/plain/build/meego.modules'
 
 # what directory should the source be checked out to?
 checkoutroot = os.path.expanduser(os.path.join('~', 'meego', 'source'))
@@ -32,6 +32,14 @@ checkoutroot = os.path.expanduser(os.path.join('~', 'meego', 'source'))
 # the prefix to configure/install modules to (must have write access)
 prefix = os.path.expanduser(os.path.join('~', 'meego', 'install'))
 
+################ load custom rc
+# You can override the prefix or default build setup for example, or CFLAGS or
+# module_autogenargs, etc.
+_userrc = os.path.join(os.environ['HOME'], '.jhbuildrc-meego-custom')
+if os.path.exists(_userrc):
+    execfile(_userrc)
+
+################ load custom rc before this point
 # Use system libraries for the builds
 addpath('PKG_CONFIG_PATH', prefix + '/install/lib/pkgconfig')
 addpath('PKG_CONFIG_PATH', os.path.join(os.sep, 'usr', 'lib', 'pkgconfig'))
@@ -65,11 +73,3 @@ if _pkgconfig.returncode == 0:
 
 # Use the standard system bus
 os.environ['DBUS_SYSTEM_BUS_ADDRESS'] = 'unix:path=/var/run/dbus/system_bus_socket'
-
-# Import optional user RC for further customization. You can override
-# the prefix or default build setup for example, or CFLAGS or
-# module_autogenargs, etc.
-#
-_userrc = os.path.join(os.environ['HOME'], '.jhbuildrc-custom')
-if os.path.exists(_userrc):
-    execfile(_userrc)
