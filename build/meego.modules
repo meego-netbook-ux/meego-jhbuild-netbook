@@ -458,8 +458,13 @@
 
   <metamodule id="meta-meego-sdk">
     <dependencies>
-      <dep package="meta-meego"/>
+      <dep package="gobject-introspection"/>
+      <dep package="libsocialweb"/>
       <dep package="gtksourceview"/>
+      <dep package="gir-repository"/>
+      <dep package="mx"/>
+      <dep package="seed"/>
+      <dep package="gjs"/>
       <dep package="cluttersmith"/>
     </dependencies>
   </metamodule>
@@ -469,6 +474,8 @@
   provided here for you to manually build them if necessary
 
   also includes some things which are a bit awkward to build outside GNOME (like libsoup)
+
+  and older versions of stuff from GNOME 2.30 which require very latest autotools
   -->
   <autotools id="gtk+">
     <branch repo="git.gnome.org"
@@ -525,5 +532,16 @@
   <autotools id="libtiff" autogen-sh="./configure">
     <branch repo="libtiff.org" version="4.0.0beta5" module="libtiff/tiff-4.0.0beta5.tar.gz" />
   </autotools>
+
+  <!-- slightly older version of gtksourceview which will work with older autoconf < 2.64 -->
+  <tarball autogenargs="--enable-compile-warnings=maximum" id="gtksourceview" version="2.9.5">
+    <source hash="sha256:a56d9c23c12efabdb31972df0f3487ba5cbac89537a04252bec0e957fb34f6db" href="http://download.gnome.org/sources/gtksourceview/2.9/gtksourceview-2.9.5.tar.bz2" size="1206051"/>
+    <branch/>
+    <dependencies>
+      <dep package="intltool"/>
+      <dep package="gtk+"/>
+      <dep package="libxml2"/>
+    </dependencies>
+  </tarball>
 
 </moduleset>
