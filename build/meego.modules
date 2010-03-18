@@ -273,16 +273,6 @@
             size="840898" md5="938e8a06708561b5f9e539860c4e27bc" />
   </tarball>
 
-  <autotools id="udisks">
-    <branch repo="freedesktop.org"
-            module="DeviceKit/DeviceKit-disks"
-            tag="1.0.0" />
-    <suggests>
-      <dep package="lvm2"/>
-      <dep package="dbus-glib"/>
-    </suggests>
-  </autotools>
-
   <!-- end moblin-panel-devices deps -->
 
   <autotools id="moblin-panel-devices" autogenargs="--without-udisks">
@@ -293,9 +283,6 @@
       <dep package="mx"/>
       <dep package="mutter-moblin"/>
     </dependencies>
-    <suggests>
-      <dep package="udisks"/>
-    </suggests>
   </autotools>
 
   <autotools id="moblin-panel-myzone">
