@@ -174,7 +174,7 @@
   <autotools id="mx" autogenargs="--enable-gtk-doc --without-clutter-gesture --without-clutter-imcontext">
     <branch repo="git.moblin.org"
             module="mx"
-            revision="master"/>
+            revision="0.7"/>
     <dependencies>
       <dep package="clutter"/>
       <!--dep package="clutter-gesture"/-->
