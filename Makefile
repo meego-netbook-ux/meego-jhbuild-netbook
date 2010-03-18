@@ -20,4 +20,6 @@ install:
 	$(INSTALL) -d -m 755 '$(DESTDIR)$(bindir)'
 	$(INSTALL) -m 755 build/jhbuild-meego.sh '$(DESTDIR)$(bindir)/jhbuild-meego'
 	$(INSTALL) -m 644 jhbuildrc-meego '$(DESTDIR)$(HOME)/.jhbuildrc-meego'
-	$(INSTALL) -m 644 jhbuildrc-meego-custom '$(DESTDIR)$(HOME)/.jhbuildrc-meego-custom'
+	if test -f '$(DESTDIR)$(HOME)/.jhbuildrc-meego-custom' ; then echo "*** Custom jhbuild config already exists - leaving well alone";\
+	else $(INSTALL) -m 644 jhbuildrc-meego-custom '$(DESTDIR)$(HOME)/.jhbuildrc-meego-custom' ;\
+	fi	
