@@ -17,6 +17,8 @@
       href="git://gitorious.org/maemo-af/"/>
   <repository type="git" name="git.xfce.org"
       href="git://git.xfce.org" />
+  <repository type="git" name="git.collabora.co.uk"
+      href="git://git.collabora.co.uk/git/" />
 
   <include href="http://git.gnome.org/browse/jhbuild/plain/modulesets/gnome-2.30.modules"/>
 
@@ -39,6 +41,18 @@
     <suggests>
       <dep package="gnome-desktop"/>
     </suggests>
+  </autotools>
+
+  <autotools id="telepathy-glib">
+    <branch repo="git.collabora.co.uk"
+            module="telepathy-glib"
+            revision="master" />
+    <dependencies>
+      <dep package="glib"/>
+      <dep package="dbus"/>
+      <dep package="dbus-glib"/>
+      <dep package="libxslt"/>
+    </dependencies>
   </autotools>
 
   <autotools id="clutter">
@@ -220,6 +234,7 @@
       <dep package="nbtk"/>
       <dep package="libsocialweb"/>
       <dep package="mutter-moblin"/>
+      <dep package="telepathy-glib"/>
     </dependencies>
     <suggests>
       <dep package="jana"/>
