@@ -21,12 +21,14 @@
       href="http://download.osgeo.org/"/>
   <repository type="tarball" name="webkitgtk.org"
       href="http://webkitgtk.org/"/>
+  <repository type="tarball" name="sqlite.org"
+      href="http://www.sqlite.org/"/>
 
   <include href="http://git.gnome.org/browse/jhbuild/plain/modulesets/gnome-2.30.modules"/>
 
   <!--
   The aim here is to build all the core MeeGo libraries a developer might want,
-  using system libraries as much as possible
+  using existing system libraries as much as possible
 
   Where dependencies are missing, the <suggests>
   elements contain information about what you might be missing
@@ -64,6 +66,7 @@
       <dep package="librest"/>
       <dep package="gtk+"/>
       <dep package="gtksourceview"/>
+      <dep package="libpoppler"/>
     </after>
   </autotools>
 
@@ -71,6 +74,17 @@
     <branch repo="git.gnome.org"
             module="gobject-introspection"
             revision="master"/>
+  </autotools>
+
+  <autotools id="cluttersmith">
+    <branch repo="git.clutter-project.org"
+            module="cluttersmith"
+            revision="master"/>
+    <dependencies>
+      <dep package="clutter-gst"/>
+      <dep package="mx"/>
+      <dep package="gjs"/>
+    </dependencies>
   </autotools>
 
   <!-- core MeeGo libraries and applications -->
@@ -131,26 +145,37 @@
     </dependencies>
   </autotools>
 
-  <autotools id="clutter-gesture">
+  <autotools id="clutter-imcontext">
     <branch repo="git.moblin.org"
-            module="clutter-gesture"
+            module="clutter-imcontext"
             revision="master"/>
     <dependencies>
       <dep package="clutter"/>
     </dependencies>
   </autotools>
 
-  <autotools id="mx" autogenargs="--enable-gtk-doc">
+  <autotools id="clutter-gesture">
+    <branch repo="git.moblin.org"
+            module="clutter-imcontext"
+            revision="master"/>
+    <dependencies>
+      <dep package="clutter"/>
+    </dependencies>
+  </autotools>
+
+  <!-- Clutter integrations disabled, as they don't build properly at present under jhbuild -->
+  <autotools id="mx" autogenargs="--enable-gtk-doc --without-clutter-gesture --without-clutter-imcontext">
     <branch repo="git.moblin.org"
             module="mx"
             revision="master"/>
     <dependencies>
       <dep package="clutter"/>
-      <dep package="clutter-gesture"/>
-      <dep package="clutter-imcontext"/>
+      <!--dep package="clutter-gesture"/-->
+      <!--dep package="clutter-imcontext"/-->
       <dep package="gobject-introspection"/>
     </dependencies>
     <suggests>
+      <dep package="libnotify"/>
       <dep package="dbus-glib"/>
     </suggests>
   </autotools>
@@ -342,8 +367,10 @@
       <dep package="clutter-gtk"/>
       <dep package="mutter"/>
       <dep package="mx"/>
-      <dep package="gnome-control-center"/>
     </dependencies>
+    <suggests>
+      <dep package="gnome-control-center"/>
+    </suggests>
   </autotools>
 
     <autotools id="clutter-gst">
@@ -353,6 +380,9 @@
     <dependencies>
       <dep package="clutter"/>
     </dependencies>
+    <suggests>
+      <dep package="gstreamer"/>
+    </suggests>
   </autotools>
 
   <autotools id="tracker" autogenargs="--disable-deskbar-applet">
@@ -402,16 +432,6 @@
     </suggests>
   </autotools>
 
-  <autotools id="cluttersmith">
-    <branch repo="git.clutter-project.org"
-            module="cluttersmith"
-            revision="master"/>
-    <dependencies>
-      <dep package="clutter-gst"/>
-      <dep package="mx"/>
-    </dependencies>
-  </autotools>
-
   <!-- modules you're likely to want to build -->
   <metamodule id="meta-meego-panels">
     <dependencies>
@@ -442,12 +462,15 @@
     <dependencies>
       <dep package="meta-meego"/>
       <dep package="gtksourceview"/>
+      <dep package="cluttersmith"/>
     </dependencies>
   </metamodule>
 
   <!--
   stuff you might need if your system is too old:
   provided here for you to manually build them if necessary
+
+  also includes some things which are a bit awkward to build outside GNOME (like libsoup)
   -->
   <autotools id="gtk+">
     <branch repo="git.gnome.org"
@@ -463,8 +486,8 @@
     </dependencies>
   </autotools>
 
-  <autotools id="WebKit" makefile="GNUmakefile">
-    <branch module="webkit-1.1.23.tar.gz" repo="webkitgtk.org" version="1.1.23"/>
+  <autotools id="webkit" makefile="GNUmakefile">
+    <branch repo="webkitgtk.org" module="webkit-1.1.23.tar.gz" version="1.1.23"/>
     <dependencies>
       <dep package="cairo"/>
       <dep package="fontconfig"/>
@@ -472,12 +495,32 @@
       <dep package="gtk+"/>
       <dep package="pango"/>
       <dep package="libsoup"/>
+      <dep package="sqlite3"/>
     </dependencies>
     <suggests>
       <dep package="libxslt"/>
-      <dep package="sqlite3"/>
       <dep package="gst-plugins-base"/>
       <dep package="enchant"/>
+    </suggests>
+  </autotools>
+
+  <autotools id="sqlite3"
+	     autogenargs="--enable-threadsafe --disable-tcl --disable-load-extension --disable-amalgamation" check-target="false">
+    <branch module="sqlite-3.6.22.tar.gz" version="3.6.22"
+	    repo="sqlite.org">
+    </branch>
+  </autotools>
+
+  <autotools id="libsoup" autogenargs="--without-gnome">
+    <branch repo="git.gnome.org" module="libsoup" revision="master"/>
+    <suggests>
+      <dep package="glib"/>
+      <dep package="gnutls"/>
+      <dep package="libxml2"/>
+      <dep package="gconf"/>
+      <dep package="libproxy"/>
+      <dep package="sqlite3"/>
+      <dep package="libgnome-keyring"/>
     </suggests>
   </autotools>
 
