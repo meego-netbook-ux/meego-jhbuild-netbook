@@ -43,7 +43,6 @@ if os.path.exists(_userrc):
 # Use system libraries for the builds
 addpath('PKG_CONFIG_PATH', prefix + '/install/lib/pkgconfig')
 addpath('PKG_CONFIG_PATH', os.path.join(os.sep, 'usr', 'lib', 'pkgconfig'))
-addpath('PKG_CONFIG_PATH', os.path.join(os.sep, 'usr', 'local', 'lib', 'pkgconfig'))
 addpath('PKG_CONFIG_PATH', os.path.join(os.sep, 'usr', 'share', 'pkgconfig'))
 
 # Look in /usr/share for icons, D-BUS service files, etc
@@ -53,7 +52,7 @@ addpath('XDG_DATA_DIRS', os.path.join(os.sep, 'usr', 'share'))
 addpath('XDG_CONFIG_DIRS', os.path.join(os.sep, 'etc', 'xdg'))
 
 # Add GI typelibs
-prependpath('GI_TYPELIB_PATH', prefix + '/share/gir-1.0/')
+os.environ['GI_TYPELIB_PATH'] = prefix + '/share/gir-1.0/'
 
 # For Ubuntu Intrepid, libmozjs lives in /usr/lib/xulrunner-<version>
 # However, that path isn't in ld.so.conf, meaning that it's basically
