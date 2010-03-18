@@ -64,8 +64,8 @@ jhbuildrc-meego configuration file, on the
 
 line. Using an absolute path usually works.
 
-Q: Some modules won't build because my autotools are too old; and more
-recent packages aren't available for my system. What can I do to upgrade them?
+Q: Some modules won't build because my autotools (or other build tools) are too old;
+and more recent packages aren't available for my system. What can I do to upgrade them?
 A: Some modules may demand particular minimum versions of autotools before
 they allow themselves to be built. To ensure your jhbuild environment
 has the right tools, do:
