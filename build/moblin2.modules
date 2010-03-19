@@ -405,6 +405,15 @@
     </suggests>
   </autotools>
 
+  <autotools id="moblin-icon-theme"
+             autogen-sh="create-icon-theme.sh moblin &amp;&amp; cd output/moblin &amp;&amp; ./autogen.sh"
+             makeargs="-C output/moblin"
+             makeinstallargs="-C output/moblin install">
+    <branch repo="git.moblin.org"
+            module="moblin-icon-theme"
+            revision="master"/>
+  </autotools>
+
   <autotools id="cluttersmith">
     <branch repo="git.clutter-project.org"
             module="cluttersmith"
@@ -413,6 +422,7 @@
       <dep package="clutter-gst"/>
       <dep package="mx"/>
       <dep package="gjs"/>
+      <dep package="moblin-icon-theme"/>
     </dependencies>
   </autotools>
 
