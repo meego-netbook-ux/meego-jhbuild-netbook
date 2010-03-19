@@ -61,6 +61,15 @@
             revision="master" />
   </autotools>
 
+  <autotools id="gobject-introspection">
+    <branch repo="git.gnome.org"
+            module="gobject-introspection"
+            revision="master"/>
+    <dependencies>
+      <dep package="glib"/>
+    </dependencies>
+  </autotools>
+
   <autotools id="clutter">
     <branch repo="git.clutter-project.org"
             module="clutter"
