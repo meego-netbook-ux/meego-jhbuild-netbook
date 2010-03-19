@@ -55,6 +55,12 @@
     </dependencies>
   </autotools>
 
+  <autotools id="jana">
+    <branch repo="git.gnome.org"
+            module="jana"
+            revision="master" />
+  </autotools>
+
   <autotools id="clutter">
     <branch repo="git.clutter-project.org"
             module="clutter"
