@@ -138,6 +138,7 @@
     <suggests>
       <dep package="gupnp"/>
       <dep package="gupnp-av"/>
+      <dep package="tracker"/>
     </suggests>
   </autotools>
 
