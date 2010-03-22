@@ -17,6 +17,8 @@
       href="git://gitorious.org/maemo-af/"/>
   <repository type="git" name="git.xfce.org"
       href="git://git.xfce.org" />
+  <repository type="git" name="git.collabora.co.uk"
+      href="git://git.collabora.co.uk/git/" />
   <repository type="tarball" name="libtiff.org"
       href="http://download.osgeo.org/"/>
   <repository type="tarball" name="webkitgtk.org"
@@ -44,6 +46,31 @@
 
   <!-- TODO: * build gnome-control-center branch to get the extension library inteface
              * insert "after" tags so the gir-repos are built. -->
+
+  <autotools id="gtk+">
+    <branch repo="git.gnome.org"
+            module="gtk+"
+            tag="2.19.5" />
+    <suggests>
+      <dep package="atk"/>
+      <dep package="glib"/>
+      <dep package="cairo"/>
+      <dep package="pango"/>
+      <dep package="atk" />
+      <dep package="libtiff"/>
+    </suggests>
+  </autotools>
+
+  <autotools id="gnome-control-center">
+    <branch repo="git.gnome.org"
+            module="gnome-control-center"
+            revision="extensible-shell" />
+    <suggests>
+      <dep package="gnome-desktop"/>
+      <dep package="gnome-menus"/>
+      <dep package="gnome-settings-daemon"/>
+    </suggests>
+  </autotools>
 
   <autotools id="gir-repository">
     <branch repo="git.gnome.org"
@@ -75,17 +102,6 @@
             revision="master"/>
   </autotools>
 
-  <autotools id="cluttersmith">
-    <branch repo="git.clutter-project.org"
-            module="cluttersmith"
-            revision="master"/>
-    <dependencies>
-      <dep package="clutter-gst"/>
-      <dep package="mx"/>
-      <dep package="gjs"/>
-    </dependencies>
-  </autotools>
-
   <autotools id="gjs">
     <branch repo="git.gnome.org" module="gjs" revision="master"/>
     <dependencies>
@@ -96,26 +112,39 @@
     </after>
   </autotools>
 
-  <!-- core MeeGo libraries and applications -->
-  <autotools id="gnome-control-center" autogenargs="--enable-gstreamer=0.10">
-    <branch repo="git.gnome.org"
-            module="gnome-control-center"
-            revision="extensible-shell" />
+  <autotools id="telepathy-glib">
+    <branch repo="git.collabora.co.uk"
+            module="telepathy-glib"
+            revision="master" />
     <suggests>
-      <dep package="gnome-desktop"/>
-      <dep package="gnome-menus"/>
-      <dep package="gnome-settings-daemon"/>
+      <dep package="glib"/>
+      <dep package="dbus"/>
+      <dep package="dbus-glib"/>
+      <dep package="libxslt"/>
     </suggests>
   </autotools>
 
-  <autotools id="clutter" autogenargs="--enable-gtk-doc --disable-static --enable-manual=yes">
+  <autotools id="jana">
+    <branch repo="git.gnome.org"
+            module="jana"
+            revision="master" />
+  </autotools>
+
+  <autotools id="gobject-introspection">
+    <branch repo="git.gnome.org"
+            module="gobject-introspection"
+            revision="master"/>
+    <suggests>
+      <dep package="glib"/>
+    </suggests>
+  </autotools>
+
+  <autotools id="clutter">
     <branch repo="git.clutter-project.org"
             module="clutter"
             revision="clutter-1.2"/>
-    <dependencies>
-      <dep package="gobject-introspection"/>
-    </dependencies>
     <suggests>
+      <dep package="gobject-introspection"/>
       <dep package="gir-repository"/>
       <dep package="gtk+"/>
       <dep package="glib"/>
@@ -148,17 +177,6 @@
     </dependencies>
   </autotools>
 
-  <autotools id="nbtk">
-    <branch repo="git.moblin.org"
-            module="nbtk"
-            revision="master"/>
-    <dependencies>
-      <dep package="clutter"/>
-      <dep package="clutter-imcontext"/>
-      <dep package="libccss"/>
-    </dependencies>
-  </autotools>
-
   <autotools id="clutter-gesture">
     <branch repo="git.moblin.org"
             module="clutter-gesture"
@@ -176,8 +194,8 @@
             revision="0.7"/>
     <dependencies>
       <dep package="clutter"/>
-      <!--dep package="clutter-gesture"/-->
-      <!--dep package="clutter-imcontext"/-->
+      <dep package="clutter-gesture"/>
+      <dep package="clutter-imcontext"/>
       <dep package="gobject-introspection"/>
       <dep package="gir-repository"/>
     </dependencies>
@@ -196,6 +214,7 @@
     <suggests>
       <dep package="gupnp"/>
       <dep package="gupnp-av"/>
+      <dep package="tracker"/>
     </suggests>
   </autotools>
 
@@ -210,7 +229,7 @@
     </suggests>
   </autotools>
 
-  <autotools id="librest" autogenargs="--enable-gtk-doc --enable-introspection">
+  <autotools id="librest">
     <branch repo="git.moblin.org"
             module="librest"
             revision="master"/>
@@ -237,7 +256,7 @@
     </suggests>
   </autotools>
 
-  <autotools id="libsocialweb">
+  <autotools id="libsocialweb" autogenargs="--with-online=networkmanager">
     <branch repo="git.moblin.org"
             module="libsocialweb"
             revision="master"/>
@@ -305,9 +324,10 @@
             revision="master"/>
     <dependencies>
       <dep package="bickley"/>
-      <dep package="nbtk"/>
+      <dep package="mx"/>
       <dep package="libsocialweb"/>
       <dep package="mutter-moblin"/>
+      <dep package="telepathy-glib"/>
     </dependencies>
     <suggests>
       <dep package="jana"/>
@@ -382,66 +402,6 @@
     </dependencies>
   </autotools>
 
-    <autotools id="clutter-gst">
-    <branch repo="git.clutter-project.org"
-            module="clutter-gst"
-            revision="clutter-gst-1.0"/>
-    <dependencies>
-      <dep package="clutter"/>
-    </dependencies>
-    <suggests>
-      <dep package="gstreamer"/>
-    </suggests>
-  </autotools>
-
-  <autotools id="tracker" autogenargs="--disable-deskbar-applet">
-    <branch repo="git.gnome.org"
-            module="tracker"
-            revision="master" />
-    <dependencies />
-  </autotools>
-
-  <autotools id="tumbler">
-    <branch repo="git.xfce.org"
-            module="apps/tumbler"
-            revision="master" />
-    <dependencies />
-  </autotools>
-
-  <autotools id="maemo-video-thumbnailer">
-    <branch repo="maemo.gitorious.org"
-            module="maemo-video-thumbnailer"
-            revision="master" />
-    <dependencies />
-  </autotools>
-
-  <autotools id="hornsey">
-    <branch repo="git.moblin.org"
-            module="hornsey"
-            revision="master"/>
-    <dependencies>
-      <dep package="bognor-regis"/>
-      <dep package="mx"/>
-      <dep package="clutter-gst"/>
-      <dep package="clutter-gtk"/>
-      <dep package="tracker"/>
-      <dep package="tumbler"/>
-    </dependencies>
-  </autotools>
-
-  <autotools id="clutter-gtk">
-    <branch repo="git.clutter-project.org"
-            module="clutter-gtk"
-            revision="clutter-gtk-0.10"/>
-    <dependencies>
-      <dep package="clutter"/>
-    </dependencies>
-    <suggests>
-      <dep package="gtk+"/>
-    </suggests>
-  </autotools>
-
-  <!-- modules you're likely to want to build -->
   <metamodule id="meta-meego-panels">
     <dependencies>
       <dep package="moblin-panel-myzone"/>
@@ -481,6 +441,146 @@
     </dependencies>
   </metamodule>
 
+  <autotools id="clutter-gst">
+    <branch repo="git.clutter-project.org"
+            module="clutter-gst"
+            revision="clutter-gst-1.0"/>
+    <dependencies>
+      <dep package="clutter"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="tracker" autogenargs="--disable-deskbar-applet">
+    <branch repo="git.gnome.org"
+            module="tracker"
+            revision="master" />
+    <dependencies />
+  </autotools>
+
+  <autotools id="tumbler">
+    <branch repo="git.xfce.org"
+            module="apps/tumbler"
+            revision="master" />
+    <dependencies />
+  </autotools>
+
+  <autotools id="maemo-video-thumbnailer">
+    <branch repo="maemo.gitorious.org"
+            module="maemo-video-thumbnailer"
+            revision="master" />
+    <dependencies />
+  </autotools>
+
+  <autotools id="hornsey">
+    <branch repo="git.moblin.org"
+            module="hornsey"
+            revision="master"/>
+    <dependencies>
+      <dep package="bognor-regis"/>
+      <dep package="mx"/>
+      <dep package="clutter-gst"/>
+      <dep package="clutter-gtk"/>
+    </dependencies>
+    <suggests>
+      <dep package="tracker"/>
+      <dep package="tumbler"/>
+    </suggests>
+  </autotools>
+
+  <autotools id="clutter-gtk">
+    <branch repo="git.clutter-project.org"
+            module="clutter-gtk"
+            revision="clutter-gtk-0.10"/>
+    <dependencies>
+      <dep package="clutter"/>
+    </dependencies>
+    <suggests>
+      <dep package="gtk+"/>
+    </suggests>
+  </autotools>
+
+  <autotools id="moblin-icon-theme"
+             autogen-sh="create-icon-theme.sh moblin &amp;&amp; cd output/moblin &amp;&amp; ./autogen.sh"
+             makeargs="-C output/moblin"
+             makeinstallargs="-C output/moblin install">
+    <branch repo="git.moblin.org"
+            module="moblin-icon-theme"
+            revision="master"/>
+  </autotools>
+
+  <autotools id="cluttersmith">
+    <branch repo="git.clutter-project.org"
+            module="cluttersmith"
+            revision="master"/>
+    <dependencies>
+      <dep package="clutter-gst"/>
+      <dep package="mx"/>
+      <dep package="gjs"/>
+      <dep package="moblin-icon-theme"/>
+    </dependencies>
+  </autotools>
+
+  <!-- deprecated -->
+
+  <autotools id="nbtk">
+    <branch repo="git.moblin.org"
+            module="nbtk"
+            revision="master"/>
+    <dependencies>
+      <dep package="clutter"/>
+      <dep package="clutter-imcontext"/>
+      <dep package="libccss"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="dalston">
+    <branch repo="git.moblin.org"
+            module="dalston"
+            revision="master"/>
+    <dependencies>
+    </dependencies>
+  </autotools>
+
+  <autotools id="mojito" autogenargs="--with-online=networkmanager">
+    <branch repo="git.moblin.org"
+            module="mojito"
+            revision="master"/>
+    <dependencies>
+      <dep package="librest"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="clutter-mozembed" autogenargs="--enable-plugins">
+    <branch repo="git.clutter-project.org"
+            module="clutter-mozembed"
+            revision="master"/>
+    <dependencies>
+      <dep package="clutter"/>
+      <dep package="mozilla-headless-services"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="mozilla-headless-services" autogenargs="--enable-gnome-proxy">
+    <branch repo="git.moblin.org"
+            module="mozilla-headless-services"
+            revision="master"/>
+    <dependencies>
+      <dep package="clutter"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="moblin-web-browser">
+    <branch repo="git.moblin.org"
+            module="moblin-web-browser"
+            revision="master"/>
+    <dependencies>
+      <dep package="mozilla-headless-services"/>
+      <dep package="clutter-mozembed"/>
+      <dep package="clutter-gtk"/>
+      <dep package="nbtk"/>
+    </dependencies>
+  </autotools>
+
   <!--
   stuff you might need if your system is too old:
   provided here for you to manually build them if necessary
@@ -489,20 +589,6 @@
 
   and older versions of stuff from GNOME 2.30 which require very latest autotools
   -->
-  <autotools id="gtk+">
-    <branch repo="git.gnome.org"
-            module="gtk+"
-            tag="2.19.6" />
-    <dependencies>
-      <dep package="atk"/>
-      <dep package="glib"/>
-      <dep package="cairo"/>
-      <dep package="pango"/>
-      <dep package="atk" />
-      <dep package="libtiff"/>
-    </dependencies>
-  </autotools>
-
   <autotools id="webkit" makefile="GNUmakefile">
     <branch repo="webkitgtk.org" module="webkit-1.1.23.tar.gz" version="1.1.23"/>
     <dependencies>
@@ -528,6 +614,7 @@
     </branch>
   </autotools>
 
+  <!-- version of libtool without GNOME -->
   <autotools id="libsoup" autogenargs="--without-gnome">
     <branch repo="git.gnome.org" module="libsoup" revision="master"/>
     <suggests>
@@ -541,37 +628,32 @@
     </suggests>
   </autotools>
 
-  <autotools id="libtiff" autogen-sh="./configure">
-    <branch repo="libtiff.org" version="4.0.0beta5" module="libtiff/tiff-4.0.0beta5.tar.gz" />
-  </autotools>
-
   <!-- stable released version of gstreamer and plugins -->
   <autotools id="gstreamer" autogenargs="-- --disable-tests" supports-non-srcdir-builds="no">
     <branch repo="freedesktop.org" module="gstreamer/gstreamer" tag="RELEASE-0.10.28"/>
-    <dependencies>
+    <suggests>
       <dep package="glib"/>
       <dep package="libxml2"/>
-    </dependencies>
+    </suggests>
   </autotools>
 
   <autotools id="gst-plugins-base" autogenargs="-- --disable-tests" supports-non-srcdir-builds="no">
     <branch repo="freedesktop.org" module="gstreamer/gst-plugins-base" tag="RELEASE-0.10.28"/>
-    <dependencies>
+    <suggests>
       <dep package="gstreamer"/>
       <dep package="gtk+"/>
       <dep package="liboil"/>
-    </dependencies>
+    </suggests>
   </autotools>
 
   <!-- slightly older version of gtksourceview which will work with older autoconf < 2.64 -->
-  <tarball autogenargs="--enable-compile-warnings=maximum" id="gtksourceview" version="2.9.5">
-    <source hash="sha256:a56d9c23c12efabdb31972df0f3487ba5cbac89537a04252bec0e957fb34f6db" href="http://download.gnome.org/sources/gtksourceview/2.9/gtksourceview-2.9.5.tar.bz2" size="1206051"/>
+  <tarball id="gtksourceview" autogenargs="--enable-compile-warnings=maximum" version="2.9.5">
+    <source href="http://download.gnome.org/sources/gtksourceview/2.9/gtksourceview-2.9.5.tar.bz2"/>
     <branch/>
-    <dependencies>
+    <suggests>
       <dep package="intltool"/>
       <dep package="gtk+"/>
       <dep package="libxml2"/>
-    </dependencies>
+    </suggests>
   </tarball>
-
 </moduleset>
