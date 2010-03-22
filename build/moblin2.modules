@@ -106,17 +106,6 @@
     </dependencies>
   </autotools>
 
-  <autotools id="nbtk">
-    <branch repo="git.moblin.org"
-            module="nbtk"
-            revision="master"/>
-    <dependencies>
-      <dep package="clutter"/>
-      <dep package="clutter-imcontext"/>
-      <dep package="libccss"/>
-    </dependencies>
-  </autotools>
-
   <autotools id="clutter-gesture">
     <branch repo="git.moblin.org"
             module="clutter-gesture"
@@ -247,7 +236,7 @@
             revision="master"/>
     <dependencies>
       <dep package="bickley"/>
-      <dep package="nbtk"/>
+      <dep package="mx"/>
       <dep package="libsocialweb"/>
       <dep package="mutter-moblin"/>
       <dep package="telepathy-glib"/>
@@ -427,6 +416,17 @@
   </autotools>
 
   <!-- deprecated -->
+
+  <autotools id="nbtk">
+    <branch repo="git.moblin.org"
+            module="nbtk"
+            revision="master"/>
+    <dependencies>
+      <dep package="clutter"/>
+      <dep package="clutter-imcontext"/>
+      <dep package="libccss"/>
+    </dependencies>
+  </autotools>
 
   <autotools id="dalston">
     <branch repo="git.moblin.org"
