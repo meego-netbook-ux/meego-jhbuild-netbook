@@ -103,6 +103,7 @@
             revision="extensible-shell" />
     <suggests>
       <dep package="gnome-desktop"/>
+      <dep package="gnome-menus"/>
     </suggests>
   </autotools>
 
