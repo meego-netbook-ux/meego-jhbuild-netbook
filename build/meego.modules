@@ -97,13 +97,14 @@
   </autotools>
 
   <!-- core MeeGo libraries and applications -->
-  <autotools id="gnome-control-center">
+  <autotools id="gnome-control-center" autogenargs="--enable-gstreamer=0.10">
     <branch repo="git.gnome.org"
             module="gnome-control-center"
             revision="extensible-shell" />
     <suggests>
       <dep package="gnome-desktop"/>
       <dep package="gnome-menus"/>
+      <dep package="gnome-settings-daemon"/>
     </suggests>
   </autotools>
 
