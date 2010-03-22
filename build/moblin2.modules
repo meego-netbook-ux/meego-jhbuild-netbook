@@ -47,12 +47,12 @@
     <branch repo="git.collabora.co.uk"
             module="telepathy-glib"
             revision="master" />
-    <dependencies>
+    <suggests>
       <dep package="glib"/>
       <dep package="dbus"/>
       <dep package="dbus-glib"/>
       <dep package="libxslt"/>
-    </dependencies>
+    </suggests>
   </autotools>
 
   <autotools id="jana">
@@ -65,9 +65,9 @@
     <branch repo="git.gnome.org"
             module="gobject-introspection"
             revision="master"/>
-    <dependencies>
+    <suggests>
       <dep package="glib"/>
-    </dependencies>
+    </suggests>
   </autotools>
 
   <autotools id="clutter">
