@@ -543,6 +543,24 @@
     <branch repo="libtiff.org" version="4.0.0beta5" module="libtiff/tiff-4.0.0beta5.tar.gz" />
   </autotools>
 
+  <!-- stable released version of gstreamer and plugins -->
+  <autotools id="gstreamer" autogenargs="-- --disable-tests" supports-non-srcdir-builds="no">
+    <branch repo="freedesktop.org" module="gstreamer/gstreamer" tag="RELEASE-0.10.28"/>
+    <dependencies>
+      <dep package="glib"/>
+      <dep package="libxml2"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="gst-plugins-base" autogenargs="-- --disable-tests" supports-non-srcdir-builds="no">
+    <branch repo="freedesktop.org" module="gstreamer/gst-plugins-base" tag="RELEASE-0.10.28"/>
+    <dependencies>
+      <dep package="gstreamer"/>
+      <dep package="gtk+"/>
+      <dep package="liboil"/>
+    </dependencies>
+  </autotools>
+
   <!-- slightly older version of gtksourceview which will work with older autoconf < 2.64 -->
   <tarball autogenargs="--enable-compile-warnings=maximum" id="gtksourceview" version="2.9.5">
     <source hash="sha256:a56d9c23c12efabdb31972df0f3487ba5cbac89537a04252bec0e957fb34f6db" href="http://download.gnome.org/sources/gtksourceview/2.9/gtksourceview-2.9.5.tar.bz2" size="1206051"/>
