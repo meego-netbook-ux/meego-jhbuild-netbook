@@ -130,15 +130,6 @@
             revision="master" />
   </autotools>
 
-  <autotools id="gobject-introspection">
-    <branch repo="git.gnome.org"
-            module="gobject-introspection"
-            revision="master"/>
-    <suggests>
-      <dep package="glib"/>
-    </suggests>
-  </autotools>
-
   <autotools id="clutter">
     <branch repo="git.clutter-project.org"
             module="clutter"
@@ -614,7 +605,7 @@
     </branch>
   </autotools>
 
-  <!-- version of libtool without GNOME -->
+  <!-- version of libsoup without GNOME -->
   <autotools id="libsoup" autogenargs="--without-gnome">
     <branch repo="git.gnome.org" module="libsoup" revision="master"/>
     <suggests>
