@@ -187,8 +187,8 @@
             revision="0.7"/>
     <dependencies>
       <dep package="clutter"/>
-      <dep package="clutter-gesture"/>
-      <!--dep package="clutter-imcontext"/-->
+      <!--dep package="clutter-gesture"/-->
+      <dep package="clutter-imcontext"/>
       <dep package="gobject-introspection"/>
       <dep package="gir-repository"/>
     </dependencies>
