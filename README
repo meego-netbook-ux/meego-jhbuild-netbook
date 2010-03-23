@@ -4,6 +4,7 @@ MeeGo - JHBuild
 meego-jhbuid is a repository containing scripts and a JHBuild moduleset for
 building and developing the MeeGo 2.0 User Shell and related libraries.
 
+
 Initialization
 -------------------------------------------------------------------------------
 
@@ -19,8 +20,11 @@ From within the meego-jhbuild repository run:
 
 This command will install:
 
-  - jhbuild-meego             - a wrapper around jhbuild
-  - $HOME/.jhbuildrc-meego    - a jhbuild configuration file
+  - jhbuild-meego                  - a wrapper around jhbuild
+  - $HOME/.jhbuildrc-meego         - a jhbuild configuration file
+  - $HOME/.jhbuildrc-meego-custom  - a jhbuild configuration file for overriding 
+                                     important default settings
+
 
 Building the MeeGo shell
 -------------------------------------------------------------------------------
@@ -31,8 +35,27 @@ To build the whole MeeGo UI:
 
 This will also take care of the dependencies.
 
-The modules will be downloaded under /path/to/meego-jhbuild/source
-The modules will be installed under /path/to/meego-jhbuild/install
+The modules will be downloaded to $HOME/meego/source
+The modules will be installed under $HOME/meego/install
+
+You can change the default directory by editing $HOME/.jhbuildrc-meego-custom
+and editing checkoutroot and prefix.
+
+If you want to use as many system libraries as possible (you'll need a fairly
+recent distro, e.g. one with GNOME 2.30), you can build just the core MeeGo
+parts with:
+
+  jhbuild-meego build --ignore-suggests
+
+Other options are available to build single modules, or specific groups of
+modules. To see the available commands, run:
+
+  jhbuild-meego --help
+
+More information about jhbuild is available in the manual:
+
+  http://library.gnome.org/devel/jhbuild/stable/
+
 
 Launching the MeeGo shell
 -------------------------------------------------------------------------------
@@ -53,16 +76,21 @@ Or use the 'run' command:
 
   jhbuild-meego run /path/to/meego-jhbuild/build/launch-in-xephyr.sh
 
+
 Common issues
 -------------------------------------------------------------------------------
 
-Q: Why jhbuild can't find the meego.modules file?
+Q: Why can't jhbuild find the meego.modules file?
 A: If jhbuild cannot find the meego.modules file you should edit the
-jhbuildrc-meego configuration file, on the
+jhbuildrc-meego configuration file and change the
 
   moduleset
 
-line. Using an absolute path usually works.
+or
+
+  modulesets_dir
+
+variables. Using an absolute path usually works.
 
 Q: Some modules won't build because my autotools (or other build tools) are too old;
 and more recent packages aren't available for my system. What can I do to upgrade them?
@@ -99,7 +127,11 @@ A: You will probably have to remove the cached meego.modules inside:
 
 and edit the index.xml file in the same directory.
 
+
 Tips
 -------------------------------------------------------------------------------
 
-If you need to override a module definition (e.g. you want a later version than the one specified in the GNOME moduleset), you can specify your version in meego.modules. As the GNOME moduleset is included by meego.modules, your definition is given precedence over the one from the included moduleset.
+If you need to override a module definition (e.g. you want a later version 
+than the one specified in the GNOME moduleset), you can specify your version 
+in meego.modules. As the GNOME moduleset is included by meego.modules, 
+your definition is given precedence over the one from the included moduleset.
