@@ -181,14 +181,14 @@
 
 
   <!-- Clutter integrations disabled, as they don't build properly at present under jhbuild -->
-  <autotools id="mx" autogenargs="--enable-gtk-doc">
+  <autotools id="mx" autogenargs="--enable-gtk-doc --without-clutter-gesture">
     <branch repo="secret-git.moblin.org"
             module="mx"
             revision="0.7"/>
     <dependencies>
       <dep package="clutter"/>
       <dep package="clutter-gesture"/>
-      <dep package="clutter-imcontext"/>
+      <!--dep package="clutter-imcontext"/-->
       <dep package="gobject-introspection"/>
       <dep package="gir-repository"/>
     </dependencies>
