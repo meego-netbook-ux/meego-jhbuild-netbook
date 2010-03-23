@@ -194,7 +194,7 @@
     <suggests>
       <dep package="pango"/>
       <dep package="cairo"/>
-      <dep package="libnotify"/>
+      <dep package="startup-notification"/>
       <dep package="dbus-glib"/>
     </suggests>
   </autotools>
