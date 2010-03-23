@@ -228,10 +228,8 @@
     <dependencies>
       <dep package="gobject-introspection"/>
       <dep package="libsoup"/>
-    </dependencies>
-    <after>
       <dep package="gir-repository"/>
-    </after>
+    </dependencies>
   </autotools>
 
   <autotools id="json-glib">
