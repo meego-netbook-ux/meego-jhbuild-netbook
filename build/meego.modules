@@ -255,7 +255,6 @@
       <dep package="librest"/>
     </dependencies>
     <suggests>
-      <dep package="libsoup" />
       <dep package="dbus-glib" />
       <dep package="gnome-keyring" />
       <dep package="gconf" />
