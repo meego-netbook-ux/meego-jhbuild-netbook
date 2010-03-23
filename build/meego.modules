@@ -91,7 +91,6 @@
       <dep package="cairo"/>
       <dep package="glib"/>
       <dep package="clutter"/>
-      <dep package="librest"/>
       <dep package="gtk+"/>
       <dep package="gtksourceview"/>
       <dep package="libpoppler"/>
@@ -230,6 +229,9 @@
       <dep package="gobject-introspection"/>
       <dep package="libsoup"/>
     </dependencies>
+    <after>
+      <dep package="gir-repository"/>
+    </after>
   </autotools>
 
   <autotools id="json-glib">
