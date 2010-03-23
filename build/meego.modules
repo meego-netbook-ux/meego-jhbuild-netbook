@@ -228,10 +228,8 @@
             revision="master"/>
     <dependencies>
       <dep package="gobject-introspection"/>
-    </dependencies>
-    <suggests>
       <dep package="libsoup"/>
-    </suggests>
+    </dependencies>
   </autotools>
 
   <autotools id="json-glib">
