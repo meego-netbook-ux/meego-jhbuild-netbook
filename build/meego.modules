@@ -421,7 +421,7 @@
     </dependencies>
   </metamodule>
 
-  <metamodule id="meta-meego-javascript">
+  <metamodule id="meta-meego-js">
     <dependencies>
       <dep package="gobject-introspection"/>
       <dep package="libsocialweb"/>
