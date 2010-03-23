@@ -9,8 +9,10 @@
       href="git://git.gnome.org"/>
   <repository type="git" name="git.clutter-project.org"
       href="git://git.clutter-project.org/"/>
-  <repository type="git" name="git.moblin.org"
+  <repository type="git" name="secret-git.moblin.org"
       href="ssh://git@git.moblin.org/"/>
+  <repository type="git" name="git.moblin.org"
+      href="git://git.moblin.org/"/>
   <repository type="git" name="github.com"
       href="git://github.com/"/>
   <repository type="git" name="maemo.gitorious.org"
@@ -143,7 +145,7 @@
   </autotools>
 
   <autotools id="mutter" autogenargs="--with-clutter">
-    <branch repo="git.moblin.org" module="mutter" revision="master"/>
+    <branch repo="secret-git.moblin.org" module="mutter" revision="master"/>
     <dependencies>
       <dep package="clutter"/>
     </dependencies>
@@ -179,8 +181,8 @@
 
 
   <!-- Clutter integrations disabled, as they don't build properly at present under jhbuild -->
-  <autotools id="mx" autogenargs="--enable-gtk-doc --without-clutter-gesture --without-clutter-imcontext">
-    <branch repo="git.moblin.org"
+  <autotools id="mx" autogenargs="--enable-gtk-doc">
+    <branch repo="secret-git.moblin.org"
             module="mx"
             revision="0.7"/>
     <dependencies>
@@ -199,7 +201,7 @@
   </autotools>
 
   <autotools id="bognor-regis">
-    <branch repo="git.moblin.org"
+    <branch repo="secret-git.moblin.org"
             module="bognor-regis"
             revision="master"/>
     <suggests>
@@ -210,7 +212,7 @@
   </autotools>
 
   <autotools id="bickley">
-    <branch repo="git.moblin.org"
+    <branch repo="secret-git.moblin.org"
             module="bickley"
             revision="master"/>
     <suggests>
@@ -221,7 +223,7 @@
   </autotools>
 
   <autotools id="librest">
-    <branch repo="git.moblin.org"
+    <branch repo="secret-git.moblin.org"
             module="librest"
             revision="master"/>
     <dependencies>
@@ -248,7 +250,7 @@
   </autotools>
 
   <autotools id="libsocialweb" autogenargs="--with-online=networkmanager">
-    <branch repo="git.moblin.org"
+    <branch repo="secret-git.moblin.org"
             module="libsocialweb"
             revision="master"/>
     <dependencies>
@@ -264,7 +266,7 @@
   </autotools>
 
   <autotools id="bisho">
-    <branch repo="git.moblin.org"
+    <branch repo="secret-git.moblin.org"
             module="bisho"
             revision="master"/>
     <dependencies>
@@ -274,7 +276,7 @@
   </autotools>
 
   <autotools id="anerley">
-    <branch repo="git.moblin.org" module="anerley" revision="master"/>
+    <branch repo="secret-git.moblin.org" module="anerley" revision="master"/>
   </autotools>
 
   <!-- moblin-panel-devices deps -->
@@ -297,7 +299,7 @@
   <!-- end moblin-panel-devices deps -->
 
   <autotools id="moblin-panel-devices" autogenargs="--without-udisks">
-    <branch repo="git.moblin.org"
+    <branch repo="secret-git.moblin.org"
             module="moblin-panel-devices"
             revision="master"/>
     <dependencies>
@@ -310,7 +312,7 @@
   </autotools>
 
   <autotools id="moblin-panel-myzone">
-    <branch repo="git.moblin.org"
+    <branch repo="secret-git.moblin.org"
             module="moblin-panel-myzone"
             revision="master"/>
     <dependencies>
@@ -326,7 +328,7 @@
   </autotools>
 
   <autotools id="moblin-panel-applications">
-    <branch repo="git.moblin.org"
+    <branch repo="secret-git.moblin.org"
             module="moblin-panel-applications"
             revision="master"/>
     <dependencies>
@@ -336,7 +338,7 @@
   </autotools>
 
   <autotools id="moblin-panel-status">
-    <branch repo="git.moblin.org"
+    <branch repo="secret-git.moblin.org"
             module="moblin-panel-status"
             revision="master"/>
     <dependencies>
@@ -348,7 +350,7 @@
   </autotools>
 
   <autotools id="moblin-panel-people">
-    <branch repo="git.moblin.org"
+    <branch repo="secret-git.moblin.org"
             module="moblin-panel-people"
             revision="master"/>
     <dependencies>
@@ -359,7 +361,7 @@
   </autotools>
 
   <autotools id="moblin-panel-media">
-    <branch repo="git.moblin.org"
+    <branch repo="secret-git.moblin.org"
             module="moblin-panel-media"
             revision="master"/>
     <dependencies>
@@ -371,7 +373,7 @@
   </autotools>
 
   <autotools id="moblin-panel-pasteboard">
-    <branch repo="git.moblin.org"
+    <branch repo="secret-git.moblin.org"
             module="moblin-panel-pasteboard"
             revision="master"/>
     <dependencies>
@@ -381,7 +383,7 @@
   </autotools>
 
   <autotools id="mutter-moblin">
-    <branch repo="git.moblin.org"
+    <branch repo="secret-git.moblin.org"
             module="mutter-moblin"
             revision="master"/>
     <dependencies>
@@ -463,7 +465,7 @@
   </autotools>
 
   <autotools id="hornsey">
-    <branch repo="git.moblin.org"
+    <branch repo="secret-git.moblin.org"
             module="hornsey"
             revision="master"/>
     <dependencies>
@@ -494,7 +496,7 @@
              autogen-sh="create-icon-theme.sh moblin &amp;&amp; cd output/moblin &amp;&amp; ./autogen.sh"
              makeargs="-C output/moblin"
              makeinstallargs="-C output/moblin install">
-    <branch repo="git.moblin.org"
+    <branch repo="secret-git.moblin.org"
             module="moblin-icon-theme"
             revision="master"/>
   </autotools>
@@ -514,7 +516,7 @@
   <!-- deprecated -->
 
   <autotools id="nbtk">
-    <branch repo="git.moblin.org"
+    <branch repo="secret-git.moblin.org"
             module="nbtk"
             revision="master"/>
     <dependencies>
@@ -525,7 +527,7 @@
   </autotools>
 
   <autotools id="dalston">
-    <branch repo="git.moblin.org"
+    <branch repo="secret-git.moblin.org"
             module="dalston"
             revision="master"/>
     <dependencies>
@@ -533,7 +535,7 @@
   </autotools>
 
   <autotools id="mojito" autogenargs="--with-online=networkmanager">
-    <branch repo="git.moblin.org"
+    <branch repo="secret-git.moblin.org"
             module="mojito"
             revision="master"/>
     <dependencies>
@@ -552,7 +554,7 @@
   </autotools>
 
   <autotools id="mozilla-headless-services" autogenargs="--enable-gnome-proxy">
-    <branch repo="git.moblin.org"
+    <branch repo="secret-git.moblin.org"
             module="mozilla-headless-services"
             revision="master"/>
     <dependencies>
@@ -561,7 +563,7 @@
   </autotools>
 
   <autotools id="moblin-web-browser">
-    <branch repo="git.moblin.org"
+    <branch repo="secret-git.moblin.org"
             module="moblin-web-browser"
             revision="master"/>
     <dependencies>
