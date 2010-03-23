@@ -421,7 +421,7 @@
     </dependencies>
   </metamodule>
 
-  <metamodule id="meta-meego-sdk">
+  <metamodule id="meta-meego-javascript">
     <dependencies>
       <dep package="gobject-introspection"/>
       <dep package="libsocialweb"/>
@@ -430,7 +430,7 @@
       <dep package="mx"/>
       <dep package="seed"/>
       <dep package="gjs"/>
-      <dep package="cluttersmith"/>
+      <!--CURRENTLY BROKEN dep package="cluttersmith"/-->
     </dependencies>
   </metamodule>
 
