@@ -34,6 +34,9 @@ prefix = os.path.expanduser(os.path.join('~', 'meego', 'install'))
 
 autogenargs='--enable-introspection'
 
+# use local copies of modulesets from jhbuild installation
+use_local_modulesets = True
+
 ################ load custom rc
 # You can override the prefix or default build setup for example, or CFLAGS or
 # module_autogenargs, etc.
