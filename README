@@ -47,7 +47,7 @@ MeeGo parts with:
 
   jhbuild-meego build --ignore-suggests
 
-*** You'll need a fairly recent distro, e.g. one with GNOME 2.30, 
+*** You'll need a fairly recent distro, e.g. one with a very recent GNOME,
     to do this.
 
 Other options are available to build single modules, or specific groups of
