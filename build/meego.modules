@@ -129,7 +129,7 @@
   <autotools id="clutter">
     <branch repo="git.clutter-project.org"
             module="clutter"
-            revision="clutter-1.2"/>
+            revision="master"/>
     <suggests>
       <dep package="gobject-introspection"/>
       <dep package="gir-repository"/>
@@ -178,7 +178,7 @@
   <autotools id="mx" autogenargs="--enable-gtk-doc --without-clutter-gesture">
     <branch repo="git.moblin.org"
             module="mx"
-            revision="0.7"/>
+            revision="master"/>
     <dependencies>
       <dep package="clutter"/>
       <!--dep package="clutter-gesture"/-->
@@ -576,15 +576,13 @@
   -->
   <autotools id="webkit" makefile="GNUmakefile">
     <branch repo="webkitgtk.org" module="webkit-1.1.23.tar.gz" version="1.1.23"/>
-    <dependencies>
+    <suggests>
       <dep package="cairo"/>
       <dep package="fontconfig"/>
       <dep package="libxml2"/>
       <dep package="gtk+"/>
       <dep package="pango"/>
       <dep package="sqlite3"/>
-    </dependencies>
-    <suggests>
       <dep package="libsoup"/>
       <dep package="libxslt"/>
       <dep package="gst-plugins-base"/>
