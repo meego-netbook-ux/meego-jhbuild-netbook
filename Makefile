@@ -18,5 +18,8 @@ ALL_SCRIPTS = jhbuild-moblin2
 
 install:
 	$(INSTALL) -d -m 755 '$(DESTDIR)$(bindir)'
-	$(INSTALL) -m 755 build/jhbuild-moblin2.sh '$(DESTDIR)$(bindir)/jhbuild-moblin2'
-	$(INSTALL) -m 644 jhbuildrc-moblin2 '$(DESTDIR)$(HOME)/.jhbuildrc-moblin2'
+	$(INSTALL) -m 755 build/jhbuild-meego.sh '$(DESTDIR)$(bindir)/jhbuild-meego'
+	$(INSTALL) -m 644 jhbuildrc-meego '$(DESTDIR)$(HOME)/.jhbuildrc-meego'
+	if test -f '$(DESTDIR)$(HOME)/.jhbuildrc-meego-custom' ; then echo "*** Custom jhbuild config already exists - leaving well alone";\
+	else $(INSTALL) -m 644 jhbuildrc-meego-custom '$(DESTDIR)$(HOME)/.jhbuildrc-meego-custom' ;\
+	fi	

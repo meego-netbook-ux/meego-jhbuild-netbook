@@ -1,10 +1,10 @@
 #!/bin/sh
 
-JHBUILD_RC_FILE=${HOME}/.jhbuildrc-moblin2
+JHBUILD_RC_FILE=${HOME}/.jhbuildrc-meego
 JHBUILD_BIN=$( which jhbuild )
 
 test -f ${JHBUILD_RC_FILE} || {
-        echo "Unable to find jhbuildrc file for Moblin2"
+        echo "Unable to find jhbuildrc file for MeeGo"
         exit 1
 }
 

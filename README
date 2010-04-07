@@ -1,8 +1,9 @@
-Moblin v2 - JHBuild
+MeeGo - JHBuild
 ===============================================================================
 
-moblin2-jhbuid is a repository containing scripts and a JHBuild moduleset for
-building and developing the Moblin 2.0 User Shell and related libraries.
+meego-jhbuid is a repository containing scripts and a JHBuild moduleset for
+building and developing the MeeGo 2.0 User Shell and related libraries.
+
 
 Initialization
 -------------------------------------------------------------------------------
@@ -13,77 +14,127 @@ You should check out JHBuild from the GNOME Git repository:
 
 Then build it and install it.
 
-From within the moblin2-jhbuild repository run:
+From within the meego-jhbuild repository run:
 
   make install
 
 This command will install:
 
-  - jhbuild-moblin2             - a wrapper around jhbuild
-  - $HOME/.jhbuildrc-moblin2    - a jhbuild configuration file
+  - jhbuild-meego                  - a wrapper around jhbuild
+  - $HOME/.jhbuildrc-meego         - a jhbuild configuration file
+  - $HOME/.jhbuildrc-meego-custom  - a jhbuild configuration file for overriding 
+                                     important default settings
 
-Building the Moblin v2 shell
+
+Building the MeeGo shell
 -------------------------------------------------------------------------------
 
-To build the whole Moblin v2 UI:
+To build the whole MeeGo UI:
 
-  jhbuild-moblin2 build
+  jhbuild-meego build
 
-This will also take care of the dependencies.
+This will build the default target, meta-meego, and its dependencies.
 
-The modules will be downloaded under $HOME/moblin2/source.
-The modules will be installed under $HOME/moblin2/install
+The modules will be downloaded to $HOME/meego/source
+The modules will be installed under $HOME/meego/install
 
-Launching the Moblin v2 shell
+You can change the default directory by editing $HOME/.jhbuildrc-meego-custom
+and editing checkoutroot and prefix.
+
+If you want to build as little as possible, and system libraries instead
+of building all the required dependencies, you can build just the 
+MeeGo parts with:
+
+  jhbuild-meego build --ignore-suggests
+
+*** You'll need a fairly recent distro, e.g. one with a very recent GNOME,
+    to do this.
+
+Other options are available to build single modules, or specific groups of
+modules. To see the available commands, run:
+
+  jhbuild-meego --help
+
+More information about jhbuild is available in the manual:
+
+  http://library.gnome.org/devel/jhbuild/stable/
+
+
+Launching the MeeGo shell
 -------------------------------------------------------------------------------
 
-To launch the Moblin v2 shell under Xephyr you should start Xephyr using:
+To launch the MeeGo shell under Xephyr you should start Xephyr using:
 
   Xephyr :1 -screen 1024x600 -host-cursor -ac
 
-Then enter the jhbuild shell using:
+Then enter the shell using:
 
-  jhbuild-moblin2 shell
+  jhbuild-meego shell
 
 And run the start-in-xephyr.sh script:
 
-  /path/to/moblin2-jhbuild/build/launch-in-xephyr.sh
+  /path/to/meego-jhbuild/build/launch-in-xephyr.sh
 
 Or use the 'run' command:
 
-  jhbuild-moblin2 run /path/to/moblin2-jhbuild/build/launch-in-xephyr.sh
+  jhbuild-meego run /path/to/meego-jhbuild/build/launch-in-xephyr.sh
+
 
 Common issues
 -------------------------------------------------------------------------------
 
-Q: Why jhbuild can't find the moblin2 modules file?
-A: If jhbuild cannot find the moblin2.modules file you should edit the
-jhbuildrc-moblin2 configuration file, on the
+Q: Why can't jhbuild find the meego.modules file?
+A: If jhbuild cannot find the meego.modules file you should edit the
+jhbuildrc-meego configuration file and change the
 
   moduleset
 
-line. Using an absolute path usually works.
+or
 
-Q: Why doesn't Mojito (com.intel.Mojito D-Bus service) start?
+  modulesets_dir
+
+variables. Using an absolute path usually works.
+
+Q: Some modules won't build because my autotools (or other build tools) are too old;
+and more recent packages aren't available for my system. What can I do to upgrade them?
+A: Some modules may demand particular minimum versions of autotools before
+they allow themselves to be built. To ensure your jhbuild environment
+has the right tools, do:
+
+  jhbuild-meego sanitycheck
+
+If it reports you have the wrong versions of certain tools, use:
+
+  jhbuild-meego bootstrap
+
+This will install all the required build tools for jhbuild.
+
+Q: Why doesn't libsocialweb (com.intel.libsocialweb D-Bus service) start?
 A: In order to activate a D-Bus service installed within the JHBuild
 root you have to modify the /etc/dbus-1/session.conf file by adding
 the following line:
 
-  <servicedir>@PREFIX@/moblin2/install/share/dbus-1/services</servicedir>
-
-Where @PREFIX@ is the prefix used by JHBuild -- the user's home directory
-by default.
+  <servicedir>/path/to/meego-jhbuild/install/share/dbus-1/services</servicedir>
 
 You will have to restart D-Bus, which usually means logging out or a
 complete reboot.
 
-Q: Why doesn't jhbuild pick up local changes to the moblin2.modules file?
+Q: Why doesn't jhbuild pick up local changes to the meego.modules file?
 A: If you modify the moduleset file locally you will need to edit the
-$HOME/.jhbuildrc-moblin2 file and change the 'moduleset' value.
+$HOME/.jhbuildrc-meego file and change the 'moduleset' value.
 
-Q: Why doesn't jhbuild pick up remote changes to the moblin2.modules file?
-A: You will probably have to remove the cached moblin2.modules inside:
+Q: Why doesn't jhbuild pick up remote changes to the meego.modules file?
+A: You will probably have to remove the cached meego.modules inside:
 
   $HOME/.cache/jhbuild
 
 and edit the index.xml file in the same directory.
+
+
+Tips
+-------------------------------------------------------------------------------
+
+If you need to override a module definition (e.g. you want a later version 
+than the one specified in the GNOME moduleset), you can specify your version 
+in meego.modules. As the GNOME moduleset is included by meego.modules, 
+your definition is given precedence over the one from the included moduleset.

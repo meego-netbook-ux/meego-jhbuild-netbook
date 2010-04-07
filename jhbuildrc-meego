@@ -1,6 +1,6 @@
 # -*- mode: python -*-
 #
-# jhbuildrc for building moblin2. Customizations shuld be done in
+# jhbuildrc for building MeeGo. Customizations shuld be done in
 # ~/.jhbuildrc-custom
 #
 # Copyright (C) Intel Corp.
@@ -19,29 +19,46 @@
 #
 # JHBUILDRC_MOBLIN2 - Do not edit this line (or anything else)
 
+# use local copies of modulesets from jhbuild installation
+use_local_modulesets = True
+
 # Only rebuild modules that have changed
 build_policy = 'updated'
 
-moduleset = 'http://git.moblin.org/cgit.cgi/moblin2-jhbuild/plain/build/moblin2.modules' 
+modules = [ 'meta-meego' ]
 
-modules = [ 'meta-moblin2' ]
+moduleset = 'http://git.moblin.org/cgit.cgi/moblin2-jhbuild/plain/build/meego.modules'
 
 # what directory should the source be checked out to?
-checkoutroot = os.path.expanduser('~/moblin2/source')
+checkoutroot = os.path.expanduser(os.path.join('~', 'meego', 'source'))
 
 # the prefix to configure/install modules to (must have write access)
-prefix = os.path.expanduser('~/moblin2/install')
+prefix = os.path.expanduser(os.path.join('~', 'meego', 'install'))
 
+autogenargs='--enable-introspection'
+
+################ load custom rc
+# You can override the prefix or default build setup for example, or CFLAGS or
+# module_autogenargs, etc.
+_userrc = os.path.join(os.environ['HOME'], '.jhbuildrc-meego-custom')
+if os.path.exists(_userrc):
+    execfile(_userrc)
+
+################ load custom rc before this point
 # Use system libraries for the builds
+addpath('PKG_CONFIG_PATH', prefix + '/install/lib/pkgconfig')
 addpath('PKG_CONFIG_PATH', os.path.join(os.sep, 'usr', 'lib', 'pkgconfig'))
 addpath('PKG_CONFIG_PATH', os.path.join(os.sep, 'usr', 'share', 'pkgconfig'))
 
 # Look in /usr/share for icons, D-BUS service files, etc
 addpath('XDG_DATA_DIRS', os.path.join(os.sep, 'usr', 'share'))
+
 # Look in /etc/xdg for system-global autostart files
 addpath('XDG_CONFIG_DIRS', os.path.join(os.sep, 'etc', 'xdg'))
 
-#
+# Add GI typelibs
+os.environ['GI_TYPELIB_PATH'] = prefix + '/share/gir-1.0/'
+
 # For Ubuntu Intrepid, libmozjs lives in /usr/lib/xulrunner-<version>
 # However, that path isn't in ld.so.conf, meaning that it's basically
 # impossible to use the xulrunner .pc files and libraries. Work around
@@ -58,17 +75,5 @@ if _pkgconfig.returncode == 0:
     if os.path.exists(_libdir + '/libmozjs.so'):
         addpath('LD_LIBRARY_PATH', _libdir)
 
-# Rebuild faster
-os.environ['INSTALL'] = os.path.expanduser('~/bin/install-check')
-
 # Use the standard system bus
 os.environ['DBUS_SYSTEM_BUS_ADDRESS'] = 'unix:path=/var/run/dbus/system_bus_socket'
-
-# Import optional user RC for further customization. You can override
-# the prefix or default build setup for example, or CFLAGS or
-# module_autogenargs, etc.
-#
-_userrc = os.path.join(os.environ['HOME'], '.jhbuildrc-custom')
-if os.path.exists(_userrc):
-    execfile(_userrc)
-

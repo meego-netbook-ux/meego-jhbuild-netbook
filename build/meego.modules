@@ -10,7 +10,7 @@
   <repository type="git" name="git.clutter-project.org"
       href="git://git.clutter-project.org/"/>
   <repository type="git" name="git.moblin.org"
-      href="ssh://git@git.moblin.org/"/>
+      href="git://git.moblin.org/"/>
   <repository type="git" name="github.com"
       href="git://github.com/"/>
   <repository type="git" name="maemo.gitorious.org"
@@ -19,11 +19,30 @@
       href="git://git.xfce.org" />
   <repository type="git" name="git.collabora.co.uk"
       href="git://git.collabora.co.uk/git/" />
+  <repository type="tarball" name="libtiff.org"
+      href="http://download.osgeo.org/"/>
+  <repository type="tarball" name="webkitgtk.org"
+      href="http://webkitgtk.org/"/>
+  <repository type="tarball" name="sqlite.org"
+      href="http://www.sqlite.org/"/>
 
   <include href="http://git.gnome.org/browse/jhbuild/plain/modulesets/gnome-2.30.modules"/>
 
-  <!-- TODO: * build gnome-control-center branch to get the extension library inteface 
-             * insert "after" tags so the gir-repos are built. -->
+  <!--
+  The aim here is to build all the core MeeGo libraries a developer might want,
+  using existing system libraries as much as possible
+
+  Where dependencies are missing, the <suggests>
+  elements contain information about what you might be missing
+
+  Where the versions MeeGo needs are later than the versions GNOME provides, we
+  provide modules to get versions which should work (e.g. to get JavaScript to work)
+
+  Where we know a module provides introspection metadata, we do two things:
+  - Ensure the module depends on gobject-introspection (so it can be introspected as it's built)
+  - Ensure the module is listed in the <after> section for gir-repository, so it can be added to
+    the GIR repo at the end of the build
+  -->
 
   <autotools id="gtk+">
     <branch repo="git.gnome.org"
@@ -31,6 +50,11 @@
             tag="2.19.5" />
     <suggests>
       <dep package="atk"/>
+      <dep package="glib"/>
+      <dep package="cairo"/>
+      <dep package="pango"/>
+      <dep package="atk" />
+      <dep package="libtiff"/>
     </suggests>
   </autotools>
 
@@ -40,7 +64,48 @@
             revision="extensible-shell" />
     <suggests>
       <dep package="gnome-desktop"/>
+      <dep package="gnome-menus"/>
+      <dep package="gnome-settings-daemon"/>
     </suggests>
+  </autotools>
+
+  <autotools id="gir-repository">
+    <branch repo="git.gnome.org"
+            module="gir-repository"
+            revision="master"/>
+    <dependencies>
+      <dep package="gobject-introspection"/>
+    </dependencies>
+    <!--
+    these modules are known to provide metadata, so we build gir-repository after them
+    to hoover it up
+    -->
+    <after>
+      <dep package="libsoup"/>
+      <dep package="pango"/>
+      <dep package="cairo"/>
+      <dep package="glib"/>
+      <dep package="clutter"/>
+      <dep package="gtk+"/>
+      <dep package="gtksourceview"/>
+      <dep package="libpoppler"/>
+    </after>
+  </autotools>
+
+  <autotools id="gobject-introspection">
+    <branch repo="git.gnome.org"
+            module="gobject-introspection"
+            revision="master"/>
+  </autotools>
+
+  <autotools id="gjs">
+    <branch repo="git.gnome.org" module="gjs" revision="master"/>
+    <dependencies>
+      <dep package="gobject-introspection"/>
+    </dependencies>
+    <after>
+      <dep package="gir-repository"/>
+    </after>
   </autotools>
 
   <autotools id="telepathy-glib">
@@ -61,22 +126,15 @@
             revision="master" />
   </autotools>
 
-  <autotools id="gobject-introspection">
-    <branch repo="git.gnome.org"
-            module="gobject-introspection"
-            revision="master"/>
-    <suggests>
-      <dep package="glib"/>
-    </suggests>
-  </autotools>
-
   <autotools id="clutter">
     <branch repo="git.clutter-project.org"
             module="clutter"
-            revision="clutter-1.2"/>
+            revision="master"/>
     <suggests>
       <dep package="gobject-introspection"/>
       <dep package="gir-repository"/>
+      <dep package="gtk+"/>
+      <dep package="glib"/>
     </suggests>
   </autotools>
 
@@ -115,16 +173,23 @@
     </dependencies>
   </autotools>
 
-  <autotools id="mx">
+
+  <!-- Clutter integrations disabled, as they don't build properly at present under jhbuild -->
+  <autotools id="mx" autogenargs="--enable-gtk-doc --without-clutter-gesture">
     <branch repo="git.moblin.org"
             module="mx"
-            revision="0.7"/>
+            revision="master"/>
     <dependencies>
       <dep package="clutter"/>
-      <dep package="clutter-gesture"/>
+      <!--dep package="clutter-gesture"/-->
       <dep package="clutter-imcontext"/>
+      <dep package="gobject-introspection"/>
+      <dep package="gir-repository"/>
     </dependencies>
     <suggests>
+      <dep package="pango"/>
+      <dep package="cairo"/>
+      <dep package="startup-notification"/>
       <dep package="dbus-glib"/>
     </suggests>
   </autotools>
@@ -155,9 +220,11 @@
     <branch repo="git.moblin.org"
             module="librest"
             revision="master"/>
-    <suggests>
+    <dependencies>
+      <dep package="gobject-introspection"/>
       <dep package="libsoup"/>
-    </suggests>
+      <dep package="gir-repository"/>
+    </dependencies>
   </autotools>
 
   <autotools id="json-glib">
@@ -182,6 +249,12 @@
     <dependencies>
       <dep package="librest"/>
     </dependencies>
+    <suggests>
+      <dep package="dbus-glib" />
+      <dep package="gnome-keyring" />
+      <dep package="gconf" />
+      <dep package="glib" />
+    </suggests>
   </autotools>
 
   <autotools id="bisho">
@@ -314,7 +387,7 @@
     </dependencies>
   </autotools>
 
-  <metamodule id="meta-moblin2-panels">
+  <metamodule id="meta-meego-panels">
     <dependencies>
       <dep package="moblin-panel-myzone"/>
       <dep package="moblin-panel-status"/>
@@ -326,13 +399,30 @@
     </dependencies>
   </metamodule>
 
-  <metamodule id="meta-moblin2">
+  <metamodule id="meta-meego">
     <dependencies>
+      <dep package="gobject-introspection"/>
       <dep package="clutter"/>
       <dep package="libsocialweb"/>
       <dep package="mutter-moblin"/>
       <dep package="bisho"/>
-      <dep package="meta-moblin2-panels"/>
+      <dep package="meta-meego-panels"/>
+      <dep package="gir-repository"/>
+      <dep package="seed"/>
+      <dep package="gjs"/>
+    </dependencies>
+  </metamodule>
+
+  <metamodule id="meta-meego-js">
+    <dependencies>
+      <dep package="gobject-introspection"/>
+      <dep package="libsocialweb"/>
+      <dep package="gtksourceview"/>
+      <dep package="gir-repository"/>
+      <dep package="mx"/>
+      <dep package="seed"/>
+      <dep package="gjs"/>
+      <!--CURRENTLY BROKEN dep package="cluttersmith"/-->
     </dependencies>
   </metamodule>
 
@@ -476,4 +566,77 @@
     </dependencies>
   </autotools>
 
+  <!--
+  stuff you might need if your system is too old:
+  provided here for you to manually build them if necessary
+
+  also includes some things which are a bit awkward to build outside GNOME (like libsoup)
+
+  and older versions of stuff from GNOME 2.30 which require very latest autotools
+  -->
+  <autotools id="webkit" makefile="GNUmakefile">
+    <branch repo="webkitgtk.org" module="webkit-1.1.23.tar.gz" version="1.1.23"/>
+    <suggests>
+      <dep package="cairo"/>
+      <dep package="fontconfig"/>
+      <dep package="libxml2"/>
+      <dep package="gtk+"/>
+      <dep package="pango"/>
+      <dep package="sqlite3"/>
+      <dep package="libsoup"/>
+      <dep package="libxslt"/>
+      <dep package="gst-plugins-base"/>
+      <dep package="enchant"/>
+    </suggests>
+  </autotools>
+
+  <autotools id="sqlite3"
+	     autogenargs="--enable-threadsafe --disable-tcl --disable-load-extension --disable-amalgamation" check-target="false">
+    <branch module="sqlite-3.6.22.tar.gz" version="3.6.22"
+	    repo="sqlite.org">
+    </branch>
+  </autotools>
+
+  <!-- version of libsoup without GNOME -->
+  <autotools id="libsoup" autogenargs="--without-gnome">
+    <branch repo="git.gnome.org" module="libsoup" revision="master"/>
+    <suggests>
+      <dep package="glib"/>
+      <dep package="gnutls"/>
+      <dep package="libxml2"/>
+      <dep package="gconf"/>
+      <dep package="libproxy"/>
+      <dep package="sqlite3"/>
+      <dep package="libgnome-keyring"/>
+    </suggests>
+  </autotools>
+
+  <!-- stable released version of gstreamer and plugins -->
+  <autotools id="gstreamer" autogenargs="-- --disable-tests" supports-non-srcdir-builds="no">
+    <branch repo="freedesktop.org" module="gstreamer/gstreamer" tag="RELEASE-0.10.28"/>
+    <suggests>
+      <dep package="glib"/>
+      <dep package="libxml2"/>
+    </suggests>
+  </autotools>
+
+  <autotools id="gst-plugins-base" autogenargs="-- --disable-tests" supports-non-srcdir-builds="no">
+    <branch repo="freedesktop.org" module="gstreamer/gst-plugins-base" tag="RELEASE-0.10.28"/>
+    <suggests>
+      <dep package="gstreamer"/>
+      <dep package="gtk+"/>
+      <dep package="liboil"/>
+    </suggests>
+  </autotools>
+
+  <!-- slightly older version of gtksourceview which will work with older autoconf < 2.64 -->
+  <tarball id="gtksourceview" autogenargs="--enable-compile-warnings=maximum" version="2.9.5">
+    <source href="http://download.gnome.org/sources/gtksourceview/2.9/gtksourceview-2.9.5.tar.bz2"/>
+    <branch/>
+    <suggests>
+      <dep package="intltool"/>
+      <dep package="gtk+"/>
+      <dep package="libxml2"/>
+    </suggests>
+  </tarball>
 </moduleset>
