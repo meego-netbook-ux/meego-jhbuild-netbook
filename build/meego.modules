@@ -426,7 +426,7 @@
       <dep package="mx"/>
       <dep package="seed"/>
       <dep package="gjs"/>
-      <!--CURRENTLY BROKEN dep package="cluttersmith"/-->
+      <dep package="cluttersmith"/>
     </dependencies>
   </metamodule>
 
