@@ -579,7 +579,7 @@
   and older versions of stuff from GNOME 2.30 which require very latest autotools
   -->
   <autotools id="WebKit" makefile="GNUmakefile">
-    <branch repo="webkitgtk.org" module="webkit-1.2.0.tar.gz" version="1.2.0"/>
+    <branch repo="webkitgtk.org" module="webkit-1.1.90.tar.gz" version="1.1.90"/>
     <suggests>
       <dep package="cairo"/>
       <dep package="fontconfig"/>
