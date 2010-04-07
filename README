@@ -130,6 +130,28 @@ A: You will probably have to remove the cached meego.modules inside:
 
 and edit the index.xml file in the same directory.
 
+Q: When I try to build module X, it depends on a package not defined in
+the moduleset. What should I do?
+A: The moduleset defined for MeeGo stops roughly at the boundary between
+the desktop and underlying system libraries. So, for example, it won't
+attempt to build wireless-tools or hardware drivers. However, the chain
+of dependencies may lead down to those libraries. To resolve this, you
+should install the development headers for required system libraries
+directly on the base system.
+
+Q: A module won't build because it needs a dependency; but the dependency
+isn't listed in the MeeGo moduleset. Why not?
+A: In some cases, a MeeGo module depends on a module defined in the GNOME
+moduleset; but the dependency isn't included. A case in point is libsocialweb,
+which technically depends on NetworkManager. However, attempting to build
+NetworkManager as non-root using the GNOME jhbuild module definition
+doesn't work well.
+
+The solution is to make a note of any dependencies which cause a build to
+fail; then install those dependencies directly from packages on your
+base system. (In the case of libsocialweb on Fedora, this includes
+NetworkManager-devel and NetworkManager-glib-devel.)
+
 
 Tips
 -------------------------------------------------------------------------------
