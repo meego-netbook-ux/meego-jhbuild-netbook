@@ -633,6 +633,10 @@
     </suggests>
   </autotools>
 
+  <autotools id="libtiff" autogen-sh="./configure">
+    <branch repo="libtiff.org" module="libtiff/tiff-3.9.2.tar.gz" version="3.9.2"/>
+  </autotools>
+
   <!-- slightly older version of gtksourceview which will work with older autoconf < 2.64 -->
   <tarball id="gtksourceview" autogenargs="--enable-compile-warnings=maximum" version="2.9.5">
     <source href="http://download.gnome.org/sources/gtksourceview/2.9/gtksourceview-2.9.5.tar.bz2"/>
