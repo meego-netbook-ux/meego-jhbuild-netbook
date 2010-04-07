@@ -10,7 +10,7 @@
   <repository type="git" name="git.clutter-project.org"
       href="git://git.clutter-project.org/"/>
   <repository type="git" name="git.moblin.org"
-      href="git://git.moblin.org/"/>
+      href="ssh://git@git.moblin.org/"/>
   <repository type="git" name="github.com"
       href="git://github.com/"/>
   <repository type="git" name="maemo.gitorious.org"
@@ -174,7 +174,10 @@
   </autotools>
 
 
-  <!-- Clutter integrations disabled, as they don't build properly at present under jhbuild -->
+  <!--
+      clutter-gesture integration disabled, as it doesn't build 
+      properly in all jhbuild environments 
+  -->
   <autotools id="mx" autogenargs="--enable-gtk-doc --without-clutter-gesture">
     <branch repo="git.moblin.org"
             module="mx"
