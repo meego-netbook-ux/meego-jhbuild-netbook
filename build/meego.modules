@@ -176,8 +176,8 @@
   </autotools>
 
   <!--
-      clutter-gesture integration disabled, as it doesn't build
-      properly in all jhbuild environments
+  clutter-gesture integration disabled, as it doesn't build
+  properly in all jhbuild environments
   -->
   <autotools id="mx" autogenargs="--enable-gtk-doc --without-clutter-gesture">
     <branch repo="git.moblin.org"
@@ -246,7 +246,7 @@
     </suggests>
   </autotools>
 
-  <autotools id="libsocialweb" autogenargs="--with-online=networkmanager">
+  <autotools id="libsocialweb" autogenargs="--enable-twitter --enable-lastfm --with-online=connman">
     <branch repo="git.moblin.org"
             module="libsocialweb"
             revision="master"/>
@@ -258,7 +258,6 @@
       <dep package="gnome-keyring"/>
       <dep package="gconf"/>
       <dep package="glib"/>
-      <dep package="NetworkManager"/>
     </suggests>
   </autotools>
 
@@ -580,7 +579,7 @@
   and older versions of stuff from GNOME 2.30 which require very latest autotools
   -->
   <autotools id="WebKit" makefile="GNUmakefile">
-    <branch repo="webkitgtk.org" module="webkit-1.1.23.tar.gz" version="1.1.23"/>
+    <branch repo="webkitgtk.org" module="webkit-1.2.0.tar.gz" version="1.2.0"/>
     <suggests>
       <dep package="cairo"/>
       <dep package="fontconfig"/>
@@ -632,15 +631,6 @@
       <dep package="gtk+"/>
       <dep package="liboil"/>
     </suggests>
-  </autotools>
-
-  <!-- libnl needs a patch to build which seems to be missing from GNOME moduleset -->
-  <autotools id="libnl" skip-autogen="never" autogen-sh="configure">
-    <branch repo="people.suug.ch/~tgr/libnl/"
-            module="libnl-1.1.tar.gz"
-            version="1.1">
-      <patch file="libnl-1.1-netlink-local.h.patch" strip="1"/>
-    </branch>
   </autotools>
 
   <!-- slightly older version of gtksourceview which will work with older autoconf < 2.64 -->
