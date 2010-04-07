@@ -88,6 +88,7 @@
       <dep package="cairo"/>
       <dep package="glib"/>
       <dep package="clutter"/>
+      <dep package="clutter-gst"/>
       <dep package="gtk+"/>
       <dep package="gtksourceview"/>
       <dep package="libpoppler"/>
@@ -588,6 +589,7 @@
       <dep package="pango"/>
       <dep package="sqlite3"/>
       <dep package="libsoup"/>
+      <dep package="gir-repository"/>
       <dep package="libxslt"/>
       <dep package="gst-plugins-base"/>
       <dep package="enchant"/>
