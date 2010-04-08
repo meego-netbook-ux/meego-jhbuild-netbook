@@ -53,7 +53,7 @@
   <autotools id="gtk+">
     <branch repo="git.gnome.org"
             module="gtk+"
-            tag="2.19.5" />
+            tag="2.20.0" />
     <suggests>
       <dep package="atk"/>
       <dep package="glib"/>
