@@ -473,6 +473,10 @@
     <dependencies>
       <dep package="clutter"/>
     </dependencies>
+    <suggests>
+      <dep package="gstreamer"/>
+      <dep package="gst-plugins-base"/>
+    </suggests>
   </autotools>
 
   <autotools id="tracker" autogenargs="--disable-deskbar-applet">
