@@ -620,6 +620,9 @@
   -->
   <autotools id="WebKit" makefile="GNUmakefile">
     <branch repo="webkitgtk.org" module="webkit-1.1.90.tar.gz" version="1.1.90"/>
+    <dependencies>
+      <dep package="libsoup"/>
+    </dependencies>
     <suggests>
       <dep package="cairo"/>
       <dep package="fontconfig"/>
@@ -627,7 +630,6 @@
       <dep package="gtk+"/>
       <dep package="pango"/>
       <dep package="sqlite3"/>
-      <dep package="libsoup"/>
       <dep package="gir-repository"/>
       <dep package="libxslt"/>
       <dep package="gst-plugins-base"/>
