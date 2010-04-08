@@ -27,6 +27,8 @@
       href="http://www.sqlite.org/"/>
   <repository type="tarball" name="people.suug.ch/~tgr/libnl/"
       href="http://www.gnome.org/~fpeters/libnl/"/>
+  <repository type="tarball" name="cairo.org"
+    href="http://cairographics.org/"/>
 
   <include href="http://git.gnome.org/browse/jhbuild/plain/modulesets/gnome-2.30.modules"/>
 
@@ -140,6 +142,33 @@
       <dep package="glib"/>
     </suggests>
   </autotools>
+
+  <autotools id="cairo">
+    <branch module="snapshots/cairo-1.9.6.tar.gz" version="1.9.6" repo="cairo.org" />
+    <suggests>
+      <dep package="fontconfig"/>
+      <dep package="gtk-doc"/>
+      <dep package="pixman"/>
+    </suggests>
+    <after>
+      <dep package="glitz"/>
+    </after>
+  </autotools>
+
+  <autotools id="pixman" autogenargs="--disable-gtk">
+    <branch module="releases/pixman-0.17.4.tar.gz" version="0.17.4" repo="cairo.org"/>
+  </autotools>
+
+  <tarball id="fontconfig" version="2.7.1">
+    <source href="http://www.fontconfig.org/release/fontconfig-2.7.1.tar.gz"/>
+    <suggests>
+      <dep package="expat"/>
+    </suggests>
+  </tarball>
+
+  <tarball id="expat" version="2.0.1">
+    <source href="http://downloads.sourceforge.net/project/expat/expat/2.0.1/expat-2.0.1.tar.gz"/>
+  </tarball>
 
   <autotools id="mutter" autogenargs="--with-clutter">
     <branch repo="git.moblin.org" module="mutter" revision="master"/>
