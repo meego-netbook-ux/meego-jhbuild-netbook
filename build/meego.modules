@@ -459,7 +459,6 @@
       <dep package="gir-repository"/>
       <dep package="mx"/>
       <dep package="seed"/>
-      <dep package="seedkit"/>
       <dep package="gjs"/>
       <dep package="cluttersmith"/>
     </dependencies>
@@ -643,16 +642,6 @@
     <branch module="sqlite-3.6.22.tar.gz" version="3.6.22"
 	    repo="sqlite.org">
     </branch>
-  </autotools>
-
-  <autotools id="seedkit">
-    <branch module="seedkit/seedkit" revision="master" repo="gitorious.org"/>
-    <dependencies>
-      <dep package="seed"/>
-    </dependencies>
-    <suggests>
-      <dep package="gtk+"/>
-    </suggests>
   </autotools>
 
   <!-- version of libsoup without GNOME -->
