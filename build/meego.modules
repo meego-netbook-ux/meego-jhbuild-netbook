@@ -92,6 +92,7 @@
       <dep package="cairo"/>
       <dep package="glib"/>
       <dep package="clutter"/>
+      <dep package="libnotify"/>
       <dep package="gtk+"/>
       <dep package="gtksourceview"/>
       <dep package="libpoppler"/>
@@ -455,6 +456,7 @@
     <dependencies>
       <dep package="gobject-introspection"/>
       <dep package="libsocialweb"/>
+      <dep package="libnotify"/>
       <dep package="gtksourceview"/>
       <dep package="gir-repository"/>
       <dep package="mx"/>
