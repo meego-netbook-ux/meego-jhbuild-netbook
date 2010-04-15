@@ -95,7 +95,7 @@
       <dep package="libnotify"/>
       <dep package="gtk+"/>
       <dep package="gtksourceview"/>
-      <dep package="libpoppler"/>
+      <dep package="poppler"/>
     </after>
   </autotools>
 
@@ -159,6 +159,20 @@
       <dep package="glitz"/>
     </after>
   </autotools>
+
+  <tarball id="poppler" version="0.12.1">
+    <source href="http://poppler.freedesktop.org/poppler-0.12.1.tar.gz"/>
+    <dependencies>
+      <dep package="cairo"/>
+    </dependencies>
+    <suggests>
+      <dep package="glib"/>
+      <dep package="poppler-data"/>
+    </suggests>
+    <after>
+      <dep package="gtk+"/>
+    </after>
+  </tarball>
 
   <autotools id="pixman" autogenargs="--disable-gtk">
     <branch module="releases/pixman-0.17.4.tar.gz" version="0.17.4" repo="cairo.org"/>
@@ -458,6 +472,7 @@
       <dep package="libsocialweb"/>
       <dep package="libnotify"/>
       <dep package="gtksourceview"/>
+      <dep package="poppler"/>
       <dep package="gir-repository"/>
       <dep package="mx"/>
       <dep package="seed"/>
