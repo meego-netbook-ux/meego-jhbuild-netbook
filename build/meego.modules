@@ -30,7 +30,9 @@
   <repository type="tarball" name="people.suug.ch/~tgr/libnl/"
       href="http://www.gnome.org/~fpeters/libnl/"/>
   <repository type="tarball" name="cairo.org"
-    href="http://cairographics.org/"/>
+      href="http://cairographics.org/"/>
+  <repository type="git" name="0pointer.de"
+      href="git://git.0pointer.de/"/>
 
   <include href="http://git.gnome.org/browse/jhbuild/plain/modulesets/gnome-2.30.modules"/>
 
@@ -270,8 +272,8 @@
   </autotools>
 
   <autotools id="librest">
-    <branch repo="git.moblin.org"
-            module="librest"
+    <branch repo="gitorious.org"
+            module="meego-middleware/librest"
             revision="master"/>
     <dependencies>
       <dep package="gobject-introspection"/>
@@ -282,6 +284,16 @@
 
   <autotools id="json-glib">
     <branch repo="git.gnome.org" module="json-glib" revision="master"/>
+  </autotools>
+
+  <autotools id="glib">
+    <branch repo="git.gnome.org" module="glib" tag="2.24.0"/>
+    <dependencies>
+      <dep package="gtk-doc"/>
+    </dependencies>
+    <after>
+      <dep package="shared-mime-info"/>
+    </after>
   </autotools>
 
   <autotools id="twitter-glib">
@@ -296,8 +308,8 @@
   </autotools>
 
   <autotools id="libsocialweb" autogenargs="--enable-twitter --enable-lastfm --with-online=connman">
-    <branch repo="git.moblin.org"
-            module="libsocialweb"
+    <branch repo="gitorious.org"
+            module="meego-middleware/libsocialweb"
             revision="master"/>
     <dependencies>
       <dep package="librest"/>
@@ -327,16 +339,34 @@
   <!-- moblin-panel-devices deps -->
 
   <tarball id="lvm2" version="2.02.60" autogenargs="--enable-applib --enable-pkgconfig">
-    <source href="ftp://sources.redhat.com/pub/lvm2/LVM2.2.02.60.tgz"
-            size="840898" md5="938e8a06708561b5f9e539860c4e27bc" />
+    <source href="ftp://sources.redhat.com/pub/lvm2/LVM2.2.02.62.tgz"/>
   </tarball>
+
+  <tarball id="udev" version="150">
+    <source href="http://www.kernel.org/pub/linux/utils/kernel/hotplug/udev-150.tar.gz"/>
+    <suggests>
+      <dep package="usbutils"/>
+      <dep package="atasmart"/>
+    </suggests>
+  </tarball>
+
+  <tarball id="usbutils" version="0.86">
+    <source href="http://downloads.sourceforge.net/project/linux-usb/usbutils/usbutils-0.86.tar.gz"/>
+  </tarball>
+
+  <autotools id="atasmart" autogen-sh="./bootstrap.sh">
+    <branch repo="0pointer.de"
+            module="libatasmart"
+            revision="master" />
+  </autotools>
 
   <autotools id="udisks">
     <branch repo="freedesktop.org"
             module="DeviceKit/DeviceKit-disks"
-            tag="1.0.0" />
+            tag="1.0.1" />
     <suggests>
       <dep package="lvm2"/>
+      <dep package="udev"/>
       <dep package="dbus-glib"/>
     </suggests>
   </autotools>
@@ -432,7 +462,6 @@
             module="mutter-moblin"
             revision="master"/>
     <dependencies>
-      <dep package="clutter"/>
       <dep package="clutter-gtk"/>
       <dep package="mutter"/>
       <dep package="mx"/>
@@ -460,9 +489,6 @@
       <dep package="mutter-moblin"/>
       <dep package="bisho"/>
       <dep package="meta-meego-panels"/>
-      <dep package="gir-repository"/>
-      <dep package="seed"/>
-      <dep package="gjs"/>
     </dependencies>
   </metamodule>
 
