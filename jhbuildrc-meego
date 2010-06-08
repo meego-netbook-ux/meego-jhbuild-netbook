@@ -27,7 +27,7 @@ build_policy = 'updated'
 
 modules = [ 'meta-meego' ]
 
-moduleset = 'http://git.moblin.org/cgit.cgi/moblin2-jhbuild/plain/build/meego.modules'
+moduleset = 'http://meego.gitorious.org/meego-netbook-ux/meego-jhbuild-netbook/blobs/raw/master/build/meego.modules'
 
 # what directory should the source be checked out to?
 checkoutroot = os.path.expanduser(os.path.join('~', 'meego', 'source'))

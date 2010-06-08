@@ -1,5 +1,5 @@
 # moduleset to use
-moduleset = 'http://git.moblin.org/cgit.cgi/moblin2-jhbuild/plain/build/meego.modules'
+moduleset = 'http://meego.gitorious.org/meego-netbook-ux/meego-jhbuild-netbook/blobs/raw/master/build/meego.modules'
 
 # where to checkout source code to
 checkoutroot = os.path.expanduser('~/meego/source')

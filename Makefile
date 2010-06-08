@@ -14,7 +14,7 @@ ifneq ($(findstring $(MAKEFLAGS),s),s)
 	QUIET_MKDIR = @echo '  MKDIR ' $@;
 endif
 
-ALL_SCRIPTS = jhbuild-moblin2
+ALL_SCRIPTS = jhbuild-meego
 
 install:
 	$(INSTALL) -d -m 755 '$(DESTDIR)$(bindir)'
@@ -22,4 +22,4 @@ install:
 	$(INSTALL) -m 644 jhbuildrc-meego '$(DESTDIR)$(HOME)/.jhbuildrc-meego'
 	if test -f '$(DESTDIR)$(HOME)/.jhbuildrc-meego-custom' ; then echo "*** Custom jhbuild config already exists - leaving well alone";\
 	else $(INSTALL) -m 644 jhbuildrc-meego-custom '$(DESTDIR)$(HOME)/.jhbuildrc-meego-custom' ;\
-	fi	
+	fi
