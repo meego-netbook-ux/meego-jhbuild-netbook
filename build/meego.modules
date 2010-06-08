@@ -33,6 +33,10 @@
       href="http://cairographics.org/"/>
   <repository type="git" name="0pointer.de"
       href="git://git.0pointer.de/"/>
+  <repository type="tarball" name="mozilla.org"
+      href="http://releases.mozilla.org/pub/mozilla.org/"/>
+  <repository type="tarball" name="ftp.mozilla.org"
+      href="https://ftp.mozilla.org/pub/mozilla.org/"/>
 
   <include href="http://git.gnome.org/browse/jhbuild/plain/modulesets/gnome-2.30.modules"/>
 
@@ -115,6 +119,9 @@
     <dependencies>
       <dep package="gobject-introspection"/>
     </dependencies>
+    <suggests>
+      <dep package="mozilla"/>
+    </suggests>
     <after>
       <dep package="gir-repository"/>
     </after>
@@ -203,8 +210,8 @@
   </autotools>
 
   <autotools id="clutter-imcontext">
-    <branch repo="git.moblin.org"
-            module="clutter-imcontext"
+    <branch repo="gitorious.org"
+            module="mx-toolkit/clutter-imcontext"
             revision="master"/>
     <dependencies>
       <dep package="clutter"/>
@@ -217,6 +224,86 @@
             revision="master"/>
     <dependencies>
       <dep package="clutter"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="clutter-gst">
+    <branch repo="git.clutter-project.org"
+            module="clutter-gst"
+            revision="clutter-gst-1.0"/>
+    <dependencies>
+      <dep package="clutter"/>
+    </dependencies>
+    <suggests>
+      <dep package="gst-plugins-base"/>
+    </suggests>
+    <after>
+      <dep package="gir-repository"/>
+    </after>
+  </autotools>
+
+  <autotools id="bickley">
+    <branch repo="git.moblin.org"
+            module="bickley"
+            revision="master"/>
+    <suggests>
+      <dep package="gupnp"/>
+      <dep package="gupnp-av"/>
+      <dep package="gupnp-tools"/>
+    </suggests>
+  </autotools>
+
+  <autotools id="tracker" autogenargs="--disable-deskbar-applet">
+    <branch repo="git.gnome.org"
+            module="tracker"
+            revision="master" />
+    <dependencies />
+  </autotools>
+
+  <autotools id="tumbler">
+    <branch repo="git.xfce.org"
+            module="apps/tumbler"
+            revision="master" />
+    <dependencies />
+  </autotools>
+
+  <autotools id="maemo-video-thumbnailer">
+    <branch repo="maemo.gitorious.org"
+            module="maemo-video-thumbnailer"
+            revision="master" />
+    <dependencies />
+  </autotools>
+
+  <autotools id="clutter-gtk">
+    <branch repo="git.clutter-project.org"
+            module="clutter-gtk"
+            revision="clutter-gtk-0.10"/>
+    <dependencies>
+      <dep package="clutter"/>
+    </dependencies>
+    <suggests>
+      <dep package="gtk+"/>
+    </suggests>
+  </autotools>
+
+  <autotools id="moblin-icon-theme"
+             autogen-sh="create-icon-theme.sh moblin &amp;&amp; cd output/moblin &amp;&amp; ./autogen.sh"
+             makeargs="-C output/moblin"
+             makeinstallargs="-C output/moblin install">
+    <branch repo="git.moblin.org"
+            module="moblin-icon-theme"
+            revision="master"/>
+  </autotools>
+
+  <autotools id="cluttersmith">
+    <branch repo="git.clutter-project.org"
+            module="cluttersmith"
+            revision="master"/>
+    <dependencies>
+      <dep package="clutter-gst"/>
+      <dep package="mx"/>
+      <dep package="gjs"/>
+      <dep package="moblin-icon-theme"/>
     </dependencies>
   </autotools>
 
@@ -452,7 +539,7 @@
     </dependencies>
   </metamodule>
 
-  <metamodule id="meta-meego">
+  <metamodule id="meta-meego-netbook">
     <dependencies>
       <dep package="gobject-introspection"/>
       <dep package="clutter"/>
@@ -477,86 +564,6 @@
       <dep package="cluttersmith"/>
     </dependencies>
   </metamodule>
-
-  <autotools id="clutter-gst">
-    <branch repo="git.clutter-project.org"
-            module="clutter-gst"
-            revision="clutter-gst-1.0"/>
-    <dependencies>
-      <dep package="clutter"/>
-    </dependencies>
-    <suggests>
-      <dep package="gst-plugins-base"/>
-    </suggests>
-    <after>
-      <dep package="gir-repository"/>
-    </after>
-  </autotools>
-
-  <autotools id="bickley">
-    <branch repo="git.moblin.org"
-            module="bickley"
-            revision="master"/>
-    <suggests>
-      <dep package="gupnp"/>
-      <dep package="gupnp-av"/>
-      <dep package="gupnp-tools"/>
-    </suggests>
-  </autotools>
-
-  <autotools id="tracker" autogenargs="--disable-deskbar-applet">
-    <branch repo="git.gnome.org"
-            module="tracker"
-            revision="master" />
-    <dependencies />
-  </autotools>
-
-  <autotools id="tumbler">
-    <branch repo="git.xfce.org"
-            module="apps/tumbler"
-            revision="master" />
-    <dependencies />
-  </autotools>
-
-  <autotools id="maemo-video-thumbnailer">
-    <branch repo="maemo.gitorious.org"
-            module="maemo-video-thumbnailer"
-            revision="master" />
-    <dependencies />
-  </autotools>
-
-  <autotools id="clutter-gtk">
-    <branch repo="git.clutter-project.org"
-            module="clutter-gtk"
-            revision="clutter-gtk-0.10"/>
-    <dependencies>
-      <dep package="clutter"/>
-    </dependencies>
-    <suggests>
-      <dep package="gtk+"/>
-    </suggests>
-  </autotools>
-
-  <autotools id="moblin-icon-theme"
-             autogen-sh="create-icon-theme.sh moblin &amp;&amp; cd output/moblin &amp;&amp; ./autogen.sh"
-             makeargs="-C output/moblin"
-             makeinstallargs="-C output/moblin install">
-    <branch repo="git.moblin.org"
-            module="moblin-icon-theme"
-            revision="master"/>
-  </autotools>
-
-  <autotools id="cluttersmith">
-    <branch repo="git.clutter-project.org"
-            module="cluttersmith"
-            revision="master"/>
-    <dependencies>
-      <dep package="clutter-gst"/>
-      <dep package="mx"/>
-      <dep package="gjs"/>
-      <dep package="moblin-icon-theme"/>
-    </dependencies>
-  </autotools>
 
   <!-- deprecated -->
   <autotools id="hornsey">
@@ -675,6 +682,59 @@
 	    repo="sqlite.org">
     </branch>
   </autotools>
+
+  <autotools id="mozilla"
+             autogenargs="--with-x --with-system-jpeg --with-system-zlib --with-system-bz2
+	     --enable-application=xulrunner --enable-default-toolkit=cairo-gtk2
+	     --enable-startup-notification --disable-mailnews --disable-ldap
+	     --disable-gnomevfs --disable-gnomeui
+	     --with-default-mozilla-five-home=${libdir}/mozilla
+	     --enable-system-cairo
+	     --disable-mochitest
+	     --disable-debug --enable-optimize=-O2 --disable-tests
+	     --disable-javaxpcom
+	     --enable-extensions=python/xpcom
+	     --disable-crashreporter
+	     "
+             makeinstallargs="install SKIP_GRE_REGISTRATION=1">
+    <branch repo="mozilla.org"
+            module="xulrunner/releases/1.9.1.7/source/xulrunner-1.9.1.7.source.tar.bz2"
+            version="1.9.1.7"
+            checkoutdir="mozilla-1.9.1">
+      <patch file="http://git.gnome.org/browse/jhbuild/plain/patches/mozilla.automationutils.patch" strip="1"/>
+    </branch>
+    <dependencies>
+      <dep package="gtk+"/>
+      <dep package="sqlite3"/>
+      <dep package="nss"/>
+      <dep package="nspr"/>
+      <dep package="dbus"/>
+      <dep package="gconf"/>
+      <dep package="cairo"/>
+    </dependencies>
+  </autotools>
+
+  <!--
+  newer version so mozilla builds, allowing HEAD gjs to build
+  (version of nss in GNOME 2.30 doesn't work with mozilla 1.9.1.17);
+  see https://bugzilla.gnome.org/show_bug.cgi?id=596385
+
+  NB in some environments you may need to modify CFLAGS to include
+    -DNS_PTR_LE_32=32
+  for this to compile correctly
+  -->
+  <autotools id="nss" autogen-sh="configure" supports-non-srcdir-builds="no">
+    <branch repo="ftp.mozilla.org"
+            module="security/nss/releases/NSS_3_12_6_RTM/src/nss-3.12.6.tar.gz"
+	    version="3.12.6">
+      <patch file="http://git.gnome.org/browse/jhbuild/plain/patches/nss.pkgconfig-and-configure.patch"/>
+    </branch>
+    <dependencies>
+      <dep package="nspr"/>
+      <dep package="sqlite3"/>
+    </dependencies>
+  </autotools>
+
 
   <!-- version of libsoup without GNOME -->
   <autotools id="libsoup" autogenargs="--without-gnome">
