@@ -10,7 +10,7 @@
   <repository type="git" name="git.clutter-project.org"
       href="git://git.clutter-project.org/"/>
   <repository type="git" name="git.moblin.org"
-      href="ssh://git@git.moblin.org/"/>
+      href="git://git.moblin.org/"/>
   <repository type="git" name="github.com"
       href="git://github.com/"/>
   <repository type="git" name="maemo.gitorious.org"
@@ -192,7 +192,7 @@
   </tarball>
 
   <autotools id="mutter" autogenargs="--with-clutter">
-    <branch repo="git.moblin.org" module="mutter" revision="master"/>
+    <branch repo="gitorious.org" module="meego-netbook-ux/mutter" revision="master"/>
     <dependencies>
       <dep package="clutter"/>
     </dependencies>
@@ -200,12 +200,6 @@
       <dep package="gobject-introspection"/>
       <dep package="gir-repository"/>
     </suggests>
-  </autotools>
-
-  <autotools id="libccss" autogenargs="--without-rsvg --without-soup --disable-ccss-cairo --disable-ccss-gtk --disable-examples">
-    <branch repo="freedesktop.org"
-            module="ccss"
-            tag="libccss-0.3.1" />
   </autotools>
 
   <autotools id="clutter-imcontext">
@@ -218,8 +212,8 @@
   </autotools>
 
   <autotools id="clutter-gesture">
-    <branch repo="git.moblin.org"
-            module="clutter-gesture"
+    <branch repo="gitorious.org"
+            module="mx-toolkit/clutter-gesture"
             revision="master"/>
     <dependencies>
       <dep package="clutter"/>
@@ -231,8 +225,8 @@
   properly in all jhbuild environments
   -->
   <autotools id="mx" autogenargs="--enable-gtk-doc --without-clutter-gesture">
-    <branch repo="git.moblin.org"
-            module="mx"
+    <branch repo="gitorious.org"
+            module="mx-toolkit/mx"
             revision="master"/>
     <dependencies>
       <dep package="clutter"/>
@@ -246,28 +240,6 @@
       <dep package="cairo"/>
       <dep package="startup-notification"/>
       <dep package="dbus-glib"/>
-    </suggests>
-  </autotools>
-
-  <autotools id="bognor-regis">
-    <branch repo="git.moblin.org"
-            module="bognor-regis"
-            revision="master"/>
-    <suggests>
-      <dep package="gupnp"/>
-      <dep package="gupnp-av"/>
-      <dep package="tracker"/>
-    </suggests>
-  </autotools>
-
-  <autotools id="bickley">
-    <branch repo="git.moblin.org"
-            module="bickley"
-            revision="master"/>
-    <suggests>
-      <dep package="gupnp"/>
-      <dep package="gupnp-av"/>
-      <dep package="gupnp-tools"/>
     </suggests>
   </autotools>
 
@@ -323,8 +295,8 @@
   </autotools>
 
   <autotools id="bisho">
-    <branch repo="git.moblin.org"
-            module="bisho"
+    <branch repo="gitorious.org"
+            module="meego-netbook-ux/bisho"
             revision="master"/>
     <dependencies>
       <dep package="libsocialweb"/>
@@ -333,10 +305,10 @@
   </autotools>
 
   <autotools id="anerley">
-    <branch repo="git.moblin.org" module="anerley" revision="master"/>
+    <branch repo="gitorious.org" module="meego-netbook-ux/anerley" revision="master"/>
   </autotools>
 
-  <!-- moblin-panel-devices deps -->
+  <!-- meego-panel-devices deps -->
 
   <tarball id="lvm2" version="2.02.60" autogenargs="--enable-applib --enable-pkgconfig">
     <source href="ftp://sources.redhat.com/pub/lvm2/LVM2.2.02.62.tgz"/>
@@ -371,30 +343,30 @@
     </suggests>
   </autotools>
 
-  <!-- end moblin-panel-devices deps -->
+  <!-- end meego-panel-devices deps -->
 
-  <autotools id="moblin-panel-devices" autogenargs="--without-udisks">
-    <branch repo="git.moblin.org"
-            module="moblin-panel-devices"
+  <autotools id="meego-panel-devices" autogenargs="--without-udisks">
+    <branch repo="gitorious.org"
+            module="meego-netbook-ux/meego-panel-devices"
             revision="master"/>
     <dependencies>
       <dep package="mx"/>
-      <dep package="mutter-moblin"/>
+      <dep package="mutter-meego"/>
     </dependencies>
     <suggests>
       <dep package="udisks"/>
     </suggests>
   </autotools>
 
-  <autotools id="moblin-panel-myzone">
-    <branch repo="git.moblin.org"
-            module="moblin-panel-myzone"
+  <autotools id="meego-panel-myzone">
+    <branch repo="gitorious.org"
+            module="meego-netbook-ux/meego-panel-myzone"
             revision="master"/>
     <dependencies>
       <dep package="bickley"/>
       <dep package="mx"/>
       <dep package="libsocialweb"/>
-      <dep package="mutter-moblin"/>
+      <dep package="mutter-meego"/>
       <dep package="telepathy-glib"/>
     </dependencies>
     <suggests>
@@ -402,48 +374,47 @@
     </suggests>
   </autotools>
 
-  <autotools id="moblin-panel-applications">
-    <branch repo="git.moblin.org"
-            module="moblin-panel-applications"
+  <autotools id="meego-panel-applications">
+    <branch repo="gitorious.org"
+            module="meego-netbook-ux/meego-panel-applications"
             revision="master"/>
     <dependencies>
       <dep package="mx"/>
-      <dep package="mutter-moblin"/>
+      <dep package="mutter-meego"/>
     </dependencies>
   </autotools>
 
-  <autotools id="moblin-panel-status">
-    <branch repo="git.moblin.org"
-            module="moblin-panel-status"
+  <autotools id="meego-panel-status">
+    <branch repo="gitorious.org"
+            module="meego-netbook-ux/meego-panel-status"
             revision="master"/>
     <dependencies>
       <dep package="clutter-gtk"/>
       <dep package="libsocialweb"/>
       <dep package="mx"/>
-      <dep package="mutter-moblin"/>
+      <dep package="mutter-meego"/>
     </dependencies>
   </autotools>
 
-  <autotools id="moblin-panel-people">
-    <branch repo="git.moblin.org"
-            module="moblin-panel-people"
+  <autotools id="meego-panel-people">
+    <branch repo="gitorious.org"
+            module="meego-netbook-ux/meego-panel-people"
             revision="master"/>
     <dependencies>
       <dep package="mx"/>
       <dep package="anerley"/>
-      <dep package="mutter-moblin"/>
+      <dep package="mutter-meego"/>
     </dependencies>
   </autotools>
 
-  <autotools id="moblin-panel-media">
-    <branch repo="git.moblin.org"
-            module="moblin-panel-media"
+  <autotools id="meego-panel-media">
+    <branch repo="gitorious.org"
+            module="meego-netbook-ux/meego-panel-media"
             revision="master"/>
     <dependencies>
       <dep package="mx"/>
-      <dep package="mutter-moblin"/>
+      <dep package="mutter-meego"/>
       <dep package="bickley"/>
-      <dep package="bognor-regis"/>
     </dependencies>
   </autotools>
 
@@ -452,14 +423,14 @@
             module="moblin-panel-pasteboard"
             revision="master"/>
     <dependencies>
-      <dep package="mutter-moblin"/>
+      <dep package="mutter-meego"/>
       <dep package="mx"/>
     </dependencies>
   </autotools>
 
-  <autotools id="mutter-moblin">
-    <branch repo="git.moblin.org"
-            module="mutter-moblin"
+  <autotools id="mutter-meego">
+    <branch repo="gitorious.org"
+            module="meego-netbook-ux/mutter-meego"
             revision="master"/>
     <dependencies>
       <dep package="clutter-gtk"/>
@@ -471,13 +442,13 @@
 
   <metamodule id="meta-meego-panels">
     <dependencies>
-      <dep package="moblin-panel-myzone"/>
-      <dep package="moblin-panel-status"/>
-      <dep package="moblin-panel-people"/>
-      <dep package="moblin-panel-media"/>
+      <dep package="meego-panel-myzone"/>
+      <dep package="meego-panel-status"/>
+      <dep package="meego-panel-people"/>
+      <dep package="meego-panel-media"/>
       <dep package="moblin-panel-pasteboard"/>
-      <dep package="moblin-panel-applications"/>
-      <dep package="moblin-panel-devices"/>
+      <dep package="meego-panel-applications"/>
+      <dep package="meego-panel-devices"/>
     </dependencies>
   </metamodule>
 
@@ -486,7 +457,7 @@
       <dep package="gobject-introspection"/>
       <dep package="clutter"/>
       <dep package="libsocialweb"/>
-      <dep package="mutter-moblin"/>
+      <dep package="mutter-meego"/>
       <dep package="bisho"/>
       <dep package="meta-meego-panels"/>
     </dependencies>
@@ -522,6 +493,17 @@
     </after>
   </autotools>
 
+  <autotools id="bickley">
+    <branch repo="git.moblin.org"
+            module="bickley"
+            revision="master"/>
+    <suggests>
+      <dep package="gupnp"/>
+      <dep package="gupnp-av"/>
+      <dep package="gupnp-tools"/>
+    </suggests>
+  </autotools>
+
   <autotools id="tracker" autogenargs="--disable-deskbar-applet">
     <branch repo="git.gnome.org"
             module="tracker"
@@ -541,22 +523,6 @@
             module="maemo-video-thumbnailer"
             revision="master" />
     <dependencies />
-  </autotools>
-
-  <autotools id="hornsey">
-    <branch repo="git.moblin.org"
-            module="hornsey"
-            revision="master"/>
-    <dependencies>
-      <dep package="bognor-regis"/>
-      <dep package="mx"/>
-      <dep package="clutter-gst"/>
-      <dep package="clutter-gtk"/>
-    </dependencies>
-    <suggests>
-      <dep package="tracker"/>
-      <dep package="tumbler"/>
-    </suggests>
   </autotools>
 
   <autotools id="clutter-gtk">
@@ -593,6 +559,38 @@
   </autotools>
 
   <!-- deprecated -->
+  <autotools id="hornsey">
+    <branch repo="git.moblin.org"
+            module="hornsey"
+            revision="master"/>
+    <dependencies>
+      <dep package="bognor-regis"/>
+      <dep package="mx"/>
+      <dep package="clutter-gst"/>
+      <dep package="clutter-gtk"/>
+    </dependencies>
+    <suggests>
+      <dep package="tracker"/>
+      <dep package="tumbler"/>
+    </suggests>
+  </autotools>
+
+  <autotools id="bognor-regis">
+    <branch repo="git.moblin.org"
+            module="bognor-regis"
+            revision="master"/>
+    <suggests>
+      <dep package="gupnp"/>
+      <dep package="gupnp-av"/>
+      <dep package="tracker"/>
+    </suggests>
+  </autotools>
+
+  <autotools id="libccss" autogenargs="--without-rsvg --without-soup --disable-ccss-cairo --disable-ccss-gtk --disable-examples">
+    <branch repo="freedesktop.org"
+            module="ccss"
+            tag="libccss-0.3.1" />
+  </autotools>
 
   <autotools id="nbtk">
     <branch repo="git.moblin.org"
@@ -610,15 +608,6 @@
             module="dalston"
             revision="master"/>
     <dependencies>
-    </dependencies>
-  </autotools>
-
-  <autotools id="mojito" autogenargs="--with-online=networkmanager">
-    <branch repo="git.moblin.org"
-            module="mojito"
-            revision="master"/>
-    <dependencies>
-      <dep package="librest"/>
     </dependencies>
   </autotools>
 
