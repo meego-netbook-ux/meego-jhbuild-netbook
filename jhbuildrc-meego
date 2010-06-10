@@ -25,7 +25,7 @@ use_local_modulesets = True
 # Only rebuild modules that have changed
 build_policy = 'updated'
 
-modules = [ 'meta-meego' ]
+modules = [ 'meta-meego-netbook' ]
 
 moduleset = 'http://meego.gitorious.org/meego-netbook-ux/meego-jhbuild-netbook/blobs/raw/master/build/meego.modules'
 
