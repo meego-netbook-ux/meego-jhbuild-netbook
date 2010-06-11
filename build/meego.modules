@@ -149,8 +149,10 @@
     <branch repo="git.clutter-project.org"
             module="clutter"
             revision="master"/>
-    <suggests>
+    <dependencies>
       <dep package="gobject-introspection"/>
+    </dependencies>
+    <suggests>
       <dep package="gir-repository"/>
       <dep package="gtk+"/>
       <dep package="glib"/>
