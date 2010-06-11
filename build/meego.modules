@@ -242,17 +242,6 @@
     </after>
   </autotools>
 
-  <autotools id="bickley">
-    <branch repo="git.moblin.org"
-            module="bickley"
-            revision="master"/>
-    <suggests>
-      <dep package="gupnp"/>
-      <dep package="gupnp-av"/>
-      <dep package="gupnp-tools"/>
-    </suggests>
-  </autotools>
-
   <autotools id="tracker" autogenargs="--disable-deskbar-applet">
     <branch repo="git.gnome.org"
             module="tracker"
@@ -450,14 +439,13 @@
             module="meego-netbook-ux/meego-panel-myzone"
             revision="master"/>
     <dependencies>
-      <dep package="bickley"/>
       <dep package="mx"/>
       <dep package="libsocialweb"/>
       <dep package="mutter-meego"/>
-      <dep package="telepathy-glib"/>
     </dependencies>
     <suggests>
       <dep package="jana"/>
+      <dep package="telepathy-glib"/>
     </suggests>
   </autotools>
 
@@ -491,17 +479,6 @@
       <dep package="mx"/>
       <dep package="anerley"/>
       <dep package="mutter-meego"/>
-    </dependencies>
-  </autotools>
-
-  <autotools id="meego-panel-media">
-    <branch repo="gitorious.org"
-            module="meego-netbook-ux/meego-panel-media"
-            revision="master"/>
-    <dependencies>
-      <dep package="mx"/>
-      <dep package="mutter-meego"/>
-      <dep package="bickley"/>
     </dependencies>
   </autotools>
 
