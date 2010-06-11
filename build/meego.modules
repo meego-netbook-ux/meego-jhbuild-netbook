@@ -511,7 +511,6 @@
       <dep package="meego-panel-myzone"/>
       <dep package="meego-panel-status"/>
       <dep package="meego-panel-people"/>
-      <dep package="meego-panel-media"/>
       <dep package="moblin-panel-pasteboard"/>
       <dep package="meego-panel-applications"/>
       <dep package="meego-panel-devices"/>
