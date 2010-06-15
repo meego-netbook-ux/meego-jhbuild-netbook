@@ -39,6 +39,8 @@
       href="https://ftp.mozilla.org/pub/mozilla.org/"/>
   <repository type="tarball" name="gnupg.org"
     href="ftp://ftp.gnupg.org/gcrypt/"/>
+  <repository type="tarball" name="ftp.gnome.org"
+    href="ftp://ftp.gnome.org/pub/gnome/sources/"/>
 
   <include href="http://git.gnome.org/browse/jhbuild/plain/modulesets/gnome-2.30.modules"/>
 
@@ -768,7 +770,7 @@
       <dep package="libxml2"/>
     </suggests>
   </tarball>
-  
+
   <!-- slightly newer libgcrypt to match the one in MeeGo 1.0; also requires GNOME 3 patch -->
   <autotools id="libgcrypt" autogen-sh="configure" check-target="false">
     <branch module="libgcrypt/libgcrypt-1.4.5.tar.bz2"
@@ -779,5 +781,18 @@
       <dep package="libgpg-error" />
     </dependencies>
   </autotools>
-  
+
+  <!-- freeze at 0.20.0 (as in MeeGo 1.0); otherwise needs gnome-common master @ HEAD -->
+  <autotools id="gnome-doc-utils">
+    <branch repo="ftp.gnome.org"
+            module="gnome-doc-utils/0.20/gnome-doc-utils-0.20.0.tar.bz2"
+            version="0.20.0">
+    </branch>
+    <suggests>
+      <dep package="libxslt"/>
+      <dep package="intltool"/>
+      <dep package="rarian"/>
+    </suggests>
+  </autotools>
+
 </moduleset>
