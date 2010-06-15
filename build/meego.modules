@@ -37,6 +37,8 @@
       href="http://releases.mozilla.org/pub/mozilla.org/"/>
   <repository type="tarball" name="ftp.mozilla.org"
       href="https://ftp.mozilla.org/pub/mozilla.org/"/>
+  <repository type="tarball" name="gnupg.org"
+    href="ftp://ftp.gnupg.org/gcrypt/"/>
 
   <include href="http://git.gnome.org/browse/jhbuild/plain/modulesets/gnome-2.30.modules"/>
 
@@ -766,4 +768,16 @@
       <dep package="libxml2"/>
     </suggests>
   </tarball>
+  
+  <!-- slightly newer libgcrypt to match the one in MeeGo 1.0; also requires GNOME 3 patch -->
+  <autotools id="libgcrypt" autogen-sh="configure" check-target="false">
+    <branch module="libgcrypt/libgcrypt-1.4.5.tar.bz2"
+            repo="gnupg.org" version="1.4.5">
+      <patch file="http://git.gnome.org/browse/jhbuild/plain/patches/libgcrypt-1.4.5-ImplicitDSOLinking.patch" strip="1"/>
+    </branch>
+    <dependencies>
+      <dep package="libgpg-error" />
+    </dependencies>
+  </autotools>
+  
 </moduleset>
