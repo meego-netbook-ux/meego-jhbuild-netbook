@@ -85,10 +85,10 @@
     </suggests>
   </autotools>
 
-  <autotools id="gir-repository">
+  <autotools id="gir-repository" autogenargs="--with-skipped-gir-modules=Gst,Pango,PangoXft,Gtk,GConf,DBusGlib">
     <branch repo="git.gnome.org"
             module="gir-repository"
-            revision="master"/>
+            tag="GIR_REPOSITORY_0_6_5"/>
     <dependencies>
       <dep package="gobject-introspection"/>
     </dependencies>
@@ -112,7 +112,7 @@
   <autotools id="gobject-introspection">
     <branch repo="git.gnome.org"
             module="gobject-introspection"
-            revision="master"/>
+            tag="GOBJECT_INTROSPECTION_0_6_14"/>
     <suggests>
       <dep package="glib"/>
     </suggests>
@@ -306,13 +306,13 @@
   clutter-gesture integration disabled, as it doesn't build
   properly in all jhbuild environments
   -->
-  <autotools id="mx" autogenargs="--enable-gtk-doc --without-clutter-gesture">
+  <autotools id="mx" autogenargs="--enable-gtk-doc">
     <branch repo="gitorious.org"
             module="mx-toolkit/mx"
             revision="master"/>
     <dependencies>
       <dep package="clutter"/>
-      <!--dep package="clutter-gesture"/-->
+      <dep package="clutter-gesture"/>
       <dep package="clutter-imcontext"/>
       <dep package="gobject-introspection"/>
       <dep package="gir-repository"/>
