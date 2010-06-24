@@ -341,7 +341,7 @@
   </autotools>
 
   <autotools id="glib">
-    <branch repo="git.gnome.org" module="glib" tag="2.24.0"/>
+    <branch repo="git.gnome.org" module="glib" tag="2.25.9"/>
     <dependencies>
       <dep package="gtk-doc"/>
     </dependencies>
