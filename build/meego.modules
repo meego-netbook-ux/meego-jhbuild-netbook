@@ -307,8 +307,8 @@
   properly in all jhbuild environments
   -->
   <autotools id="mx" autogenargs="--enable-gtk-doc">
-    <branch repo="gitorious.org"
-            module="mx-toolkit/mx"
+    <branch repo="git.clutter-project.org"
+            module="mx"
             revision="master"/>
     <dependencies>
       <dep package="clutter"/>
