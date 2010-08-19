@@ -149,6 +149,17 @@
             revision="master" />
   </autotools>
 
+  <autotools id="seed" autogenargs="--with-webkit=1.0">
+    <branch repo="git.gnome.org" module="seed" revision="master"/>
+    <dependencies>
+      <dep package="gobject-introspection"/>
+      <dep package="gnome-js-common"/>
+    </dependencies>
+    <suggests>
+      <dep package="WebKit"/>
+    </suggests>
+  </autotools>
+
   <autotools id="clutter">
     <branch repo="git.clutter-project.org"
             module="clutter"
