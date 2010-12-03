@@ -69,9 +69,18 @@
       <dep package="glib"/>
       <dep package="cairo"/>
       <dep package="pango"/>
-      <dep package="atk" />
       <dep package="libtiff"/>
     </suggests>
+  </autotools>
+
+  <autotools id="atk">
+    <branch repo="git.gnome.org"
+            module="atk"
+            tag="ATK_1_30_0" />
+    <dependencies>
+      <dep package="glib"/>
+      <dep package="gnome-doc-utils"/>
+    </dependencies>
   </autotools>
 
   <autotools id="gnome-control-center">
@@ -112,7 +121,7 @@
   <autotools id="gobject-introspection">
     <branch repo="git.gnome.org"
             module="gobject-introspection"
-            tag="GOBJECT_INTROSPECTION_0_6_14"/>
+            revision="master"/>
     <suggests>
       <dep package="glib"/>
     </suggests>
@@ -171,6 +180,7 @@
       <dep package="gir-repository"/>
       <dep package="gtk+"/>
       <dep package="glib"/>
+      <dep package="json-glib"/>
     </suggests>
   </autotools>
 
@@ -349,10 +359,13 @@
 
   <autotools id="json-glib">
     <branch repo="git.gnome.org" module="json-glib" revision="master"/>
+    <dependencies>
+      <dep package="glib"/>
+    </dependencies>
   </autotools>
 
   <autotools id="glib">
-    <branch repo="git.gnome.org" module="glib" tag="2.25.9"/>
+    <branch repo="git.gnome.org" module="glib" tag="2.26.0"/>
     <dependencies>
       <dep package="gtk-doc"/>
     </dependencies>
