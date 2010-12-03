@@ -42,7 +42,7 @@
   <repository type="tarball" name="ftp.gnome.org"
     href="ftp://ftp.gnome.org/pub/gnome/sources/"/>
 
-  <include href="http://git.gnome.org/browse/jhbuild/plain/modulesets/gnome-2.30.modules"/>
+  <include href="http://git.gnome.org/browse/jhbuild/plain/modulesets/gnome2/gnome-2.30.modules"/>
 
   <!--
   The aim here is to build all the core MeeGo libraries a developer might want,
